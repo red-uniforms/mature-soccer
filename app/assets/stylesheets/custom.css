@@ -1,0 +1,84 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+body p {
+  letter-spacing: .05em;
+}
+
+.container h1, h2, h3, h4, h5 {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.row h3:first-child{
+  margin-bottom: 4rem;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  z-index: 1000;
+}
+
+.navbar-default {
+  background-color: #ffffff;
+}
+
+#intro {
+  margin-top: 60px;
+  color: #222;
+}
+
+#module {
+  background: #3A87BC;
+  color: white;
+}
+
+.navbar-link {
+  font-size: 15px;
+  color: #3A87BC;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 6rem;
+  margin-right: 10px;
+}
+
+section .container {
+  padding: 90px 0;
+  margin auto;
+}
+
+section {
+  min-height: 400px;
+  text-align: center;
+}
+
+.big {
+  font-size: 100px;
+}
+
+.input, .button{
+  min-height: 50px;
+  line-height: 50px;
+  padding: auto 0;
+  font-size: 15px;
+  text-align: center;
+}
+
+.first-child {
+  margin-left: 0;
+}
+
+img.wrapper-circle {
+  border-radius: 50%;
+  border: 6px solid #eee;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  text-align: center;
+}
