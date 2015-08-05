@@ -47,7 +47,8 @@ body p {
 }
 
 section .container {
-  padding: 90px 20px;
+  padding-top: 90px;
+  padding-bottom: 90px;
   margin: auto;
 }
 
@@ -75,8 +76,8 @@ section {
 img.wrapper-circle {
   border-radius: 50%;
   border: 6px solid #eee;
-  width: 150px;
-  height: 150px;
+  max-width: 150px;
+  width: 80%;
   margin: 0 auto;
   text-align: center;
 }
