@@ -50,7 +50,7 @@ body p {
 
 section .container {
   padding: 90px 0;
-  margin auto;
+  margin: auto;
 }
 
 section {
