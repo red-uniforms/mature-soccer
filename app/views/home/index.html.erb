@@ -2,8 +2,13 @@
   <div class="container">
     <a class="navbar-link" href="#" id="logo">HOME</a>
     <a class="navbar-link" target="_blank" href="http://enccer.com">Enccer</a>
-    <a class="navbar-link" href="#team" id="logo">TEAM</a>
-    <a class="navbar-link" href="#top" id="logo">TOP</a>
+    <a class="navbar-link" href="#team">TEAM</a>
+    <a class="navbar-link" href="#top">TOP</a>
+    <p class="navbar-text">
+      <% if current_user %> 
+        Hello, <%= current_user.email %>
+      <% end %>
+    </p>
   </div>
 </nav>
 
@@ -13,16 +18,17 @@
       <h2>아마추어 축구 대회 관리 서비스</h2>
       <h4>간편하게 대회를 개최하고 경기를 기록하세요</h4>
     </div>
-    <form action="#">
+
+    <form action="/users/sign_in" method="post">
       <div class="row eight columns offset-by-two">
         <div class="four columns">
-          <input class="input u-full-width" type="email" placeholder="test@mailbox.com" id="exampleEmailInput">
+          <input class="input u-full-width" type="email" placeholder="email@example.com" id="exampleEmailInput">
         </div>
         <div class="four columns">
           <input class="input u-full-width" type="password" placeholder="password" id="exampleEmailInput">
         </div>
         <div class="four columns">
-          <input type="submit" class="u-full-width button " value="Sign up"/>
+          <input type="submit" class="u-full-width button" value="Sign up"/>
         </div>
       </div>
     </form>
