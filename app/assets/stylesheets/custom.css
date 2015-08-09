@@ -46,10 +46,9 @@ body p {
   margin-right: 10px;
 }
 
-section .container {
+section .container:first-child {
   padding-top: 90px;
   padding-bottom: 90px;
-  margin: auto;
 }
 
 section {
@@ -78,6 +77,4 @@ img.wrapper-circle {
   border: 6px solid #eee;
   max-width: 150px;
   width: 80%;
-  margin: 0 auto;
-  text-align: center;
 }

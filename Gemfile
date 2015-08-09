@@ -47,3 +47,5 @@ end
 group :production do
   gem 'pg', '~> 0.18.1'
 end
+# using devise for authentication
+gem 'devise', '~> 3.5.1'
