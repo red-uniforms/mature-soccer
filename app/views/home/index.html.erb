@@ -2,13 +2,10 @@
   <div class="container">
     <a class="navbar-link" href="#" id="logo">HOME</a>
     <a class="navbar-link" target="_blank" href="http://enccer.com">Enccer</a>
-    <a class="navbar-link" href="#team">TEAM</a>
-    <a class="navbar-link" href="#top">TOP</a>
-    <p class="navbar-text">
-      <% if current_user %> 
-        Hello, <%= current_user.email %>
-      <% end %>
-    </p>
+    <% if current_user %> 
+      <%= link_to "log out", destroy_user_session_path, class: "navbar-link pull-right", method: :delete, data: { confirm: "Sure to Log Out?"} %>
+    <% end %>
+    
   </div>
 </nav>
 
