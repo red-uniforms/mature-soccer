@@ -19,19 +19,12 @@
       <h4>간편하게 대회를 개최하고 경기를 기록하세요</h4>
     </div>
 
-    <form action="/users/sign_in" method="post">
-      <div class="row eight columns offset-by-two">
-        <div class="four columns">
-          <input class="input u-full-width" type="email" placeholder="email@example.com" id="exampleEmailInput">
-        </div>
-        <div class="four columns">
-          <input class="input u-full-width" type="password" placeholder="password" id="exampleEmailInput">
-        </div>
-        <div class="four columns">
-          <input type="submit" class="u-full-width button" value="Sign up"/>
-        </div>
-      </div>
-    </form>
+    <div class="four columns offset-by-four">
+      <%= link_to(new_user_session_path) do %>
+        <%= button_tag("Sign up", {type: 'button', class: 'u-full-width button'} ) %>
+      <% end %>
+    </div>
+
   </div>
 </section>
 
