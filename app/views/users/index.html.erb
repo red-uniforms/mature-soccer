@@ -1,0 +1,46 @@
+<section id="profile" class="first">
+  <div class="container">
+    <div class="row">
+      <h5 class="u-pull-left">Profile</h5>
+    </div>
+    <div class="row">
+      <div class="three columns div-max-170">
+        <img src="http://placehold.it/150x150" class="wrapper-circle small" alt="user profile image">
+        <p class="username"><%= current_user.email %></p>
+      </div>
+      <div class="nine columns" id="recent-events">
+        <div class="row">
+          <div class="four columns event-holder empty">
+            <p>No more events</p>
+            <a href="#">More events</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="teams">
+  <div class="container">
+    <div class="row">
+      <h5 class="u-pull-left">Teams</h5>
+    </div>
+    <div class="row">
+      <div class="four columns team-holder empty">
+        <p>Create a new Team</p>
+        <div class="row">
+          <div class="eight columns offset-by-two">
+            <%= button_tag("Create", {type: 'button', class: 'u-full-width button button-small'} ) %>
+          </div>
+        </div>
+        <p>or</p>
+        <p>Join a new Team</p>
+        <div class="row">
+          <div class="eight columns offset-by-two">
+            <%= button_tag("join", {type: 'button', class: 'u-full-width button button-small'} ) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

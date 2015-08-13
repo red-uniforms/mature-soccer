@@ -4,6 +4,7 @@ body {
 
 body p {
   letter-spacing: .05em;
+  margin-bottom: 10px;
 }
 
 .container h1, h2, h3, h4, h5 {
@@ -16,6 +17,7 @@ body p {
 }
 
 .navbar {
+  height: 60px;
   position: fixed;
   top: 0;
   width: 100%;
@@ -36,14 +38,20 @@ body p {
   margin: 0;
 }
 
-#intro {
+section.first {
   margin-top: 60px;
+}
+
+#intro {
   color: #222;
 }
 
 #module {
   background: #3A87BC;
   color: white;
+}
+
+#profile {
 }
 
 .navbar-link {
@@ -56,17 +64,25 @@ body p {
 }
 
 section .container:first-child {
-  padding-top: 90px;
-  padding-bottom: 90px;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 section {
-  min-height: 400px;
+  min-height: 300px;
   text-align: center;
 }
 
 .big {
   font-size: 100px;
+}
+
+.button-small {
+  min-height: 30px;
+  line-height: 30px;
+  padding: auto 0;
+  font-size: 12px;
+  text-align: center;
 }
 
 .input, .button{
@@ -88,6 +104,11 @@ img.wrapper-circle {
   width: 80%;
 }
 
+img.small {
+  max-width: 100px;
+  width: 80%;
+}
+
 .login-nav {
   text-transform: uppercase;
   text-decoration: none;
@@ -97,16 +118,49 @@ img.wrapper-circle {
   color: #3A87BC;
 }
 
-.pull-left {
-  float: left;
-}
-.pull-right {
-  float: right;
-}
-
 #error-explanation {
   text-decoration: none;
   font-size: 12px;
   color: #DB4437;
   float: left;
+}
+
+.username {
+  font-size: 12px;
+}
+
+.event-holder {
+}
+
+.event-holder.empty {
+  border: 2px dashed #d8d8d8;
+  padding-top: 55px;
+  padding-bottom: 55px;
+  border-radius: 7px;
+}
+
+.team-holder {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.team-holder.empty{
+  border-radius: 7px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  border: 2px dashed #d8d8d8; 
+}
+
+img.max-30 {
+  max-width: 30px;
+  max-height: 30px;
+}
+
+.div-max-170 {
+  max-height: 170px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.point {
+  color: #3A87BC;
 }
