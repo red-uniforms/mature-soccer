@@ -2,6 +2,11 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+body a {
+  color: #3A87BC;
+  text-decoration: none;
+}
+
 body p {
   letter-spacing: .05em;
   margin-bottom: 10px;

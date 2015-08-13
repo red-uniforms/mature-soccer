@@ -30,7 +30,9 @@
         <p>Create a new Team</p>
         <div class="row">
           <div class="eight columns offset-by-two">
-            <%= button_tag("Create", {type: 'button', class: 'u-full-width button button-small'} ) %>
+            <%= link_to(new_team_path) do %>
+              <%= button_tag("create", {type: 'button', class: 'u-full-width button button-small'} ) %>
+            <% end %>
           </div>
         </div>
         <p>or</p>
