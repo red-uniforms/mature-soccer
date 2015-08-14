@@ -4,14 +4,14 @@
       <h5 class="u-pull-left">Profile</h5>
     </div>
     <div class="row">
-      <div class="three columns div-max-170">
+      <div class="three columns div-max-170" id="user-profile">
         <img src="http://placehold.it/150x150" class="wrapper-circle small" alt="user profile image">
         <p class="username"><%= current_user.email %></p>
       </div>
       <div class="nine columns" id="recent-events">
         <div class="row">
           <div class="four columns event-holder empty">
-            <p>No more events</p>
+            <p>No events</p>
             <a href="#">More events</a>
           </div>
         </div>
@@ -26,21 +26,21 @@
       <h5 class="u-pull-left">Teams</h5>
     </div>
     <div class="row">
+      <%= render (@teams) %>
       <!-- Always at the last of teams -->
       <div class="four columns team-holder empty">
-        <p>Create a new Team</p>
+        <p>Join new</p>
+        <div class="row">
+          <div class="eight columns offset-by-two">
+            <%= button_tag("join", {type: 'button', class: 'u-full-width button button-small'} ) %>
+          </div>
+        </div>
+        <p>Create new</p>
         <div class="row">
           <div class="eight columns offset-by-two">
             <%= link_to(new_team_path) do %>
               <%= button_tag("create", {type: 'button', class: 'u-full-width button button-small'} ) %>
             <% end %>
-          </div>
-        </div>
-        <p>or</p>
-        <p>Join a new Team</p>
-        <div class="row">
-          <div class="eight columns offset-by-two">
-            <%= button_tag("join", {type: 'button', class: 'u-full-width button button-small'} ) %>
           </div>
         </div>
       </div>

@@ -106,12 +106,11 @@ img.wrapper-circle {
   border-radius: 50%;
   border: 6px solid #eee;
   max-width: 150px;
-  width: 80%;
+  width: 90%;
 }
 
 img.small {
   max-width: 100px;
-  width: 80%;
 }
 
 .login-nav {
@@ -135,24 +134,39 @@ img.small {
 }
 
 .event-holder {
+  border-radius: 7px;
+  margin-bottom: 20px;
 }
 
 .event-holder.empty {
   border: 2px dashed #d8d8d8;
   padding-top: 55px;
   padding-bottom: 55px;
-  border-radius: 7px;
 }
 
 .team-holder {
-  padding-left: 10px;
-  padding-right: 10px;
+  margin-bottom: 20px;
+  border-radius: 7px;
+  border: 2px solid #d8d8d8;
 }
 .team-holder.empty{
-  border-radius: 7px;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 109px;
+  padding-bottom: 109px;
   border: 2px dashed #d8d8d8; 
+}
+
+.team-background {
+  background: url("http://placehold.it/600x250");
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 250px;
+}
+
+div.up-50 {
+  position: relative;
+  top: -50px;
 }
 
 img.max-30 {
@@ -175,6 +189,11 @@ p.label {
   font-size: 12px;
   text-align: left;
 }
+p.team-name {
+  font-size: 17px;
+  color: #3A87BC;
+}
+
 .error {
   color: #DB4437;
 }
