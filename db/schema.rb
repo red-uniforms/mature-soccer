@@ -11,14 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812111520) do
+ActiveRecord::Schema.define(version: 20150814074501) do
 
   create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.integer  "captain_user_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "team_url"
+    t.string   "gender"
+    t.integer  "average_age"
   end
+
+  add_index "teams", ["team_url"], name: "index_teams_on_team_url", unique: true
 
   create_table "teams_users", id: false, force: :cascade do |t|
     t.integer "team_id"

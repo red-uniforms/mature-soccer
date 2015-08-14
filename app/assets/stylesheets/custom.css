@@ -169,3 +169,24 @@ img.max-30 {
 .point {
   color: #3A87BC;
 }
+
+p.label {
+  margin-bottom: 5px;
+  font-size: 12px;
+  text-align: left;
+}
+.error {
+  color: #DB4437;
+}
+ul.error {
+  font-size: 12px;
+  text-align: left; 
+  margin-bottom: 5px;
+}
+.error li {
+  margin-bottom: 5px; 
+}
+
+strong {
+  color: #3A87BC;
+}
