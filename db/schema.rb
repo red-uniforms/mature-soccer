@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150808172427) do
+ActiveRecord::Schema.define(version: 20150814074501) do
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "captain_user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "team_url"
+    t.string   "gender"
+    t.integer  "average_age"
+  end
+
+  add_index "teams", ["team_url"], name: "index_teams_on_team_url", unique: true
+
+  create_table "teams_users", id: false, force: :cascade do |t|
+    t.integer "team_id"
+    t.integer "user_id"
+  end
+
+  add_index "teams_users", ["team_id"], name: "index_teams_users_on_team_id"
+  add_index "teams_users", ["user_id"], name: "index_teams_users_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

@@ -1,0 +1,70 @@
+<section id="new-team" class="first">
+  <div class="container">
+    <div class="row">
+      <h5 class="u-pull-left">Creating new Team</h5>
+    </div>
+    <%= form_for @team, url: { action: "create" } do |f| %>
+      <div class="row">
+        <div class="six columns">
+          <div class="row">
+            <%= f.label :name, class: "u-pull-left" %>
+          </div>
+          <% if @team.errors[:name].blank? %>
+            <p class="label">Will be shown to everyone</p>
+          <% else %>
+            <ul class="error">
+              <% @team.errors[:name].each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          <% end %>
+          <%= f.text_field :name, placeholder: "Team name" , class: "u-full-width" %>
+        </div>
+        <div class="six columns">
+          <div class="row">
+            <%= f.label :team_url, class: "u-pull-left" %>
+          </div>
+          <% if @team.errors[:team_url].blank? %>
+            <p class="label">http://amaccer.com/teams/<strong>:team_url</strong></p>
+          <% else %>
+            <ul class="error">
+              <% @team.errors[:team_url].each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          <% end %>
+          <%= f.text_field :team_url, placeholder: "Team URL" , class: "u-full-width" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="six columns">
+          <div class="row">
+            <%= f.label :average_age, class: "u-pull-left" %>
+          </div>
+          <% if @team.errors[:average_age].blank? %>
+            <p class="label">Average age of your team</p>
+          <% else %>
+            <ul class="error">
+              <% @team.errors[:average_age].each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          <% end %>
+          <%= f.number_field :average_age, value: "24" , class: "u-full-width" %>
+        </div>
+        <div class="six columns">
+          <div class="row">
+            <%= f.label :gender, class: "u-pull-left" %>
+          </div>
+          <p class="label">Gender of your team</p>
+          <%= f.select(:gender, ["Male", "Female"], {}, { class: "u-full-width"}) %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="two columns">
+          <%= f.submit "Create", class: "button button-primary button-small u-full-width" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

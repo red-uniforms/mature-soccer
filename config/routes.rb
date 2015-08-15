@@ -6,4 +6,7 @@ Rails.application.routes.draw do
               :sign_out => 'logout',
               :sign_up  => 'signup'
              }
+
+  resources :users, only: [:index]
+  resources :teams, only: [:index, :new, :create, :show]
 end
