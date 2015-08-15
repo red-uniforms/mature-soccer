@@ -24,10 +24,8 @@ class TeamsController < ApplicationController
     end
 
     if @team.nil?
-      flash[:error] = "Team url is invalid. Please check again"
       redirect_to root_path
     end
-
   end
 
   def search
