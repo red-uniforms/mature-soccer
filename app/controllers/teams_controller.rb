@@ -17,7 +17,17 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @team = current_user.teams.find(params[:id])
+    if params[:team_url]
+      @team = current_user.teams.find_by team_url: params[:team_url]
+    else
+      @team = current_user.teams.find(params[:id])
+    end
+
+    if @team.nil?
+      flash[:error] = "Team url is invalid. Please check again"
+      redirect_to root_path
+    end
+
   end
 
   def search
