@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+
   def new
     @team = current_user.teams.new
   end
@@ -17,7 +18,15 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @team = current_user.teams.find(params[:id])
+    @team = Team.find_by team_url: params[:team_url]
+
+    # if there's no such team
+    if @team.nil?
+      redirect_to root_path
+    # if user isn't member of the team
+    elsif current_user.teams.exclude? @team
+      render 'index'
+    end
   end
 
   def search

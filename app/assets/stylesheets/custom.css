@@ -12,7 +12,7 @@ body p {
   margin-bottom: 10px;
 }
 
-.container h1, h2, h3, h4, h5 {
+.container h1, h2, h3, h4, h5, h6 {
   text-align: center;
   margin-top: 2rem;
 }
@@ -92,7 +92,6 @@ section {
 
 .input, .button{
   min-height: 50px;
-  line-height: 50px;
   padding: auto 0;
   font-size: 15px;
   text-align: center;
@@ -111,6 +110,9 @@ img.wrapper-circle {
 
 img.small {
   max-width: 100px;
+}
+p.small {
+  font-size: 9px;
 }
 
 .login-nav {
@@ -158,10 +160,18 @@ img.small {
 }
 
 .team-background {
-  background: url("http://placehold.it/600x250");
+  background: url("http://placehold.it/250x250");
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   min-height: 250px;
+}
+
+#team-profile {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 250px; 
 }
 
 div.up-50 {
@@ -172,6 +182,11 @@ div.up-50 {
 img.max-30 {
   max-width: 30px;
   max-height: 30px;
+}
+
+img.link {
+  padding: 15px 5px;
+  height: 20px;
 }
 
 .div-max-170 {
@@ -208,4 +223,27 @@ ul.error {
 
 strong {
   color: #3A87BC;
+}
+
+div.copy {
+  margin-left: 0;
+}
+button.copy {
+  width: 100%;
+}
+
+@media (min-width: 850px) {
+  button.copy {
+    position: relative;
+    left: -2px;
+    border-radius: 0 2px 2px 0;
+  }
+}
+
+input.copy {
+  position: relative;
+  left: -2px;
+  width: 100%;
+  border-radius: 0 2px 2px 0;
+  cursor: alias;
 }

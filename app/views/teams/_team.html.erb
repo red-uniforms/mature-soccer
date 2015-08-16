@@ -1,11 +1,11 @@
 <div class="four columns team-holder">
-  <%= link_to(team) do %>
+  <%= link_to(controller: "teams", action: "show", team_url: team.team_url) do %>
     <div class="team-background"></div>
   <% end %>
   <div class="row up-50">
     <div class="ten columns offset-by-one">
-      <%= link_to(team) do %>
-        <img src="http://placehold.it/150x150" class="wrapper-circle small" alt="user profile image">
+      <%= link_to(controller: "teams", action: "show", team_url: team.team_url) do %>
+        <img src="http://placehold.it/150x150" class="wrapper-circle small" alt="team profile image">
       <% end %>
       <p class="team-name"><%= team.name %></p>
     </div>
