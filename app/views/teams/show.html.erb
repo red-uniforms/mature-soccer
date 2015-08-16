@@ -1,5 +1,89 @@
-<section class="first">
+<section class="first" id="team-profile">
   <div class="container">
-    <p><%= @team.id %></p>
+    <div class="row">
+      <h5 class="u-pull-left">Profile</h5>
+    </div>
+    <div class="row">
+      <%= render(@team) %>
+      <div class="eight columns">
+        <div class="twelve columns">
+          <div class="row">
+            <h5 class="u-pull-left">Team info</h5>
+          </div>
+          <div class="row">
+            <div class="four columns">
+              <div class="row">
+                <p><strong>Name</strong></p>
+              </div>
+              <div class="row">
+                <p><%= @team.name %></p>
+              </div>
+            </div>
+            <div class="four columns">
+              <div class="row">
+                <p><strong>Gender</strong></p>
+              </div>
+              <div class="row">
+                <p><%= @team.gender %></p>
+              </div>
+            </div>
+            <div class="four columns">
+              <div class="row">
+                <p><strong>Age</strong></p>
+              </div>
+              <div class="row">
+                <p><%= @team.average_age %></p>
+              </div>
+            </div>
+          </div>
+          <!-- Copy invite link -->
+          <div class="row">
+            <h5 class="u-pull-left">Invite link</h5>
+          </div>
+          <div class="row">
+            <div class="ten columns">
+              <input class="input u-full-width" value="http://amaccer.com/team/enccer" id="data-copy-link" disabled>
+            </div>
+            <div class="two columns copy">
+              <button class="button copy button-primary" id="copy-link">
+                <%= image_tag("link", class: "link") %>
+              </button>
+            </div>
+          </div>
+
+        </div>
+        <!-- <div class="six columns">
+          <div class="row">
+            <div class="six columns">
+            </div>
+          </div>
+          <div class="row">
+            <h5 class="u-pull-left">Upload new photo</h5>
+          </div>
+          <div class="row">
+            <h5 class="u-pull-left">Upload new photo</h5>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</section>
+<section id="members">
+  <div class="container">
+    <div class="row">
+      <h5 class="u-pull-left">Members</h5>
+    </div>
+    <div class="row">
+      <%= render (@team.users) %>
+    </div>
+  </div>
+</section>
+<section id="notices">
+  <div class="container">
+    <div class="row">
+      <h5 class="u-pull-left">Notices</h5>
+    </div>
+    <div class="row">
+    </div>
   </div>
 </section>
