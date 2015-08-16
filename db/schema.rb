@@ -11,16 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814074501) do
+ActiveRecord::Schema.define(version: 20150816155839) do
+
+  create_table "applicants", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "applicants", ["team_id"], name: "index_applicants_on_team_id"
+  add_index "applicants", ["user_id"], name: "index_applicants_on_user_id"
 
   create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.integer  "captain_user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "team_url"
     t.string   "gender"
     t.integer  "average_age"
+    t.integer  "users_count",     default: 0
   end
 
   add_index "teams", ["team_url"], name: "index_teams_on_team_url", unique: true
