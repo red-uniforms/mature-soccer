@@ -25,7 +25,7 @@ class TeamsController < ApplicationController
       redirect_to root_path
     # if user isn't member of the team
     elsif current_user.teams.exclude? @team
-      render 'index'
+      render 'join'
     end
   end
 

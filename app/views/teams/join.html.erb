@@ -1,0 +1,44 @@
+<section class="first" id="team-profile">
+  <div class="container">
+    <div class="row">
+      <h5 class="u-pull-left">Profile</h5>
+    </div>
+    <div class="row">
+      <%= render(@team) %>
+      <div class="eight columns">
+        <div class="twelve columns">
+          <div class="row">
+            <h5 class="u-pull-left">Team info</h5>
+          </div>
+          <div class="row">
+            <div class="four columns">
+              <div class="row">
+                <p><strong>Member</strong></p>
+              </div>
+              <div class="row">
+                <p><%= @team.users.count %></p>
+              </div>
+            </div>
+            <div class="four columns">
+              <div class="row">
+                <p><strong>Gender</strong></p>
+              </div>
+              <div class="row">
+                <p><%= @team.gender %></p>
+              </div>
+            </div>
+            <div class="four columns">
+              <div class="row">
+                <p><strong>Age</strong></p>
+              </div>
+              <div class="row">
+                <p><%= @team.average_age %></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
