@@ -27,6 +27,9 @@
     </div>
     <div class="row">
       <%= render (@teams) %>
+      <% current_user.applicants.each do |a| %>
+        <%= render (a.team) %>
+      <% end %>
       <!-- Always at the last of teams -->
       <div class="four columns team-holder empty">
         <p>Join new</p>

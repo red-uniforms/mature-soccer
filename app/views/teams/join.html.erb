@@ -10,6 +10,19 @@
           <div class="row">
             <h5 class="u-pull-left">Team info</h5>
           </div>
+          
+          <div class="row">
+            <div class="eight columns offset-by-two">
+              <% if @team.applicants.map{ |a| a.user_id }.include? current_user.id %>
+                <h5><strong>Waitng for approval</strong></h5>
+              <% else %>
+                <%= form_for @team, url: { id: @team.team_url, action: "join"}, method: "post" do |f| %>
+                  <%= f.submit "Join Team", class: "button u-full-width" %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+
           <div class="row">
             <div class="four columns">
               <div class="row">
