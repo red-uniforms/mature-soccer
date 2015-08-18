@@ -1,6 +1,8 @@
 class Team < ActiveRecord::Base
   has_and_belongs_to_many :users
   has_many :applicants, dependent: :destroy
+  has_many :user_infos
+  
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }
   validates :captain_user_id, presence: true, numericality: { only_integer: true }
   validates :team_url, format: { with: /\A[-a-z0-9_]{3,20}\Z/, message: "only type lowercase alphabet, numbers, _ and -" },
