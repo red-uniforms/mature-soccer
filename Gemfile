@@ -49,3 +49,4 @@ group :production do
 end
 # using devise for authentication
 gem 'devise', '~> 3.5.1'
+gem 'tzinfo-data', '~> 1.2015.6'
