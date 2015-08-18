@@ -1,5 +1,8 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
+@import url('http://api.mobilis.co.kr/webfonts/v2/css/NanumGothicLightWeb');
+
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', 'NanumGothicLightWeb', sans-serif;
 }
 
 body a {
