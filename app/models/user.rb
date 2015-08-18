@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :teams, :counter_cache => true
   has_many :applicants, dependent: :destroy
+
+  validates :name, length: { minimum: 2, maximum: 20 }
 end
