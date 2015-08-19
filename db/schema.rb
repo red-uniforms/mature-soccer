@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818114853) do
+ActiveRecord::Schema.define(version: 20150819090046) do
 
   create_table "applicants", force: :cascade do |t|
     t.integer  "user_id"
@@ -26,12 +26,16 @@ ActiveRecord::Schema.define(version: 20150818114853) do
   create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.integer  "captain_user_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "team_url"
     t.string   "gender"
     t.integer  "average_age"
-    t.integer  "users_count",     default: 0
+    t.integer  "users_count",         default: 0
+    t.boolean  "phone",               default: false
+    t.boolean  "student_code",        default: false
+    t.boolean  "career",              default: false
+    t.text     "uniform_description"
   end
 
   add_index "teams", ["team_url"], name: "index_teams_on_team_url", unique: true
@@ -47,8 +51,11 @@ ActiveRecord::Schema.define(version: 20150818114853) do
   create_table "user_infos", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "team_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "phone"
+    t.string   "student_code"
+    t.string   "career"
   end
 
   add_index "user_infos", ["team_id"], name: "index_user_infos_on_team_id"

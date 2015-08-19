@@ -256,3 +256,9 @@ input.copy {
   border-radius: 0 2px 2px 0;
   cursor: alias;
 }
+
+.label-body {
+  font-size: 13px;
+  line-height: 2.5em;
+  margin-bottom: 10px;
+}

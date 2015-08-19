@@ -64,6 +64,6 @@ protected
 
 private
   def team_params
-    params.require(:team).permit(:name, :team_url, :average_age, :gender)
+    params.require(:team).permit(:name, :team_url, :average_age, :gender, :phone, :student_code, :career, :uniform_description)
   end
 end
