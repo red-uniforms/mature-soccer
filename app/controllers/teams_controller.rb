@@ -49,12 +49,10 @@ class TeamsController < ApplicationController
   end
 
   def find_team(team_url)
-    team = Team.find_by team_url: team_url
-    if team.nil?
-      render_404
-    else
-      team
-    end
+    team = Team.find_by(team_url: team_url) or not_found
+  end
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
   end
 
 protected
