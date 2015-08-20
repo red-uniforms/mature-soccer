@@ -7,49 +7,132 @@
       <%= render(@team) %>
       <div class="eight columns">
         <div class="twelve columns">
+
           <div class="row">
-            <h5 class="u-pull-left">Team info</h5>
+            <h5 class="u-pull-left">Join Team</h5>
           </div>
-          
-          <div class="row">
-            <div class="eight columns offset-by-two">
-              <% if @team.applicants.map{ |a| a.user_id }.include? current_user.id %>
-                <h5><strong>Waitng for approval</strong></h5>
-              <% else %>
-                <%= form_for @team, url: { id: @team.team_url, action: "join"}, method: "post" do |f| %>
-                  <%= f.submit "Join Team", class: "button u-full-width" %>
+
+          <% if @team.applicants.map{ |a| a.user_id }.include? current_user.id %>
+            <div class="row">
+              <div class="four columns">
+                <div class="row">
+                  <label>Phone</label>
+                </div>
+                <div class="row">
+                  <p><%= @user_info.phone %></p>
+                </div>
+              </div>
+              <div class="four columns">
+                <div class="row">
+                  <label>Student Code</label>
+                </div>
+                <div class="row">
+                  <p><%= @user_info.student_code %></p>
+                </div>
+              </div>
+              <div class="four columns">
+                <div class="row">
+                  <label>Career</label>
+                </div>
+                <div class="row">
+                  <p><%= @user_info.career %></p>
+                </div>
+              </div>
+            </div>
+            <div class="row u-mt-10 u-mb-10">
+              <div class="four columns offset-by-four">
+                <%= link_to user_info_path(@user_info), method: :delete, data: { confirm: 'Are you sure?'} do %>
+                  <input type="button" class="button button-danger u-full-width" value="cancel" id="applicant-cancel">
                 <% end %>
-              <% end %>
+              </div>
+            </div>
+          <% else %>
+            <%= form_for @user_info, url: { team_url: @team.team_url, action: :join } do |f| %>
+              <div class="row">
+                <% if @team.phone %>
+                  <div class="four columns">
+                    <div class="row">
+                      <%= f.label :phone, class: "u-pull-left" %>
+                    </div>
+                    <% if @user_info.errors[:phone].any? %>
+                      <ul class="error">
+                        <% @user_info.errors[:phone].each do |msg| %>
+                          <li><%= msg %></li>
+                        <% end %>
+                      </ul>
+                    <% end %>
+                    <%= f.text_field :phone, class: "u-full-width", placeholder: "010-1234-1234" %>
+                  </div>
+                <% end %>
+                <% if @team.student_code %>
+                  <div class="four columns">
+                    <div class="row">
+                      <%= f.label :student_code, class: "u-pull-left" %>
+                    </div>
+                    <% if @user_info.errors[:student_code].any? %>
+                      <ul class="error">
+                        <% @user_info.errors[:student_code].each do |msg| %>
+                          <li><%= msg %></li>
+                        <% end %>
+                      </ul>
+                    <% end %>
+                    <%= f.text_field :student_code, class: "u-full-width", placeholder: "학번을 입력하세요" %>
+                  </div>
+                <% end %>
+                <% if @team.career %>
+                  <div class="four columns">
+                    <div class="row">
+                      <%= f.label :career, class: "u-pull-left" %>
+                    </div>
+                    <% if @user_info.errors[:career].any? %>
+                      <ul class="error">
+                        <% @user_info.errors[:career].each do |msg| %>
+                          <li><%= msg %></li>
+                        <% end %>
+                      </ul>
+                    <% end %>
+                    <%= f.text_field :career, class: "u-full-width", placeholder: "직장 정보가 필요합니다" %>
+                  </div>
+                <% end %>
+              </div>
+              <div class="row">
+                <div class="four columns">
+                  <%= f.submit "Join Team", class: "button button-primary u-full-width" %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="row">
+          <h5 class="u-pull-left">Team info</h5>
+        </div>
+
+        <div class="row">
+          <div class="four columns">
+            <div class="row">
+              <p><strong>Member</strong></p>
+            </div>
+            <div class="row">
+              <p><%= @team.users.count %></p>
             </div>
           </div>
-
-          <div class="row">
-            <div class="four columns">
-              <div class="row">
-                <p><strong>Member</strong></p>
-              </div>
-              <div class="row">
-                <p><%= @team.users.count %></p>
-              </div>
+          <div class="four columns">
+            <div class="row">
+              <p><strong>Gender</strong></p>
             </div>
-            <div class="four columns">
-              <div class="row">
-                <p><strong>Gender</strong></p>
-              </div>
-              <div class="row">
-                <p><%= @team.gender %></p>
-              </div>
-            </div>
-            <div class="four columns">
-              <div class="row">
-                <p><strong>Age</strong></p>
-              </div>
-              <div class="row">
-                <p><%= @team.average_age %></p>
-              </div>
+            <div class="row">
+              <p><%= @team.gender %></p>
             </div>
           </div>
-
+          <div class="four columns">
+            <div class="row">
+              <p><strong>Age</strong></p>
+            </div>
+            <div class="row">
+              <p><%= @team.average_age %></p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

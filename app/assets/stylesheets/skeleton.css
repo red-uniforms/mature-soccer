@@ -324,7 +324,7 @@ label,
 legend {
   display: block;
   margin-bottom: .5rem;
-  font-weight: 600; }
+  font-weight: 400; }
 fieldset {
   padding: 0;
   border-width: 0; }
@@ -421,6 +421,14 @@ form {
   float: right; }
 .u-pull-left {
   float: left; }
+.u-left-align {
+  text-align: left; }
+.u-right-align {
+  text-align: right; }
+.u-mt-10 {
+  margin-top: 10px; }
+.u-mb-10 {
+  margin-bottom: 10px; }
 
 
 /* Misc

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150816155839) do
+ActiveRecord::Schema.define(version: 20150819090046) do
 
   create_table "applicants", force: :cascade do |t|
     t.integer  "user_id"
@@ -26,12 +26,16 @@ ActiveRecord::Schema.define(version: 20150816155839) do
   create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.integer  "captain_user_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "team_url"
     t.string   "gender"
     t.integer  "average_age"
-    t.integer  "users_count",     default: 0
+    t.integer  "users_count",         default: 0
+    t.boolean  "phone",               default: false
+    t.boolean  "student_code",        default: false
+    t.boolean  "career",              default: false
+    t.text     "uniform_description"
   end
 
   add_index "teams", ["team_url"], name: "index_teams_on_team_url", unique: true
@@ -44,19 +48,34 @@ ActiveRecord::Schema.define(version: 20150816155839) do
   add_index "teams_users", ["team_id"], name: "index_teams_users_on_team_id"
   add_index "teams_users", ["user_id"], name: "index_teams_users_on_user_id"
 
+  create_table "user_infos", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "phone"
+    t.string   "student_code"
+    t.string   "career"
+  end
+
+  add_index "user_infos", ["team_id"], name: "index_user_infos_on_team_id"
+  add_index "user_infos", ["user_id"], name: "index_user_infos_on_user_id"
+
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.string   "first_name",             default: "길동"
+    t.string   "last_name",              default: "홍"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
