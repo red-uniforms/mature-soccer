@@ -231,6 +231,7 @@ ul.error {
 }
 
 strong {
+  font-weight: 500 !important;
   color: #3A87BC;
 }
 
@@ -261,4 +262,16 @@ input.copy {
   font-size: 13px;
   line-height: 2.5em;
   margin-bottom: 10px;
+}
+
+input[type="button"].button-danger {
+  color: #DB4437;
+  border-color: #DB4437;
+}
+
+input[type="button"].button-danger:hover,
+input[type="button"].button-danger:focus {
+  color: #fff;
+  border-color: #DB4437;
+  background: #DB4437;
 }

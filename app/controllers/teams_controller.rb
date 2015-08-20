@@ -20,40 +20,44 @@ class TeamsController < ApplicationController
   def show
     @team = find_team(params[:team_url])
 
-    # if there's no such team
-    if @team.nil?
-      render_404
     # if user isn't member of the team
-    elsif current_user.teams.exclude? @team
+    if current_user.teams.exclude? @team
+      @user_info = UserInfo.where(user: current_user.id, team: @team.id).take
+      @user_info ||= UserInfo.new
       render 'join'
     end
-  end
-
-  def search
   end
 
   def join
     applicant = Applicant.new
     applicant.user = current_user
     
-    team = find_team(params[:id])
-    applicant.team = team
+    @team = find_team(params[:team_url])
+    applicant.team = @team
 
-    if applicant.save
-      redirect_to root_path
+    @user_info = UserInfo.new(join_params)
+    @user_info.user = current_user
+    @user_info.team = @team
+
+    if applicant.valid? and @user_info.valid?
+      applicant.save!
+      @user_info.save!
+      redirect_to action: 'show'
     else
-      redirect_to 'teams#show'
+      render 'join'
     end
   end
 
   def find_team(team_url)
-    Team.find_by team_url: team_url
+    team = Team.find_by team_url: team_url
+    if team.nil?
+      render_404
+    else
+      team
+    end
   end
 
 protected
-  def not_found
-    raise ActionController::RoutingError.new('Not Found')
-  end
   def render_404
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
@@ -65,5 +69,8 @@ protected
 private
   def team_params
     params.require(:team).permit(:name, :team_url, :average_age, :gender, :phone, :student_code, :career, :uniform_description)
+  end
+  def join_params
+    params.require(:user_info).permit(:phone, :student_code, :career)
   end
 end

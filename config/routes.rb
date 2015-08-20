@@ -8,12 +8,11 @@ Rails.application.routes.draw do
              }
 
   resources :users, only: [:index]
-  resources :teams, only: [:index, :new, :create] do
-    member do
-      post '/join', to: 'teams#join', constraints: { :id => /[a-z0-9_-]{4,20}/}
-    end
-  end
-  
-  get 'team/:team_url', to: 'teams#show', constraints: { :team_url => /[a-z0-9_-]{4,20}/}
+
+  get 'teams/:team_url', to: 'teams#show', constraints: { :team_url => /[a-z0-9_-]{4,20}/}
+  post 'teams/:team_url', to: 'teams#join', constraints: { :team_url => /[a-z0-9_-]{4,20}/}
+  resources :teams, only: [:index, :new, :create]
+
+  resources :user_infos, only: [:destroy]
 
 end
