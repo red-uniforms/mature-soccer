@@ -112,7 +112,7 @@ section {
 
 img.wrapper-circle {
   border-radius: 50%;
-  border: 6px solid #eee;
+  border: 6px solid #eee !important;
   max-width: 150px;
   width: 90%;
 }
