@@ -52,30 +52,40 @@
           </div>
 
         </div>
-        <!-- <div class="six columns">
-          <div class="row">
-            <div class="six columns">
-            </div>
-          </div>
-          <div class="row">
-            <h5 class="u-pull-left">Upload new photo</h5>
-          </div>
-          <div class="row">
-            <h5 class="u-pull-left">Upload new photo</h5>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>
 </section>
-<section id="members">
+<section id="applicants">
   <div class="container">
     <div class="row">
-      <h5 class="u-pull-left">Members</h5>
+      <h5 class="u-pull-left">Applicants</h5>
     </div>
     <div class="row">
-      <%= render (@team.users) %>
+      <label class="u-pull-left u-mb-10">List of applicants</label>
     </div>
+    <% @user_infos.each do |i| %>
+      <div class="row u-mb-10">
+        <div class="three columns">
+          <span><%= i.phone %></span>
+        </div>
+        <div class="two columns">
+          <span><%= i.student_code %></span>
+        </div>
+        <div class="two columns">
+          <span><%= i.user.age %></span>
+        </div>
+        <div class="two columns">
+          <span><%= i.user.name %></span>
+        </div>
+        <div class="three columns">
+          Approve Delete
+          <!-- <%= link_to user_info_path(i), method: :delete, data: { confirm: 'Are you sure?'} do %>
+            Delete
+          <% end %> -->
+        </div>
+      </div>
+    <% end %>
   </div>
 </section>
 <section id="notices">

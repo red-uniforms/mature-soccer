@@ -25,6 +25,9 @@ class TeamsController < ApplicationController
       @user_info = UserInfo.where(user: current_user.id, team: @team.id).take
       @user_info ||= UserInfo.new
       render 'join'
+    else
+      @user_infos = UserInfo.where(team: @team.id)
+      @applicants = Applicant.where(team: @team.id)
     end
   end
 
