@@ -26,24 +26,18 @@ class TeamsController < ApplicationController
       @user_info ||= UserInfo.new
       render 'join'
     else
-      @user_infos = UserInfo.where(team: @team.id)
-      @applicants = Applicant.where(team: @team.id)
+      @applicants = @team.applicants
     end
   end
 
   def join
-    applicant = Applicant.new
-    applicant.user = current_user
-    
     @team = find_team(params[:team_url])
-    applicant.team = @team
 
     @user_info = UserInfo.new(join_params)
     @user_info.user = current_user
     @user_info.team = @team
 
-    if applicant.valid? and @user_info.valid?
-      applicant.save!
+    if @user_info.valid?
       @user_info.save!
       redirect_to action: 'show'
     else

@@ -64,23 +64,23 @@
     <div class="row">
       <label class="u-pull-left u-mb-10">List of applicants</label>
     </div>
-    <% @user_infos.each do |i| %>
+    <% @applicants.each do |a| %>
       <div class="row u-mb-10">
         <div class="three columns">
-          <span><%= i.phone %></span>
+          <span><%= a.phone %></span>
         </div>
         <div class="two columns">
-          <span><%= i.student_code %></span>
+          <span><%= a.student_code %></span>
         </div>
         <div class="two columns">
-          <span><%= i.user.age %></span>
+          <span><%= a.user.age %></span>
         </div>
         <div class="two columns">
-          <span><%= i.user.name %></span>
+          <span><%= a.user.name %></span>
         </div>
         <div class="three columns">
           Approve Delete
-          <!-- <%= link_to user_info_path(i), method: :delete, data: { confirm: 'Are you sure?'} do %>
+          <!-- <%= link_to user_info_path(a), method: :delete, data: { confirm: 'Are you sure?'} do %>
             Delete
           <% end %> -->
         </div>

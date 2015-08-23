@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820134857) do
+ActiveRecord::Schema.define(version: 20150823105223) do
 
   create_table "applicants", force: :cascade do |t|
     t.integer  "user_id"
@@ -51,11 +51,12 @@ ActiveRecord::Schema.define(version: 20150820134857) do
   create_table "user_infos", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "team_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "phone"
     t.string   "student_code"
     t.string   "career"
+    t.boolean  "applying",     default: true
   end
 
   add_index "user_infos", ["team_id"], name: "index_user_infos_on_team_id"
