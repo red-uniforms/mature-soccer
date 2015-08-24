@@ -1,4 +1,9 @@
 class Team < ActiveRecord::Base
+
+  after_save do |team|
+    team.users_count = team.users.count
+  end
+
   has_and_belongs_to_many :users
   has_many :user_infos, dependent: :destroy
 

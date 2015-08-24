@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_and_belongs_to_many :teams, :counter_cache => true
+  has_and_belongs_to_many :teams
   has_many :applicants, dependent: :destroy
   has_many :user_infos, dependent: :destroy
 

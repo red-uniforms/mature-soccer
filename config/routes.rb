@@ -14,6 +14,10 @@ Rails.application.routes.draw do
             only: [:index, :new, :show, :create, :destroy] do
     member do
       post '', to: 'teams#join'
+      scope '/:user_info_id' do
+        post '', to: 'teams#approve'
+        delete '', to: 'teams#reject'
+      end
     end
   end
 
