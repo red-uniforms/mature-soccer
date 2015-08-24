@@ -112,7 +112,7 @@ section {
 
 img.wrapper-circle {
   border-radius: 50%;
-  border: 6px solid #eee;
+  border: 6px solid #eee !important;
   max-width: 150px;
   width: 90%;
 }
@@ -233,6 +233,10 @@ ul.error {
 strong {
   font-weight: 500 !important;
   color: #3A87BC;
+}
+
+a.danger {
+  color : #DB4437;
 }
 
 div.copy {

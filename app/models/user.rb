@@ -4,14 +4,18 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_and_belongs_to_many :teams, :counter_cache => true
+  has_and_belongs_to_many :teams
   has_many :applicants, dependent: :destroy
   has_many :user_infos, dependent: :destroy
 
   validates :name, length: { minimum: 2, maximum: 20 }
 
   def name
-    last_name + first_name
+    last_name + " " + first_name
+  end
+
+  def applicants
+    user_infos.where(applying: true)
   end
 
 end

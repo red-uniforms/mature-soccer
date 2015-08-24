@@ -7,10 +7,10 @@ class TeamsController < ApplicationController
   def create
     @team = current_user.teams.new(team_params)
     @team.captain_user_id = current_user.id
+    # relate team with user
+    @team.users << current_user
     
     if @team.save
-      # relate team with user
-      current_user.teams << @team
       redirect_to users_path
     else
       render 'new'
@@ -22,25 +22,21 @@ class TeamsController < ApplicationController
 
     # if user isn't member of the team
     if current_user.teams.exclude? @team
-      @user_info = UserInfo.where(user: current_user.id, team: @team.id).take
-      @user_info ||= UserInfo.new
+      @user_info = current_user.user_infos.where(team: @team.id).take
+      @user_info ||= current_user.user_infos.new
       render 'join'
+    else
+      @applicants = @team.applicants
     end
   end
 
   def join
-    applicant = Applicant.new
-    applicant.user = current_user
-    
     @team = find_team(params[:team_url])
-    applicant.team = @team
 
-    @user_info = UserInfo.new(join_params)
-    @user_info.user = current_user
+    @user_info = current_user.user_infos.new(join_params)
     @user_info.team = @team
 
-    if applicant.valid? and @user_info.valid?
-      applicant.save!
+    if @user_info.valid?
       @user_info.save!
       redirect_to action: 'show'
     else
@@ -48,8 +44,42 @@ class TeamsController < ApplicationController
     end
   end
 
+  # approve applicant
+  def approve
+    team = find_team_from_user(params[:team_url])
+
+    if current_user.id == team.captain_user_id
+      user_info = team.user_infos.find(params[:user_info_id])
+      user_info.applying = false
+
+      team.users << user_info.user
+
+      user_info.save!
+
+      redirect_to team_path(team_url: team.team_url)
+    else
+      render staus: :forbidden
+    end
+  end
+  # reject applyment
+  def reject
+    team = find_team_from_user(params[:team_url])
+
+    if current_user.id == team.captain_user_id
+      user_info = team.user_infos.find(params[:user_info_id])
+      user_info.destroy!
+
+      redirect_to team_path(team_url: team.team_url)
+    else
+      render staus: :forbidden
+    end
+  end
+
   def find_team(team_url)
-    team = Team.find_by(team_url: team_url) or not_found
+    Team.find_by(team_url: team_url) or not_found
+  end
+  def find_team_from_user(team_url)
+    current_user.teams.find_by(team_url: team_url) or not_found
   end
   def not_found
     raise ActionController::RoutingError.new('Not Found')
