@@ -56,7 +56,33 @@
     </div>
   </div>
 </section>
-<% if current_user.id == @team.captain_user_id %>
+<section id="members">
+  <div class="container">
+    <div class="row">
+      <h5 class="u-pull-left">Members</h5>
+    </div>
+    <% @team.members.each do |user_info| %>
+      <div class="row u-mb-10">
+        <div class="two columns">
+          <span><%= user_info.user.name %></span>
+        </div>
+        <div class="one column">
+          <span><%= user_info.user.age %></span>
+        </div>
+        <div class="three columns">
+          <span><%= user_info.phone %></span>
+        </div>
+        <div class="three columns">
+          <span><%= user_info.student_code %></span>
+        </div>
+        <div class="three columns">
+          <span><%= user_info.career %></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
+<% if current_user.id == @team.captain_user_id and @team.applicants.any? %>
   <section id="applicants">
     <div class="container">
       <div class="row">
@@ -94,7 +120,7 @@
     </div>
   </section>
 <% end %>
-<section id="notices">
+<!-- <section id="notices">
   <div class="container">
     <div class="row">
       <h5 class="u-pull-left">Notices</h5>
@@ -102,4 +128,4 @@
     <div class="row">
     </div>
   </div>
-</section>
+</section> -->

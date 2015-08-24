@@ -20,4 +20,7 @@ class Team < ActiveRecord::Base
   def applicants
     user_infos.where(applying: true)
   end
+  def members
+    user_infos.where(applying: false)
+  end
 end
