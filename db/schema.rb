@@ -11,17 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819090046) do
-
-  create_table "applicants", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "team_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "applicants", ["team_id"], name: "index_applicants_on_team_id"
-  add_index "applicants", ["user_id"], name: "index_applicants_on_user_id"
+ActiveRecord::Schema.define(version: 20150824062338) do
 
   create_table "teams", force: :cascade do |t|
     t.string   "name"
@@ -51,11 +41,12 @@ ActiveRecord::Schema.define(version: 20150819090046) do
   create_table "user_infos", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "team_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "phone"
     t.string   "student_code"
     t.string   "career"
+    t.boolean  "applying",     default: true
   end
 
   add_index "user_infos", ["team_id"], name: "index_user_infos_on_team_id"
@@ -76,6 +67,7 @@ ActiveRecord::Schema.define(version: 20150819090046) do
     t.datetime "updated_at",                            null: false
     t.string   "first_name",             default: "길동"
     t.string   "last_name",              default: "홍"
+    t.integer  "age"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -52,32 +52,48 @@
           </div>
 
         </div>
-        <!-- <div class="six columns">
-          <div class="row">
-            <div class="six columns">
-            </div>
-          </div>
-          <div class="row">
-            <h5 class="u-pull-left">Upload new photo</h5>
-          </div>
-          <div class="row">
-            <h5 class="u-pull-left">Upload new photo</h5>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>
 </section>
-<section id="members">
-  <div class="container">
-    <div class="row">
-      <h5 class="u-pull-left">Members</h5>
+<% if current_user.id == @team.captain_user_id %>
+  <section id="applicants">
+    <div class="container">
+      <div class="row">
+        <h5 class="u-pull-left">Applicants</h5>
+      </div>
+      <div class="row">
+        <label class="u-pull-left u-mb-10">List of applicants</label>
+      </div>
+      <% @applicants.each do |a| %>
+        <div class="row u-mb-10">
+          <div class="three columns">
+            <span><%= a.phone %></span>
+          </div>
+          <div class="three columns">
+            <span><%= a.student_code %></span>
+          </div>
+          <div class="two columns">
+            <span><%= a.user.age %></span>
+          </div>
+          <div class="two columns">
+            <span><%= a.user.name %></span>
+          </div>
+          <div class="one column">
+            <%= link_to({controller: "teams", action: "approve", team_url: @team.team_url, user_info_id: a.id},{ method: :post }) do %>
+              Approve
+            <% end %>
+          </div>
+          <div class="one column">
+            <%= link_to({controller: "teams", action: "approve", team_url: @team.team_url, user_info_id: a.id},{ method: :delete, class: "danger", data: { confirm: 'Are you sure?'} } ) do %>
+              Reject
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <div class="row">
-      <%= render (@team.users) %>
-    </div>
-  </div>
-</section>
+  </section>
+<% end %>
 <section id="notices">
   <div class="container">
     <div class="row">
