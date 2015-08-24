@@ -22,8 +22,8 @@ class TeamsController < ApplicationController
 
     # if user isn't member of the team
     if current_user.teams.exclude? @team
-      @user_info = UserInfo.where(user: current_user.id, team: @team.id).take
-      @user_info ||= UserInfo.new
+      @user_info = current_user.user_infos.where(team: @team.id).take
+      @user_info ||= current_user.user_infos.new
       render 'join'
     else
       @applicants = @team.applicants
@@ -33,8 +33,7 @@ class TeamsController < ApplicationController
   def join
     @team = find_team(params[:team_url])
 
-    @user_info = UserInfo.new(join_params)
-    @user_info.user = current_user
+    @user_info = current_user.user_infos.new(join_params)
     @user_info.team = @team
 
     if @user_info.valid?

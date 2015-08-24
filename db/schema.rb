@@ -11,17 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823105223) do
-
-  create_table "applicants", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "team_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "applicants", ["team_id"], name: "index_applicants_on_team_id"
-  add_index "applicants", ["user_id"], name: "index_applicants_on_user_id"
+ActiveRecord::Schema.define(version: 20150824062338) do
 
   create_table "teams", force: :cascade do |t|
     t.string   "name"

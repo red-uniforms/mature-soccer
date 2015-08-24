@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
     last_name + " " + first_name
   end
 
+  def applicants
+    user_infos.where(applying: true)
+  end
+
 end

@@ -235,6 +235,10 @@ strong {
   color: #3A87BC;
 }
 
+a.danger {
+  color : #DB4437;
+}
+
 div.copy {
   margin-left: 0;
 }

@@ -79,10 +79,10 @@
           <span><%= a.user.name %></span>
         </div>
         <div class="three columns">
-          Approve Delete
-          <!-- <%= link_to user_info_path(a), method: :delete, data: { confirm: 'Are you sure?'} do %>
+          Approve 
+          <%= link_to user_info_path(a), class: "danger", method: :delete, data: { confirm: 'Are you sure?'} do %>
             Delete
-          <% end %> -->
+          <% end %>
         </div>
       </div>
     <% end %>
