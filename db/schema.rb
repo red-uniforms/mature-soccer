@@ -11,9 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824133829) do
+ActiveRecord::Schema.define(version: 20150825074002) do
 
   create_table "cups", force: :cascade do |t|
+    t.integer  "team_id"
+    t.string   "name"
+    t.string   "cup_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "description"
+    t.boolean  "has_league"
+    t.boolean  "has_tournament"
+    t.integer  "max_team"
+  end
+
+  add_index "cups", ["cup_url"], name: "index_cups_on_cup_url", unique: true
+  add_index "cups", ["team_id"], name: "index_cups_on_team_id"
+
+  create_table "cups_teams", id: false, force: :cascade do |t|
+    t.integer "cup_id"
+    t.integer "team_id"
+  end
+
+  add_index "cups_teams", ["cup_id"], name: "index_cups_teams_on_cup_id"
+  add_index "cups_teams", ["team_id"], name: "index_cups_teams_on_team_id"
+
+  create_table "organizers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "cup_id"
   end
 
   create_table "teams", force: :cascade do |t|

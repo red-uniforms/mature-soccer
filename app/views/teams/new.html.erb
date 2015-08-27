@@ -17,7 +17,7 @@
             </ul>
           <% end %>
           <p class="label">Will be shown to everyone</p>
-          <%= f.text_field :name, placeholder: "Team name" , class: "u-full-width" %>
+          <%= f.text_field :name, placeholder: "Team name" , autofocus: true , class: "u-full-width" %>
         </div>
         <div class="six columns">
           <div class="row">
@@ -30,8 +30,8 @@
               <% end %>
             </ul>
           <% end %>
-          <p class="label">http://amaccer.com/teams/<strong>:team_url</strong></p>
-          <%= f.text_field :team_url, placeholder: "Team URL" , class: "u-full-width" %>
+          <p class="label">http://madforfootball.com/teams/<strong>:team_url</strong></p>
+          <%= f.text_field :team_url, placeholder: "Type only :team_url" , class: "u-full-width" %>
         </div>
       </div>
       <div class="row">

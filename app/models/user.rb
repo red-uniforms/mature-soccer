@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :teams
   has_many :applicants, dependent: :destroy
   has_many :user_infos, dependent: :destroy
+  has_many :organizers, dependent: :destroy
 
   validates :name, length: { minimum: 2, maximum: 20 }
 
