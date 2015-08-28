@@ -1,27 +1,5 @@
-<section id="profile" class="first">
-  <div class="container">
-    <div class="row">
-      <h5 class="u-pull-left">Profile</h5>
-    </div>
-    <div class="row">
-      <div class="three columns div-max-170" id="user-profile">
-        <img src="http://placehold.it/150x150" class="wrapper-circle small" alt="user profile image">
-        <p class="username"><%= current_user.name %></p>
-      </div>
-      <div class="nine columns" id="recent-events">
-        <div class="row">
-          <div class="four columns event-holder empty">
-            <p>No events</p>
-            <a href="#">More events</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="teams">
-  <div class="container">
+<section id="teams" class="first">
+  <div class="container u-p-30">
     <div class="row">
       <h5 class="u-pull-left">Teams</h5>
     </div>
@@ -47,6 +25,18 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+<section id="cups">
+  <div class="container u-p-30">
+    <div class="row">
+      <h5 class="u-pull-left">Cups</h5>
+    </div>
+    <div class="row">
+      <% @organizers.each do |o| %>
+        <%= render(o.cup) %>
+      <% end %>
     </div>
   </div>
 </section>

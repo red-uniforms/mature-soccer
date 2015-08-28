@@ -1,4 +1,6 @@
 class CupsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:show]
+  
   def show
     @cup = find_cup(params[:cup_url])
   end
