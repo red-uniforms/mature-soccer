@@ -4,6 +4,7 @@ class Team < ActiveRecord::Base
     team.users_count = team.users.count
   end
 
+  has_and_belongs_to_many :cups
   has_and_belongs_to_many :users
   has_many :user_infos, dependent: :destroy
 
@@ -11,7 +12,7 @@ class Team < ActiveRecord::Base
   validates :captain_user_id, presence: true, numericality: { only_integer: true }
   validates :team_url, format: { with: /\A[-a-z0-9_]{3,20}\Z/, message: "only type lowercase alphabet, numbers, _ and -" },
              uniqueness: { message: "another team has the url"},
-             exclusion: { in: %w(new edit search) }
+             exclusion: { in: %w(new edit search join) }
 
   validates :gender, inclusion: { in: %w(Male Female), message: "gender should be male or female" }
   validates :average_age, inclusion: { in: 1..100, message: "age should be within 1 and 100" }

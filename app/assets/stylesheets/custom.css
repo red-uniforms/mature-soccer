@@ -44,12 +44,11 @@ body p {
 }
 
 .navbar-text {
-  color: #3A87BC;
-  display: inline;
   float: right;
   font-size: 15px;
+  margin-right: 10px;
   line-height: 6rem;
-  margin: 0;
+  color: #3A87BC;
 }
 
 section.first {
@@ -278,4 +277,9 @@ input[type="button"].button-danger:focus {
   color: #fff;
   border-color: #DB4437;
   background: #DB4437;
+}
+
+section .container.u-p-30 {
+  padding-top: 30px;
+  padding-bottom: 30px;
 }

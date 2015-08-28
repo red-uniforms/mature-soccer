@@ -44,7 +44,6 @@ class TeamsController < ApplicationController
     end
   end
 
-  # approve applicant
   def approve
     team = find_team_from_user(params[:team_url])
 
@@ -61,7 +60,7 @@ class TeamsController < ApplicationController
       render staus: :forbidden
     end
   end
-  # reject applyment
+
   def reject
     team = find_team_from_user(params[:team_url])
 
@@ -75,17 +74,14 @@ class TeamsController < ApplicationController
     end
   end
 
+protected
   def find_team(team_url)
     Team.find_by(team_url: team_url) or not_found
   end
   def find_team_from_user(team_url)
     current_user.teams.find_by(team_url: team_url) or not_found
   end
-  def not_found
-    raise ActionController::RoutingError.new('Not Found')
-  end
 
-protected
   def render_404
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }

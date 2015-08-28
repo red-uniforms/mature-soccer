@@ -23,4 +23,8 @@ Rails.application.routes.draw do
 
   resources :user_infos, only: [:destroy]
 
+  resources :cups,
+            param: :cup_url, constraints: { :cup_url => /[a-z0-9_-]{4,20}/},
+            only: [:index, :new, :show, :create]
+
 end
