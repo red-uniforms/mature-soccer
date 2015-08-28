@@ -30,6 +30,27 @@ body p {
   margin-bottom: 4rem;
 }
 
+.mid-nav {
+  height: 6rem;
+  width: 100%;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 30px;
+}
+
+nav .small {
+  color: #000;
+  font-size: 13px;
+  margin-right: 10px;
+  line-height: 6rem;
+  float:left;
+  text-transform: capitalize;
+}
+
+.focus {
+  color: #3A87BC !important;
+}
+
 .navbar {
   height: 60px;
   position: fixed;
@@ -277,6 +298,10 @@ input[type="button"].button-danger:focus {
   color: #fff;
   border-color: #DB4437;
   background: #DB4437;
+}
+section .container.u-p-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 section .container.u-p-30 {
