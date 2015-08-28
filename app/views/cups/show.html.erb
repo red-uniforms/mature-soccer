@@ -1,11 +1,14 @@
 <section class="first" id="cup-profile">
   <div class="container">
+    <div class="row u-mb-10">
+      <h5><%= @cup.name %></h5>
+    </div>
     <div class="row">
       <h5 class="u-pull-left">Share link</h5>
     </div>
     <div class="row">
       <div class="ten columns">
-        <input class="input u-full-width" value="http://amaccer.com/cups/enccer" id="data-copy-link" disabled>
+        <%= content_tag(:input,"", value: "http://amaccer.com/cups/#{@cup.cup_url}" , class: "input u-full-width", id: "data-copy-link", disabled: true) %>
       </div>
       <div class="two columns copy">
         <button class="button copy button-primary" id="copy-link">
@@ -13,7 +16,27 @@
         </button>
       </div>
     </div>
+    <div class="row">
+      <h5 class="u-pull-left">컵 정보</h5>
+    </div>
+    <div class="row">
+      <div class="four columns">
+        <div class="row">
+          <label>참가 팀 수</label>
+        </div>
+        <div class="row">
+          <p><%= @cup.max_team %></p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
-<section>
+<section id="schedule">
+  <div class="container">
+    <div class="row">
+      <h5 class="u-pull-left">Cup schedule</h5>
+    </div>
+    <div class="row">
+    </div>
+  </div>
 </section>
