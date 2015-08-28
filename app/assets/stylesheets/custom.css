@@ -51,8 +51,8 @@ section.first {
   color: #222;
 }
 #module {
-  background: #3A87BC;
-  color: white;
+  background: #eee;
+  color: #000;
 }
 
 #profile {
@@ -207,4 +207,34 @@ ul.error {
 
 strong {
   color: #3A87BC;
+}
+.half {
+  width: 100% !important;
+}
+@media (min-width: 700px) {
+  .half {
+    width: 50% !important;
+  }
+}
+.u-no-margin {
+  margin: 0 !important;
+}
+
+.feature-header {
+  display: inline-block;
+  padding-bottom: 15px;
+  margin: 0 auto 15px auto;
+  border-bottom: 1px solid #aaa;
+}
+
+.feature-description {
+  max-height: 400px;
+  padding: 35px 0;
+}
+
+.homepage-feature {
+  height: 400px;
+  background-size: cover !important;
+  background-position: center;
+  background-repeat: no-repeat;
 }
