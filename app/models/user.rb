@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :applicants, dependent: :destroy
   has_many :user_infos, dependent: :destroy
   has_many :organizers, dependent: :destroy
+  has_many :captains, dependent: :destroy
 
   validates :name, length: { minimum: 2, maximum: 20 }
 
@@ -17,6 +18,10 @@ class User < ActiveRecord::Base
 
   def applicants
     user_infos.where(applying: true)
+  end
+
+  def captain_teams
+    captains.map{ |cap| cap.team }
   end
 
 end
