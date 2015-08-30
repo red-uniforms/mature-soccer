@@ -41,6 +41,13 @@ class CupsController < ApplicationController
 
     redirect_to :back
   end
+
+  def schedule
+    @cup = find_cup(params[:cup_url])
+  end
+
+  def approve
+  end
   def reject
   end
 

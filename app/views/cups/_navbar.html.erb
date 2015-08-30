@@ -1,0 +1,11 @@
+<nav class="mid-nav" id="cup-nav">
+  <div class="row">
+    <a class="navbar-link small" data-value="home" href="#">홈</a>
+    <a class="navbar-link small" data-value="schedule" href="#">경기 일정</a>
+    <a class="navbar-link small" data-value="rank" href="#">순위</a>
+    <a class="navbar-link small" data-value="records" href="#">기록실</a>
+    <% if @cup.organizers.map{ |o| o.user }.include? current_user %>
+      <a class="navbar-link small" data-value="organize" href="#">운영진</a>
+    <% end %>
+  </div>
+</nav>
