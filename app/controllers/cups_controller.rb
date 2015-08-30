@@ -1,11 +1,13 @@
 class CupsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
 
-  def show
-    @cup = find_cup(params[:cup_url])
+  before_action :find_cup, only: [:show, :schedule, :rank, :records, :organize]
+  before_action :authenticate_organizer!, only: [:organize, :approve, :reject]
 
+  def show
     if current_user
-      session[:cup_id] = @cup.id
+      # already done in before_action
+      # session[:cup_id] = @cup.id
 
       @captain_teams = current_user.captain_teams
       @applying_teams = @cup.applying_teams
@@ -43,9 +45,15 @@ class CupsController < ApplicationController
   end
 
   def schedule
-    @cup = find_cup(params[:cup_url])
+  end
+  def rank
+  end
+  def records
   end
 
+  # only organizers can access
+  def organize
+  end
   def approve
   end
   def reject
@@ -62,5 +70,15 @@ private
   end
   def team_applicant_params
     params.require(:team_applicant).permit(:team_id)
+  end
+  def find_cup
+    @cup = Cup.find_by(cup_url: params[:cup_url]) or not_found
+
+    if session
+      session[:cup_id] ||= @cup.id
+    end
+  end
+  def authenticate_organizer!
+    @cup.organizers.map{ |o| o.user }.include? current_user or render_403
   end
 end

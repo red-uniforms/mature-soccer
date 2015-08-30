@@ -3,9 +3,6 @@
     <%= render partial: 'navbar' %>
 
     <!-- Actual Content -->
-    <div class="row u-mb-10">
-      <h4><%= @cup.name %></h4>
-    </div>
     <div class="row">
       <h5 class="u-pull-left">가입 링크</h5>
     </div>
@@ -25,7 +22,7 @@
     <div class="row u-mb-20">
       <ul class="horizontal">
         <li class="four">
-          <label>참가 팀 / 최대 팀</label>
+          <label>참가 팀/최대 팀</label>
           <p><%= @cup.teams.count %> / <%= @cup.max_team %></p>
         </li>
         <li class="four">
