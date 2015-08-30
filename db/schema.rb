@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825074002) do
+ActiveRecord::Schema.define(version: 20150829020450) do
+
+  create_table "captains", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "cups", force: :cascade do |t|
     t.integer  "team_id"
@@ -41,6 +48,14 @@ ActiveRecord::Schema.define(version: 20150825074002) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "cup_id"
+  end
+
+  create_table "team_applicants", force: :cascade do |t|
+    t.integer  "team_id"
+    t.integer  "cup_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "applying",   default: true
   end
 
   create_table "teams", force: :cascade do |t|

@@ -7,6 +7,8 @@ class Team < ActiveRecord::Base
   has_and_belongs_to_many :cups
   has_and_belongs_to_many :users
   has_many :user_infos, dependent: :destroy
+  has_many :captains, dependent: :destroy
+  has_many :team_applicants, dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }
   validates :captain_user_id, presence: true, numericality: { only_integer: true }
