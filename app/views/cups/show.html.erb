@@ -1,10 +1,10 @@
 <section class="first" id="cup-profile">
   <div class="container">
     <div class="row u-mb-10">
-      <h5><%= @cup.name %></h5>
+      <h4><%= @cup.name %></h4>
     </div>
     <div class="row">
-      <h5 class="u-pull-left">Share link</h5>
+      <h5 class="u-pull-left">가입 링크</h5>
     </div>
     <div class="row">
       <div class="ten columns">
@@ -16,23 +16,85 @@
         </button>
       </div>
     </div>
-    <div class="row">
-      <h5 class="u-pull-left">컵 정보</h5>
+    <div class="row u-mt-10">
+      <h5 class="u-pull-left u-mb-10">컵 정보</h5>
     </div>
-    <div class="row">
-      <div class="four columns">
+    <div class="row u-mb-20">
+      <ul class="horizontal">
+        <li class="four">
+          <label>참가 팀 / 최대 팀</label>
+          <p><%= @cup.teams.count %> / <%= @cup.max_team %></p>
+        </li>
+        <li class="four">
+          <label>진행 방식</label>
+          <p><% if @cup.has_league %>리그<% end %><% if @cup.has_tournament %> 토너먼트<% end %></p>
+        </li>
+      </ul>
+    </div>
+    <% if current_user %>
+      <% if current_user.captains.any? %>
         <div class="row">
-          <label>참가 팀 수</label>
+          <h5 class="u-pull-left">가입 신청</h5>
         </div>
         <div class="row">
-          <p><%= @cup.max_team %></p>
+          <ul class="horizontal">
+            <li class="four">
+              <p>팀명</p>
+            </li>
+            <li class="four">
+              <p>회원 수</p>
+            </li>
+          </ul>
         </div>
-      </div>
-    </div>
+        <% @user_applying_teams.each do |team| %>
+          <div class="row">
+            <ul class="horizontal">
+              <li class="four align-h">
+                <p><%= team.name %></p>
+              </li>
+              <li class="four align-h">
+                <p><%= team.users_count %></p>
+              </li>
+              <li class="four align-h">
+                <%= link_to( { action: "destroy", controller: "team_applicants", id: @cup.team_applicants.where(team_id: team.id).take.id }, { method: :delete } ) do %>
+                  <input type="button" class="button button-danger u-full-width" value="취소하기" id="applicant-cancel">
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        <% end %>
+        <% (@captain_teams-@applying_teams).each do |team| %>
+          <%= form_for @new_team_applicant, url: { controller: "cups", action: "join" } do |f| %>
+            <div class="row">
+              <ul class="horizontal">
+                <li class="four align-h">
+                  <p><%= team.name %></p>
+                </li>
+                <li class="four align-h">
+                  <p><%= team.users_count %></p>
+                </li>
+                <li class="four align-h">
+                  <%= f.number_field :team_id, value: team.id,  hidden: true %>
+                  <%= f.submit "대회 신청", class: "button button-primary button-small u-full-width" %>
+                </li>
+              </ul>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
   </div>
 </section>
 <section id="schedule">
-  <div class="container">
+  <div class="container u-p-30">
+    <nav class="mid-nav">
+      <div class="row">
+        <a class="navbar-link small focus" href="#">경기 일정</a>
+        <a class="navbar-link small" href="#">순위</a>
+        <a class="navbar-link small" href="#">기록실</a>
+        <a class="navbar-link small" href="#">운영진</a>
+      </div>
+    </nav>
     <div class="row">
       <h5 class="u-pull-left">Cup schedule</h5>
     </div>

@@ -5,12 +5,14 @@ class TeamsController < ApplicationController
   end
 
   def create
+    captain = current_user.captains.new
+
     @team = current_user.teams.new(team_params)
-    @team.captain_user_id = current_user.id
     
     if @team.save
       # relate team with user
-      @team.users << current_user
+      # @team.users << current_user
+      @team.captains << captain
       redirect_to users_path
     else
       render 'new'
