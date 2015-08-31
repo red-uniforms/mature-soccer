@@ -33,11 +33,15 @@ Rails.application.routes.draw do
       get '/schedule', to: 'cups#schedule'
       get '/rank', to: 'cups#rank'
       get '/records', to: 'cups#records'
-      get '/organize', to: 'cups#organize'
+      scope '/organize' do
+        get '', to: 'cups#organize'
+      end
     end
   end
 
+  resources :organizers, only: [:create]
+
   resources :user_infos, only: [:destroy]
-  resources :team_applicants, only: [:destroy]
+  resources :team_applicants, only: [:create, :destroy]
 
 end

@@ -53,6 +53,7 @@ class CupsController < ApplicationController
 
   # only organizers can access
   def organize
+    @organizer = Organizer.new
   end
   def approve
     team_applicant = @cup.team_applicants.find(params[:team_applicant_id]) or not_found
@@ -77,7 +78,6 @@ private
     params.require(:team_applicant).permit(:team_id)
   end
   def find_cup
-    puts "find_cup"
     @cup = Cup.find_by(cup_url: params[:cup_url]) or not_found
 
     if session
@@ -85,7 +85,6 @@ private
     end
   end
   def authenticate_organizer!
-    puts "authenticate_organizer!"
     @cup.organizers.map{ |o| o.user }.include? current_user or render_403
   end
 end
