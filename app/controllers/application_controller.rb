@@ -6,8 +6,17 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+private
+
   def not_found
     raise ActionController::RoutingError.new('Not Found')
+  end
+
+  def render_403
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/public/403", :layout => false, status: 403 }
+      format.any  { head :forbidden }
+    end
   end
 
   protected

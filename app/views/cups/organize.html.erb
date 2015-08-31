@@ -1,0 +1,88 @@
+<!-- Can add organizers and Approve teams. -->
+<section class="first" id="schedule">
+  <div class="container">
+    <%= render partial: 'navbar' %>
+
+    <!-- Actual Content -->
+    <% if @cup.applying_teams.any? %>
+
+      <div class="row">
+        <h5 class="u-pull-left">참가 신청 팀</h5>
+      </div>
+      <div class="row">
+        <ul class="horizontal">
+          <li class="four">
+            <p>팀명</p>
+          </li>
+          <li class="four">
+            <p>멤버 수</p>
+          </li>
+        </ul>
+      </div>
+      <div class="row u-mb-20">
+        <% @cup.team_applicants.where(applying: true).each do |team_applicant| %>
+          <ul class="horizontal">           
+            <li class="four align-h">
+              <p><%= team_applicant.team.name %></p>
+            </li>
+            <li class="four align-h">
+              <p><%= team_applicant.team.users_count %></p>
+            </li>
+            <li class="four align-h">
+              <%= link_to( { action: "approve", controller: "cups", cup_url: @cup.cup_url, team_applicant_id: team_applicant.id }, { method: :post } ) do %>
+                <input type="button" class="button button-primary u-full-width" value="승인" id="team-applicant-approve">
+              <% end %>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+
+    <% end %>
+
+    <% if @cup.teams.any? %>
+
+      <div class="row">
+        <h5 class="u-pull-left">참가 팀</h5>
+      </div>
+      <div class="row">
+        <ul class="horizontal">
+          <li class="four">
+            <p>엠블럼</p>
+          </li>
+          <li class="four">
+            <p>팀명</p>
+          </li>
+          <li class="four">
+            <p>멤버 수</p>
+          </li>
+        </ul>
+      </div>
+      <div class="row u-mb-20">
+        <% @cup.teams.each do |team| %>
+          <%= render 'cups/team', :team => team %>
+        <% end %>
+      </div>
+
+    <% end %>
+
+    <div class="row">
+      <h5 class="u-pull-left">운영진</h5>
+    </div>
+    <div class="row">
+      <ul class="horizontal">
+        <li class="four">
+          <p>이름</p>
+        </li>
+        <li class="four">
+          <p>이메일</p>
+        </li>
+        <li class="four">
+          <p>나이</p>
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <%= render (@cup.organizers) %>
+    </div>
+  </div>
+</section>

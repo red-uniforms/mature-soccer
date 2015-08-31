@@ -26,6 +26,14 @@ Rails.application.routes.draw do
             only: [:index, :new, :show, :create] do
     member do
       post '', to: 'cups#join'
+      scope '/:team_applicant_id' do
+        post '', to: 'cups#approve'
+        delete '', to: 'cups#reject'
+      end
+      get '/schedule', to: 'cups#schedule'
+      get '/rank', to: 'cups#rank'
+      get '/records', to: 'cups#records'
+      get '/organize', to: 'cups#organize'
     end
   end
 
