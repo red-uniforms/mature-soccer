@@ -2,7 +2,7 @@ class OrganizersController < ApplicationController
   def new
   end
   def create
-    user = User.find_by email: organizer_params[:email] or not_found
+    user = User.find_by email: organizer_params[:email]
     org = user.organizers.new
 
     # some errors in logic..
