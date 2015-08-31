@@ -1,7 +1,7 @@
 class CupsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
 
-  before_action :find_cup, only: [:show, :schedule, :rank, :records, :organize]
+  before_action :find_cup, only: [:show, :schedule, :rank, :records, :organize, :approve, :reject]
   before_action :authenticate_organizer!, only: [:organize, :approve, :reject]
 
   def show
@@ -55,6 +55,11 @@ class CupsController < ApplicationController
   def organize
   end
   def approve
+    team_applicant = @cup.team_applicants.find(params[:team_applicant_id]) or not_found
+    team_applicant.applying = false
+    team_applicant.save!
+
+    redirect_to organize_cup_path
   end
   def reject
   end
@@ -72,6 +77,7 @@ private
     params.require(:team_applicant).permit(:team_id)
   end
   def find_cup
+    puts "find_cup"
     @cup = Cup.find_by(cup_url: params[:cup_url]) or not_found
 
     if session
@@ -79,6 +85,7 @@ private
     end
   end
   def authenticate_organizer!
+    puts "authenticate_organizer!"
     @cup.organizers.map{ |o| o.user }.include? current_user or render_403
   end
 end

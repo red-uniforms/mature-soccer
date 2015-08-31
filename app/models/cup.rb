@@ -13,7 +13,7 @@ class Cup < ActiveRecord::Base
   validates :description, length: { minimum: 2, maximum: 40 }
 
   def teams
-    team_applicants.where(applying: false)
+    team_applicants.where(applying: false).map{ |ta| ta.team }
   end
   def applying_teams
     team_applicants.where(applying: true).map{ |ta| ta.team }

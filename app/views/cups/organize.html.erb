@@ -20,16 +20,18 @@
         </ul>
       </div>
       <div class="row u-mb-20">
-        <% @cup.applying_teams.each do |team| %>
+        <% @cup.team_applicants.where(applying: true).each do |team_applicant| %>
           <ul class="horizontal">           
-            <li class="four">
-              <p><%= team.name %></p>
+            <li class="four align-h">
+              <p><%= team_applicant.team.name %></p>
             </li>
-            <li class="four">
-              <p><%= team.users_count %></p>
+            <li class="four align-h">
+              <p><%= team_applicant.team.users_count %></p>
             </li>
-            <li class="four">
-              <p>승인</p>
+            <li class="four align-h">
+              <%= link_to( { action: "approve", controller: "cups", cup_url: @cup.cup_url, team_applicant_id: team_applicant.id }, { method: :post } ) do %>
+                <input type="button" class="button button-primary u-full-width" value="승인" id="team-applicant-approve">
+              <% end %>
             </li>
           </ul>
         <% end %>
