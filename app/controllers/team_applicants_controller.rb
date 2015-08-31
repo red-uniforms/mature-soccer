@@ -1,4 +1,7 @@
 class TeamApplicantsController < ApplicationController
+  def create
+  end
+
   def destroy
     team_applicant = TeamApplicant.find(params[:id])
 

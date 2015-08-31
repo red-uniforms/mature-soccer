@@ -84,5 +84,27 @@
     <div class="row">
       <%= render (@cup.organizers) %>
     </div>
+    <div class="row" id="organizers-form">
+      <%= form_for @organizer do |f| %>
+        <div class="row">
+          <div class="three columns">
+            <label class="align-h focus">운영진 추가</label>
+          </div>
+          <div class="five columns">
+            <div class="row align-h">
+              <div class="four columns">
+                <label>운영진 이메일</label>
+              </div>
+              <div class="eight columns">
+                <input type="email" name="organizer[email]" class="u-full-width" placeholder="email@example.com">
+              </div>
+            </div>
+          </div>
+          <div class="four columns align-h">
+            <%= f.submit "추가하기", class: "button button-primary button-small u-full-width" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </section>

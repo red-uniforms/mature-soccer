@@ -9,7 +9,7 @@
     <%= link_to "순위", rank_cup_path(cup_url: @cup.cup_url), class: "navbar-link small", "data-value" => "rank" %>
     <%= link_to "기록실", records_cup_path(cup_url: @cup.cup_url), class: "navbar-link small", "data-value" => "records" %>
     <% if @cup.organizers.map{ |o| o.user }.include? current_user %>
-      <%= link_to "운영진", organize_cup_path(cup_url: @cup.cup_url), class: "navbar-link small", "data-value" => "organize" %>
+      <%= link_to "운영진", { controller: "cups", action: "organize", cup_url: @cup.cup_url }, class: "navbar-link small", "data-value" => "organize" %>
     <% end %>
   </div>
 </nav>

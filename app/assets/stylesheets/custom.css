@@ -342,3 +342,9 @@ ul.horizontal li.four {
 ul.horizontal li.four:first-child {
   margin-left: 0%;
 }
+
+#organizers-form {
+  margin-top: 10px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}

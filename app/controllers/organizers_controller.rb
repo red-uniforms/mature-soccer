@@ -2,14 +2,17 @@ class OrganizersController < ApplicationController
   def new
   end
   def create
-    user = User.find_by email: params[:email]
+    user = User.find_by email: organizer_params[:email]
     org = user.organizers.new
 
+    # some errors in logic..
     cup = Cup.find(session[:cup_id])
     org.cup = cup
 
+    org.save!
+
     # TODO
-    # redirect_to ?
+    redirect_to :back
   end
 
 private
