@@ -2,7 +2,7 @@ class OrganizersController < ApplicationController
   def new
   end
   def create
-    user = User.find_by email: organizer_params[:email]
+    user = User.find_by email: organizer_params[:email] or not_found
     org = user.organizers.new
 
     # some errors in logic..
@@ -10,8 +10,7 @@ class OrganizersController < ApplicationController
     org.cup = cup
 
     org.save!
-
-    # TODO
+    
     redirect_to :back
   end
 
