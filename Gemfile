@@ -50,3 +50,6 @@ end
 # using devise for authentication
 gem 'devise', '~> 3.5.1'
 gem 'tzinfo-data', '~> 1.2015.6'
+gem 'momentjs-rails', '~> 2.10.3'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.15.35'
+gem 'bootstrap-sass', '~> 3.3.5.1'

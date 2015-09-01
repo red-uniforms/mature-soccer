@@ -1,7 +1,8 @@
 $(document).on("ready page:load", function() {
-  loc = window.location.pathname.split('/').pop();
+  list = window.location.pathname.split('/');
 
-  if ( loc != "enccer" ) {
+  if( list.length == 4 ) {
+    loc = list.pop();
     $('a.focus').removeClass('focus');
     $('a[data-value="'+loc+'"]').addClass('focus');
   }

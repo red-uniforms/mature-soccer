@@ -65,11 +65,6 @@ class CupsController < ApplicationController
   def reject
   end
 
-protected
-  def find_cup(cup_url)
-    Cup.find_by(cup_url: cup_url) or not_found
-  end
-
 private
   def cup_params
     params.require(:cup).permit(:name, :cup_url, :max_team, :description, :has_league, :has_tournament)

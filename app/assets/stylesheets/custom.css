@@ -334,12 +334,18 @@ ul.horizontal li {
   height: 6rem;
   line-height: 6rem;
 }
-
+ul.horizontal li.twelve {
+  width: 100%;
+}
 ul.horizontal li.four {
   width: 30.6666666667%;
   margin-left: 4%;
 }
-ul.horizontal li.four:first-child {
+ul.horizontal li.six {
+  width: 48%;
+  margin-left: 4%;
+}
+ul.horizontal li:first-child {
   margin-left: 0%;
 }
 
@@ -347,4 +353,68 @@ ul.horizontal li.four:first-child {
   margin-top: 10px;
   padding-top: 20px;
   border-top: 1px solid #eee;
+}
+
+.bottom-hr {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
+}
+.col-md-6 {
+  width: 100%;
+  float: left;
+}
+.col-md-6:first-child {
+  margin-left: 0;
+}
+
+button.btn {
+  display: inline-block;
+  height: 38px;
+  padding: 6px 6px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 38px;
+}
+
+.timepicker {
+  padding: 0 0;
+}
+
+@media (min-width: 850px) {
+  .timepicker {
+    padding: 50px 0;
+  }
+  .col-md-6 {
+    width: 48%;
+    margin-left: 4%;
+    float: left;
+  }
+  .col-md-6:first-child {
+    margin-left: 0;
+  }
+}
+
+td {
+  border: none !important;
+}
+.bootstrap-datetimepicker-widget table td.active, .bootstrap-datetimepicker-widget table td.active:hover {
+  background-color: #3A87BC !important;
+}
+
+th {
+  font-weight: 300;
+  color: #3A87BC;
+}
+th.picker-switch {
+  font-size: 18px;
+  color: #000;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+td span {
+  font-weight: 300 !important;
+}
+
+.bootstrap-datetimepicker-widget button[data-action] {
+  padding: 0 6px !important;
 }

@@ -1,7 +1,7 @@
 <section id="teams" class="first">
   <div class="container u-p-30">
     <div class="row">
-      <h5 class="u-pull-left">Teams</h5>
+      <h5 class="u-pull-left">팀</h5>
     </div>
     <div class="row">
       <% current_user.all_teams.each do |team| %>
@@ -33,12 +33,29 @@
 <section id="cups">
   <div class="container u-p-30">
     <div class="row">
-      <h5 class="u-pull-left">Cups</h5>
+      <h5 class="u-pull-left">대회</h5>
     </div>
     <div class="row">
       <% @organizers.each do |o| %>
         <%= render(o.cup) %>
       <% end %>
+      <!-- Always at the last of cups -->
+      <div class="four columns team-holder empty">
+        <p>Join new</p>
+        <div class="row">
+          <div class="eight columns offset-by-two">
+            <%= button_tag("join", {type: 'button', class: 'u-full-width button button-small'} ) %>
+          </div>
+        </div>
+        <p>Create new</p>
+        <div class="row">
+          <div class="eight columns offset-by-two">
+            <%= link_to(new_cup_path) do %>
+              <%= button_tag("create", {type: 'button', class: 'u-full-width button button-small'} ) %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
