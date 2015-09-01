@@ -5,6 +5,9 @@
     </div>
     <div class="row">
       <%= render (@teams) %>
+      <% current_user.captains.each do |cap| %>
+        <%= render (cap.team) %>
+      <% end %>
       <% current_user.applicants.each do |a| %>
         <%= render (a.team) %>
       <% end %>

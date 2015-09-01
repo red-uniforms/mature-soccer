@@ -9,7 +9,7 @@ class TeamsController < ApplicationController
 
     @team = current_user.teams.new(team_params)
     
-    if @team.save
+    if @team.save!
       # relate team with user
       # @team.users << current_user
       @team.captains << captain
