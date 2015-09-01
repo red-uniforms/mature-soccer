@@ -85,7 +85,7 @@
     <% end %>
   </div>
 </section>
-<% if current_user.id == @team.captain_user_id and @team.applicants.any? %>
+<% if @team.captains.include? current_user and @team.applicants.any? %>
   <section id="applicants">
     <div class="container">
       <div class="row">

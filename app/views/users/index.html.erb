@@ -4,9 +4,8 @@
       <h5 class="u-pull-left">Teams</h5>
     </div>
     <div class="row">
-      <%= render (@teams) %>
-      <% current_user.captains.each do |cap| %>
-        <%= render (cap.team) %>
+      <% current_user.all_teams.each do |team| %>
+        <%= render (team) %>
       <% end %>
       <% current_user.applicants.each do |a| %>
         <%= render (a.team) %>
