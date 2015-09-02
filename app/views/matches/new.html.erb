@@ -3,16 +3,17 @@
     <div class="row">
       <h5 class="u-pull-left">새로운 경기 등록</h5>
     </div>
-    <%= form_for @match do |f| %>
+    <%= form_for @match, id: "new-match" do |f| %>
       <div class="row">
         <div class="row">
           <%= f.label :date, value: "경기 날짜 & 시간", class: "u-pull-left" %>
         </div>
+        <%= f.text_field :date, hidden: true, id: "match-date" %>
         <p class="label">경기 날짜를 입력해주세요</p>
         <div style="overflow:hidden;">
           <div class="form-group">
             <div class="row">
-              <div id="datetimepicker12"></div>
+              <div id="datetimepicker"></div>
             </div>
           </div>
         </div>
@@ -36,12 +37,39 @@
       <div class="row">
         <div class="six columns">
           <div class="row">
+            <%= f.label :half, value: "경기 시간", class: "u-pull-left" %>
+          </div>
+          <p class="label">전반전과 후반전 시간을 분 단위로 입력해주세요</p>
+          <%= f.number_field :half, value: 20 , class: "u-full-width" %>
+        </div>
+        <div class="six columns">
+          <div class="row">
+            <%= f.label :extra, value: "연장전 시간", class: "u-pull-left" %>
+          </div>
+          <p class="label">연장 전반전과 후반전 시간을 분 단위로 입력해주세요</p>
+          <%= f.number_field :extra, value: 10, class: "u-full-width" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="six columns">
+          <div class="row">
             <%= f.label :description, value: "경기 설명", class: "u-pull-left" %>
           </div>
           <p class="label">경기에 대한 설명을 입력해주세요</p>
           <%= f.text_field :description, placeholder: "공대 학장배 조별예선 1차전 기숙사 운동장", class: "u-full-width" %>
+          <%= f.number_field :cup_id, hidden: true, value: @cup.id %>
         </div>
         <div class="six columns">
+          <div class="row">
+            <%= f.label :penalty, value: "승부차기 여부", class: "u-pull-left" %>
+          </div>
+          <p class="label">승부차기를 찰지 결정해 주세요</p>
+          <div class="row u-left-align">
+            <div class="u-full-width">
+              <%= f.check_box :penalty, checked: false %>
+              <span class="label-body">연장전 이후 승부가 나지 않을 경우 승부차기를 실시합니다</span>
+            </div>
+          </div>
         </div>
       </div>
     <% end %>
