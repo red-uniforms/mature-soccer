@@ -60,7 +60,7 @@ class CupsController < ApplicationController
     team_applicant.applying = false
     team_applicant.save!
 
-    redirect_to organize_cup_path
+    redirect_to action: organize
   end
   def reject
   end

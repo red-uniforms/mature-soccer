@@ -418,3 +418,8 @@ td span {
 .bootstrap-datetimepicker-widget button[data-action] {
   padding: 0 6px !important;
 }
+
+.timepicker-picker , .timepicker-hours , .timepicker-minutes {
+  min-height: 300px;
+  margin-top: 20px;
+}

@@ -8,6 +8,13 @@
         <div class="row">
           <%= f.label :date, value: "경기 날짜 & 시간", class: "u-pull-left" %>
         </div>
+        <% if @match.errors[:date].any? %>
+          <ul class="error">
+            <% @match.errors[:date].each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        <% end %>
         <%= f.text_field :date, hidden: true, id: "match-date" %>
         <p class="label">경기 날짜를 입력해주세요</p>
         <div style="overflow:hidden;">
@@ -21,17 +28,31 @@
       <div class="row">
         <div class="six columns">
           <div class="row">
-            <%= f.label :home_team, value: "홈 팀", class: "u-pull-left" %>
+            <%= f.label :home_team_id, value: "홈 팀", class: "u-pull-left" %>
           </div>
+          <% if @match.errors[:home_team].any? %>
+            <ul class="error">
+              <% @match.errors[:home_team].each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          <% end %>
           <p class="label">홈 팀을 지정해주세요</p>
-          <%= f.select(:home_team, options_from_collection_for_select(@cup.teams, "id","name"), {}, { class: "u-full-width"}) %>
+          <%= f.select(:home_team_id, options_from_collection_for_select(@cup.teams, "id","name"), {}, { class: "u-full-width" }) %>
         </div>
         <div class="six columns">
           <div class="row">
-            <%= f.label :away_team, value: "어웨이 팀", class: "u-pull-left" %>
+            <%= f.label :away_team_id, value: "어웨이 팀", class: "u-pull-left" %>
           </div>
+          <% if @match.errors[:away_team].any? %>
+            <ul class="error">
+              <% @match.errors[:away_team].each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          <% end %>
           <p class="label">어웨이 팀을 지정해주세요</p>
-          <%= f.select(:away_team, options_from_collection_for_select(@cup.teams, "id","name"), {}, { class: "u-full-width"}) %>
+          <%= f.select(:away_team_id, options_from_collection_for_select(@cup.teams, "id","name"), {}, { class: "u-full-width" }) %>
         </div>
       </div>
       <div class="row">
@@ -39,6 +60,13 @@
           <div class="row">
             <%= f.label :half, value: "경기 시간", class: "u-pull-left" %>
           </div>
+          <% if @match.errors[:half].any? %>
+            <ul class="error">
+              <% @match.errors[:half].each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          <% end %>
           <p class="label">전반전과 후반전 시간을 분 단위로 입력해주세요</p>
           <%= f.number_field :half, value: 20 , class: "u-full-width" %>
         </div>
@@ -46,8 +74,15 @@
           <div class="row">
             <%= f.label :extra, value: "연장전 시간", class: "u-pull-left" %>
           </div>
-          <p class="label">연장 전반전과 후반전 시간을 분 단위로 입력해주세요</p>
-          <%= f.number_field :extra, value: 10, class: "u-full-width" %>
+          <% if @match.errors[:extra].any? %>
+            <ul class="error">
+              <% @match.errors[:extra].each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          <% end %>
+          <p class="label">연장전이 있다면 전반전과 후반전 시간을 분 단위로 입력해주세요</p>
+          <%= f.number_field :extra, value: 0, class: "u-full-width" %>
         </div>
       </div>
       <div class="row">
@@ -55,6 +90,13 @@
           <div class="row">
             <%= f.label :description, value: "경기 설명", class: "u-pull-left" %>
           </div>
+          <% if @match.errors[:description].any? %>
+            <ul class="error">
+              <% @match.errors[:description].each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          <% end %>
           <p class="label">경기에 대한 설명을 입력해주세요</p>
           <%= f.text_field :description, placeholder: "공대 학장배 조별예선 1차전 기숙사 운동장", class: "u-full-width" %>
           <%= f.number_field :cup_id, hidden: true, value: @cup.id %>
@@ -70,6 +112,12 @@
               <span class="label-body">연장전 이후 승부가 나지 않을 경우 승부차기를 실시합니다</span>
             </div>
           </div>
+        </div>
+      </div>
+      <!-- Submit Button -->
+      <div class="row u-mt-10">
+        <div class="two columns">
+          <%= f.submit "생성하기", class: "button button-primary button-small u-full-width" %>
         </div>
       </div>
     <% end %>

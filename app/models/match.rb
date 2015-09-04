@@ -1,25 +1,25 @@
 class Match < ActiveRecord::Base
-  has_one :home_team, class_name: "Team"
-  has_one :away_team, class_name: "Team"
+  belongs_to :home_team, class_name: "Team"
+  belongs_to :away_team, class_name: "Team"
 
   belongs_to :cup
 
-  validate :home_away_belongs_to_cup, unless: "cup.nil?"
+  validate :home_away_belongs_to_cup, unless: "cup_id.nil?"
   validate :team_different
 
-  validates :home_team, presence: true
-  validates :away_team, presence: true
-  # home and away teams should be participating in the cup
+  validates :home_team_id, presence: true
+  validates :away_team_id, presence: true
+
   validates :description, presence: true, length: { minimum: 2, maximum: 40 }
   validates :date, presence: true
   validates :half, presence: true, numericality: { only_integer: true }
   validates :extra, numericality: { only_integer: true }
 
   def home_away_belongs_to_cup
-    if cup.teams.include? away_team and cup.teams.include? home_team
+    if cup.teams.include? away_team_id and cup.teams.include? home_team_id
     else
-      errors.add(:home_team, "team has to participating the cup")
-      errors.add(:away_team, "team has to participating the cup")
+      errors.add(:home_team, "team has to participate the cup")
+      errors.add(:away_team, "team has to participate the cup")
     end
   end
   def team_different
