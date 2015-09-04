@@ -16,7 +16,7 @@ class Match < ActiveRecord::Base
   validates :extra, numericality: { only_integer: true }
 
   def home_away_belongs_to_cup
-    if cup.teams.include? away_team_id and cup.teams.include? home_team_id
+    if cup.teams.include? away_team and cup.teams.include? home_team
     else
       errors.add(:home_team, "team has to participate the cup")
       errors.add(:away_team, "team has to participate the cup")
