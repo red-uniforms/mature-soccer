@@ -28,5 +28,8 @@ class Match < ActiveRecord::Base
       errors.add(:away_team, "home and away team should be different")
     end
   end
+  def date_s
+    # string representation of date
+  end
 
 end
