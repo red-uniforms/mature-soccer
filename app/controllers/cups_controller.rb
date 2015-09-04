@@ -60,14 +60,9 @@ class CupsController < ApplicationController
     team_applicant.applying = false
     team_applicant.save!
 
-    redirect_to organize_cup_path
+    redirect_to action: organize
   end
   def reject
-  end
-
-protected
-  def find_cup(cup_url)
-    Cup.find_by(cup_url: cup_url) or not_found
   end
 
 private

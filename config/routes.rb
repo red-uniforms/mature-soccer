@@ -44,4 +44,6 @@ Rails.application.routes.draw do
   resources :user_infos, only: [:destroy]
   resources :team_applicants, only: [:create, :destroy]
 
+  resources :matches, only: [:new, :create]
+
 end

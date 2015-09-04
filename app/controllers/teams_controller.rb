@@ -23,7 +23,7 @@ class TeamsController < ApplicationController
     @team = find_team(params[:team_url])
 
     # if user isn't member of the team
-    if current_user.teams.exclude? @team
+    if current_user.all_teams.exclude? @team
       @user_info = current_user.user_infos.where(team: @team.id).take
       @user_info ||= current_user.user_infos.new
       render 'join'
@@ -49,7 +49,7 @@ class TeamsController < ApplicationController
   def approve
     team = find_team_from_user(params[:team_url])
 
-    if current_user.id == team.captain_user_id
+    if team.captains.include? current_user
       user_info = team.user_infos.find(params[:user_info_id])
       user_info.applying = false
 
@@ -66,7 +66,7 @@ class TeamsController < ApplicationController
   def reject
     team = find_team_from_user(params[:team_url])
 
-    if current_user.id == team.captain_user_id
+    if team.captains.include? current_user
       user_info = team.user_infos.find(params[:user_info_id])
       user_info.destroy!
 

@@ -63,7 +63,7 @@
             </ul>
           </div>
         <% end %>
-        <% (@captain_teams-@applying_teams).each do |team| %>
+        <% (@captain_teams-@applying_teams-@cup.teams).each do |team| %>
           <%= form_for @new_team_applicant, url: { controller: "cups", action: "join" } do |f| %>
             <div class="row">
               <ul class="horizontal">

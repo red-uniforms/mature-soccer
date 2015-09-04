@@ -24,4 +24,8 @@ class User < ActiveRecord::Base
     captains.map{ |cap| cap.team }
   end
 
+  def all_teams
+    teams | captain_teams
+  end
+
 end

@@ -2,6 +2,8 @@ class Cup < ActiveRecord::Base
 
   has_many :organizers, dependent: :destroy
   has_many :team_applicants, dependent: :destroy
+  has_many :matches
+  
   has_and_belongs_to_many :teams
 
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }
@@ -13,10 +15,10 @@ class Cup < ActiveRecord::Base
   validates :description, length: { minimum: 2, maximum: 40 }
 
   def teams
-    team_applicants.where(applying: false).map{ |ta| ta.team }
+    team_applicants.where(applying: false).pluck(:team)
   end
   def applying_teams
-    team_applicants.where(applying: true).map{ |ta| ta.team }
+    team_applicants.where(applying: true).pluck(:team)
   end
 
 end
