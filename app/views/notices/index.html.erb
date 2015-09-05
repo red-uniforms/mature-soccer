@@ -1,0 +1,21 @@
+<section id="notice-index", class="first">
+  <div class="container">
+    <div class="row">
+	 <h2>공지사항</h2>
+    </div>
+    <div class="row">
+      <div class="u-pull-right">
+      <h4><%= link_to 'New notice', new_notice_path %></h4>
+      </div>
+    </div>
+    <div class="row">
+      <h3> 제목 </h3>
+	</div>
+
+  <% @notices.each do |notice| %>
+  	<div class="row">
+      <h4><%= link_to notice.title, notice_path(notice) %></h4>
+     </div>
+  <% end %>
+  </div>
+</section>

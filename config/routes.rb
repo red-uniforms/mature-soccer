@@ -36,6 +36,12 @@ Rails.application.routes.draw do
       scope '/organize' do
         get '', to: 'cups#organize'
       end
+
+      get '/notices', to: 'cups#notices'
+      get '/notices/new', to: 'notices#new'
+      post '/notices', to: 'notices#create'
+      patch '/notices/:id/edit', to: 'notices#edit'
+      delete '/notices/:id', to: 'notices#destroy'       
     end
   end
 
@@ -45,5 +51,7 @@ Rails.application.routes.draw do
   resources :team_applicants, only: [:create, :destroy]
 
   resources :matches, only: [:new, :create, :show]
+
+  #resources :notices, only: [:new, :create, :show, :edit, :destroy]
 
 end

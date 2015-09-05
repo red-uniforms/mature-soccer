@@ -452,3 +452,7 @@ td span {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.notice-text {
+  height: 200px;
+}

@@ -1,0 +1,19 @@
+<section id= "show-notices" class="first">
+  <div class="container">
+
+
+    <div class= "row">
+      <h4><%= @notice.title %></h4>
+    </div>
+    <div class= "row">
+      <%= @notice.text %>
+    </div>
+
+    <div class= "row">
+      <%= link_to '수정', edit_notice_path %>
+      <%= link_to '삭제', notice_path, method: :delete,
+    	      data: { confirm: '정말 삭제하시겠습니까?'} %>
+      <%= link_to '돌아가기', notices_path %>
+    </div>
+  </div>
+</section>

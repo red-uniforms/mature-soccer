@@ -1,0 +1,22 @@
+<section class="first" id="notices">
+  <div class="container">
+    <%= render partial: 'navbar' %>
+
+    <!-- Actual Content -->
+    <div class="row bottom-hr">
+      <ul class="horizontal">
+        <li class="six">
+          <h5 class="u-pull-left">공지사항</h5>
+        </li>
+        <li class="six">
+          <%= link_to notices_new_cup_path do %>
+            <h5 class="focus u-pull-right">공지 추가</h5>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <p>더 이상 표시할 공지사항이 없습니다.</p>
+    </div>
+  </div>
+</section>

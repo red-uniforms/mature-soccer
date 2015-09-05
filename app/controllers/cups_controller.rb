@@ -1,7 +1,7 @@
 class CupsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
 
-  before_action :find_cup, only: [:show, :schedule, :rank, :records, :organize, :approve, :reject]
+  before_action :find_cup, only: [:show, :schedule, :rank, :records, :organize, :approve, :reject, :notices]
   before_action :authenticate_organizer!, only: [:organize, :approve, :reject]
 
   def show
@@ -49,6 +49,9 @@ class CupsController < ApplicationController
   def rank
   end
   def records
+  end
+
+  def notices
   end
 
   # only organizers can access

@@ -1,0 +1,38 @@
+<section id="new-edit" class="first">
+  <div class="container">
+ 
+<%= form_for :notice, url: notice_path(@notice), method: :patch do |f| %>
+ 
+  <% if @notice.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@notice.errors.count, "error") %> prohibited
+        this notice from being saved:
+      </h2>
+      <ul>
+        <% @notice.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <div class="row">
+    <%= f.label :제목 %><br>
+    <%= f.text_field :title, class: "u-full-width" %>
+  </div>
+ 
+  <div class="row">
+    <%= f.label :내용 %><br>
+    <%= f.text_area :text, class: "u-full-width notice-text" %>
+  </div>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+ 
+  <% end %>
+ 
+  <%= link_to 'Back', notices_path %>
+  </div>
+</section>

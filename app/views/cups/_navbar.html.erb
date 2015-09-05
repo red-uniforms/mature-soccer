@@ -5,6 +5,7 @@
 <nav class="mid-nav" id="cup-nav">
   <div class="row">
     <%= link_to "홈", cup_path(cup_url: @cup.cup_url), class: "navbar-link small focus", "data-value" => "home" %>
+    <%= link_to "공지사항", notices_cup_path, class: "navbar-link small", "data-value" => "notice" %>
     <%= link_to "경기 일정", schedule_cup_path(cup_url: @cup.cup_url), class: "navbar-link small", "data-value" => "schedule" %>
     <%= link_to "순위", rank_cup_path(cup_url: @cup.cup_url), class: "navbar-link small", "data-value" => "rank" %>
     <%= link_to "기록실", records_cup_path(cup_url: @cup.cup_url), class: "navbar-link small", "data-value" => "records" %>
