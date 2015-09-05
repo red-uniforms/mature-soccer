@@ -327,6 +327,7 @@ ul.horizontal {
 ul.horizontal li {
   text-align: center;
   float: left;
+  overflow: scroll;
 }
 
 .align-h {

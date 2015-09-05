@@ -34,12 +34,14 @@
       <% if @referees.any? %>
         <% @referees.each do |ref| %>
           <div class="row">
-            <div class="six columns align-h">
-              <p><%= ref.organizer.user.name %></p>
-            </div>
-            <div class="six columns align-h">
-              <p><%= ref.organizer.user.email %></p>
-            </div>
+            <ul class="horizontal">
+              <li class="six align-h">
+                <p><%= ref.organizer.user.name %></p>
+              </li>
+              <li class="six align-h">
+                <p><%= ref.organizer.user.email %></p>
+              </li>
+            </ul>
           </div>
         <% end %>
       <% end %>

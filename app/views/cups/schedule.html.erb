@@ -8,11 +8,13 @@
         <li class="six">
           <h5 class="u-pull-left">경기 일정</h5>
         </li>
-        <li class="six">
-          <%= link_to new_match_path(@match) do %>
-            <h5 class="focus u-pull-right">경기 추가</h5>
-          <% end %>
-        </li>
+        <% if @cup.organizers.map{ |o| o.user }.include? current_user %>
+          <li class="six">
+            <%= link_to new_match_path(@match) do %>
+              <h5 class="focus u-pull-right">경기 추가</h5>
+            <% end %>
+          </li>
+        <% end %>
       </ul>
     </div>
     <% if @cup.matches.any? %>
