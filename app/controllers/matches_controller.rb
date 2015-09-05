@@ -6,10 +6,13 @@ class MatchesController < ApplicationController
   end
   def create
     date = DateTime.strptime(match_params[:date], "%Y-%m-%dT%H:%MT%Z")
+    p "printing parsed datetime value"
+    p date
+    p Time.parse(date.to_s)
     
     @match = @cup.matches.new(match_params)
     # mysql doesn't save tz data
-    @match.date = date
+    @match.date = Time.parse(date.to_s)
     @match.tzinfo = date.utc_offset
 
     if @match.save

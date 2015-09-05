@@ -429,6 +429,22 @@ td span {
 .match-row li {
   margin-bottom: 0;
 }
+.hidden {
+  display: none !important;
+}
+.match-description {
+  color : #666;
+  margin-top: 5px;
+  font-size: 12px;
+}
+#match-date-holder {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#match-time-string,#match-date-string {
+  line-height: 1.5rem;
+}
 
 div.match-row {
   border-bottom: 1px solid #eee;

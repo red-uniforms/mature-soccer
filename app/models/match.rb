@@ -34,6 +34,11 @@ class Match < ActiveRecord::Base
   end
   def date_s
     # string representation of date
+    d = date_with_tz
+    d.month.to_s + "월 " + d.day.to_s + "일"
+  end
+  def wday
+    ["월","화","수","목","금","토","일"][date_with_tz.wday]
   end
 
 end
