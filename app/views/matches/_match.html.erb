@@ -1,13 +1,14 @@
-<div class="row">
-  <ul class="horizontal">
-    <li class="four">
-      <p><%= match.home_team.name %></p>
-    </li>
-    <li class="four">
-      
-    </li>
-    <li class="four">
-      <p><%= match.away_team.name %></p>
-    </li>
-  </ul>
+<div class="row match-row">
+  <%= link_to match, class: "match-row" do %>
+    <ul class="horizontal match-row">
+        <li class="four align-h">
+          <p><%= match.home_team.name %></p>
+        </li>
+        <li class="four align-h">
+        </li>
+        <li class="four align-h">
+          <p><%= match.away_team.name %></p>
+        </li>
+    </ul>
+  <% end %>
 </div>

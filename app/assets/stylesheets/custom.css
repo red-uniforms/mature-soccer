@@ -357,7 +357,6 @@ ul.horizontal li:first-child {
 
 .bottom-hr {
   border-bottom: 1px solid #eee;
-  margin-bottom: 20px;
 }
 .col-md-6 {
   width: 100%;
@@ -422,4 +421,15 @@ td span {
 .timepicker-picker , .timepicker-hours , .timepicker-minutes {
   min-height: 300px;
   margin-top: 20px;
+}
+
+.match-row a {
+  color: inherit;
+}
+.match-row li {
+  margin-bottom: 0;
+}
+
+div.match-row {
+  border-bottom: 1px solid #eee;
 }

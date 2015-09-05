@@ -5,9 +5,12 @@ class MatchesController < ApplicationController
     @match = @cup.matches.new
   end
   def create
-    match_params[:date] = DateTime.strptime(match_params[:date], "%Y-%m-%dT%H:%MT%Z")
+    date = DateTime.strptime(match_params[:date], "%Y-%m-%dT%H:%MT%Z")
     
     @match = @cup.matches.new(match_params)
+    # mysql doesn't save tz data
+    @match.date = date
+    @match.tzinfo = date.utc_offset
 
     if @match.save
       redirect_to :controller => "cups", :action => "schedule", :cup_url => @cup.cup_url

@@ -13,6 +13,7 @@ class Match < ActiveRecord::Base
   validates :description, presence: true, length: { minimum: 2, maximum: 40 }
   validates :date, presence: true
   validates :half, presence: true, numericality: { only_integer: true }
+  validates :tzinfo, presence: true, numericality: { only_integer: true }
   validates :extra, numericality: { only_integer: true }
 
   def home_away_belongs_to_cup
@@ -27,6 +28,9 @@ class Match < ActiveRecord::Base
       errors.add(:home_team, "home and away team should be different")
       errors.add(:away_team, "home and away team should be different")
     end
+  end
+  def date_with_tz
+    date + tzinfo.seconds
   end
   def date_s
     # string representation of date
