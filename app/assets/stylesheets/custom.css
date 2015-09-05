@@ -434,7 +434,8 @@ td span {
 }
 .match-description {
   color : #666;
-  margin-top: 5px;
+  margin-top: 10px;
+  margin-bottom: 5px;
   font-size: 12px;
 }
 #match-date-holder {
