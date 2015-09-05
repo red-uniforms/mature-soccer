@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   resources :user_infos, only: [:destroy]
   resources :team_applicants, only: [:create, :destroy]
 
-  resources :matches, only: [:new, :create, :show] do
+  resources :matches, only: [:new, :create, :show, :destroy] do
     member do
       post '/referee', to: 'matches#referee'
     end

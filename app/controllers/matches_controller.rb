@@ -1,5 +1,6 @@
 class MatchesController < ApplicationController
   before_action :find_cup
+  before_action :authenticate_organizer!, only: [:referee,:destroy]
 
   def new
     @match = @cup.matches.new
@@ -32,6 +33,12 @@ class MatchesController < ApplicationController
       redirect_to action: 'show'
     end
   end
+  def destroy
+    match = @cup.matches.find(params[:id])
+    match.destroy!
+    
+    redirect_to :controller => "cups", :action => "schedule", :cup_url => @cup.cup_url
+  end
 
 private
 
@@ -50,6 +57,10 @@ private
 
   def referee_params
     params.require(:referee).permit(:organizer_id)
+  end
+
+  def authenticate_organizer!
+    @cup.organizers.map{ |o| o.user }.include? current_user or render_403
   end
 
 end
