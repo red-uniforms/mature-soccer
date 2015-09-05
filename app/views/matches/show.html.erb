@@ -1,4 +1,69 @@
 <section class="first">
   <div class="container">
+    <div class="row u-mb-20">
+      <h5><%= @match.description %></h5>
+    </div>
+    <div class="row">
+      <ul class="horizontal">
+        <li class="four">
+          <h5><%= @match.home_team.name %></h5>
+        </li>
+        <li class="four">
+          <h5 class="focus">VS</h5>
+        </li>
+        <li class="four">
+          <h5><%= @match.away_team.name %></h5>
+        </li>
+      </ul>
+    </div>
+    <!-- where team scores come in -->
+    <div class="row bottom-hr">
+      <ul class="horizontal">
+        <li class="four">
+          <h5>0</h5>
+        </li>
+        <li class="four">
+          <h5 class="focus">:</h5>
+        </li>
+        <li class="four">
+          <h5>0</h5>
+        </li>
+      </ul>
+    </div>
+    <% if @cup.organizers.map{ |o| o.user }.include? current_user %>
+      <% if @referees.any? %>
+        <% @referees.each do |ref| %>
+          <div class="row">
+            <ul class="horizontal">
+              <li class="six align-h">
+                <p><%= ref.organizer.user.name %></p>
+              </li>
+              <li class="six align-h">
+                <p><%= ref.organizer.user.email %></p>
+              </li>
+            </ul>
+          </div>
+        <% end %>
+      <% end %>
+      <%= form_for @referees.new, url: { controller: 'matches', action: 'referee'} do |f| %>
+        <div class="row bottom-hr">
+          <div class="four columns align-h">
+            <label class="align-h focus">심판 추가</label>
+          </div>
+          <div class="four columns align-h">
+            <select class="u-full-width" name="referee[organizer_id]">
+              <% @cup.organizers.each do |o| %>
+                <%= content_tag("option", value: o.id) do %>
+                  <%= o.user.name %>
+                <% end %>
+              <% end %>
+            </select>
+          </div>
+          <div class="four columns align-h">
+            <%= f.submit "추가하기", class: "button button-small u-full-width" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </section>

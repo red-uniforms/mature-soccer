@@ -4,6 +4,8 @@ class Match < ActiveRecord::Base
 
   belongs_to :cup
 
+  has_many :referees
+
   validate :home_away_belongs_to_cup, unless: "cup_id.nil?"
   validate :team_different
 
@@ -13,7 +15,9 @@ class Match < ActiveRecord::Base
   validates :description, presence: true, length: { minimum: 2, maximum: 40 }
   validates :date, presence: true
   validates :half, presence: true, numericality: { only_integer: true }
+  validates :tzinfo, presence: true, numericality: { only_integer: true }
   validates :extra, numericality: { only_integer: true }
+
 
   def home_away_belongs_to_cup
     if cup.teams.include? away_team and cup.teams.include? home_team
@@ -30,6 +34,11 @@ class Match < ActiveRecord::Base
   end
   def date_s
     # string representation of date
+    d = date_with_tz
+    d.month.to_s + "월 " + d.day.to_s + "일"
+  end
+  def wday
+    ["월","화","수","목","금","토","일"][date_with_tz.wday]
   end
 
 end

@@ -327,6 +327,7 @@ ul.horizontal {
 ul.horizontal li {
   text-align: center;
   float: left;
+  overflow: scroll;
 }
 
 .align-h {
@@ -356,7 +357,6 @@ ul.horizontal li:first-child {
 
 .bottom-hr {
   border-bottom: 1px solid #eee;
-  margin-bottom: 20px;
 }
 .col-md-6 {
   width: 100%;
@@ -421,6 +421,34 @@ td span {
 .timepicker-picker , .timepicker-hours , .timepicker-minutes {
   min-height: 300px;
   margin-top: 20px;
+}
+
+.match-row a {
+  color: inherit;
+}
+.match-row li {
+  margin-bottom: 0;
+}
+.hidden {
+  display: none !important;
+}
+.match-description {
+  color : #666;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+#match-date-holder {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#match-time-string,#match-date-string {
+  line-height: 1.5rem;
+}
+
+div.match-row {
+  border-bottom: 1px solid #eee;
 }
 .half {
   width: 100% !important;
