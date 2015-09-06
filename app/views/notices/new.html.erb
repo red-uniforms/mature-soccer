@@ -30,6 +30,6 @@
         <%= f.submit "생성하기", class: "button u-full-width" %>
       </div>
     <% end %>
-    <%= link_to '돌아가기', notices_cup_path %>
+    <%= link_to '돌아가기', notices_cup_path(cup_url: @cup.cup_url) %>
   </div>
 </section>

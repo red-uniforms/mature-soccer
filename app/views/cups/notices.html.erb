@@ -9,7 +9,7 @@
           <h5 class="u-pull-left">공지사항</h5>
         </li>
         <li class="six">
-          <%= link_to notices_new_cup_path do %>
+          <%= link_to new_notice_path do %>
             <h5 class="focus u-pull-right">공지 추가</h5>
           <% end %>
         </li>
@@ -18,7 +18,7 @@
     <% if @notices.any? %>
       <%= render(@notices) %>
     <% end %>
-    <div class="row">
+    <div class="row u-mt-10">
       <p>더 이상 표시할 공지사항이 없습니다.</p>
     </div>
   </div>

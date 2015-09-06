@@ -35,10 +35,11 @@ Rails.application.routes.draw do
       end
 
       get '/notices', to: 'cups#notices'
-      get '/notices/new', to: 'notices#new'
-      post '/notices', to: 'notices#create'
-      patch '/notices/:id/edit', to: 'notices#edit'
-      delete '/notices/:id', to: 'notices#destroy'
+      # get '/notices/:id', to: 'notices#show'
+      # get '/notices/new', to: 'notices#new'
+      # post '/notices', to: 'notices#create'
+      # patch '/notices/:id/edit', to: 'notices#edit'
+      # delete '/notices/:id', to: 'notices#destroy'
 
       post '/groups', to: 'groups#create'
       get '/groups/new', to: 'groups#new'
@@ -57,6 +58,8 @@ Rails.application.routes.draw do
 
   resources :user_infos, only: [:destroy]
   resources :team_applicants, only: [:create, :destroy]
+
+  resources :notices, only: [:show, :new, :create, :update, :edit, :destroy]
 
   resources :matches, only: [:new, :create, :show, :destroy] do
     member do

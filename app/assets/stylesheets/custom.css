@@ -495,3 +495,13 @@ div.match-row {
 .notice-text {
   height: 200px;
 }
+
+.notice-row {
+  border-bottom: 1px solid #eee;
+  height: 6rem;
+  line-height: 6rem;
+}
+
+.notice-row a {
+  color: inherit;
+}

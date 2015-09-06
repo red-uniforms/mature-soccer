@@ -1,5 +1,6 @@
 class NoticesController < ApplicationController
   before_action :find_cup
+  before_action :authenticate_organizer!, only: [:new,:edit,:create,:update,:destroy]
 
   def show
   	@notice = @cup.notices.find(params[:id])
@@ -17,7 +18,7 @@ class NoticesController < ApplicationController
   	@notice = @cup.notices.new(notice_params)
 
   	if @notice.save
-    	redirect_to notices_cup_path, :cup_url => @cup.cup_url
+    	redirect_to :controller => "cups", :action => "notices", :cup_url => @cup.cup_url
     else
     	render 'new'
     end
@@ -37,7 +38,7 @@ class NoticesController < ApplicationController
   	@notice = @cup.notices.find(params[:id])
   	@notice.destroy
 
-  	redirect_to notices_path
+  	redirect_to :controller => "cups", :action => "notices", :cup_url => @cup.cup_url
   end
 
 private
@@ -52,6 +53,10 @@ private
       # add flash?
       redirect_to users_path
     end
+  end
+
+  def authenticate_organizer!
+    @cup.organizers.map{ |o| o.user }.include? current_user or render_403
   end
 
 end
