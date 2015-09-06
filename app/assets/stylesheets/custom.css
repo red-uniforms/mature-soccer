@@ -327,7 +327,6 @@ ul.horizontal {
 ul.horizontal li {
   text-align: center;
   float: left;
-  overflow: scroll;
 }
 
 .align-h {
@@ -343,6 +342,18 @@ ul.horizontal li.four {
 }
 ul.horizontal li.six {
   width: 48%;
+  margin-left: 4%;
+}
+ul.horizontal li.three {
+  width: 22%;
+  margin-left: 4%;
+}
+ul.horizontal li.two {
+  width: 13.3333333333%;
+  margin-left: 4%;
+}
+ul.horizontal li.one {
+  width: 4.66666666667%;
   margin-left: 4%;
 }
 ul.horizontal li:first-child {

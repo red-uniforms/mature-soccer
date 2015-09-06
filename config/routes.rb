@@ -26,15 +26,21 @@ Rails.application.routes.draw do
             only: [:index, :new, :show, :create] do
     member do
       post '', to: 'cups#join'
-      scope '/:team_applicant_id' do
-        post '', to: 'cups#approve'
-        delete '', to: 'cups#reject'
-      end
       get '/schedule', to: 'cups#schedule'
       get '/rank', to: 'cups#rank'
       get '/records', to: 'cups#records'
       scope '/organize' do
         get '', to: 'cups#organize'
+      end
+      post '/groups', to: 'groups#create'
+      get '/groups/new', to: 'groups#new'
+      get '/groups/:id', to: 'groups#show'
+      delete '/groups/:id', to: 'groups#destroy'
+      patch '/groups/:id/edit', to: 'groups#edit'
+
+      scope '/:team_applicant_id', constraints: { :team_applicant_id => /[0-9]+/} do
+        post '', to: 'cups#approve'
+        delete '', to: 'cups#reject'
       end
     end
   end
@@ -44,7 +50,7 @@ Rails.application.routes.draw do
   resources :user_infos, only: [:destroy]
   resources :team_applicants, only: [:create, :destroy]
 
-  resources :matches, only: [:new, :create, :show] do
+  resources :matches, only: [:new, :create, :show, :destroy] do
     member do
       post '/referee', to: 'matches#referee'
     end

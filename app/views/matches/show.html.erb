@@ -2,6 +2,9 @@
   <div class="container">
     <div class="row u-mb-20">
       <h5><%= @match.description %></h5>
+      <%= link_to schedule_cup_path(cup_url: @cup.cup_url) do %>
+        <p><%= @cup.name %></p>
+      <% end %>
     </div>
     <div class="row">
       <ul class="horizontal">
@@ -67,3 +70,16 @@
     <% end %>
   </div>
 </section>
+<% if @cup.organizers.map{ |o| o.user }.include? current_user %>
+  <section id="controller">
+    <div class="container u-p-0">
+      <div class="row">
+        <div class="twelve columns">
+          <%= link_to @match, method: :delete, data: { confirm: "정말로 삭제하시겠습니까?" } do %>
+            <input type="button" class="button button-danger u-full-width" value="삭제하기" id="delete-match">
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
