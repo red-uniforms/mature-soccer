@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
   before_action :find_cup
-  before_action :authenticate_organizer!, only: [:referee,:destroy]
+  before_action :authenticate_organizer!, only: [:new,:create,:referee,:destroy]
 
   def new
     @match = @cup.matches.new

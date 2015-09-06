@@ -491,3 +491,17 @@ div.match-row {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.notice-text {
+  height: 200px;
+}
+
+.notice-row {
+  border-bottom: 1px solid #eee;
+  height: 6rem;
+  line-height: 6rem;
+}
+
+.notice-row a {
+  color: inherit;
+}

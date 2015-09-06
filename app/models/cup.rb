@@ -3,6 +3,7 @@ class Cup < ActiveRecord::Base
   has_many :organizers, dependent: :destroy
   has_many :team_applicants, dependent: :destroy
   has_many :matches
+  has_many :notices
   has_many :groups
   
   has_and_belongs_to_many :teams

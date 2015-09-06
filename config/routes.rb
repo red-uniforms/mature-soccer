@@ -26,12 +26,21 @@ Rails.application.routes.draw do
             only: [:index, :new, :show, :create] do
     member do
       post '', to: 'cups#join'
+
       get '/schedule', to: 'cups#schedule'
       get '/rank', to: 'cups#rank'
       get '/records', to: 'cups#records'
       scope '/organize' do
         get '', to: 'cups#organize'
       end
+
+      get '/notices', to: 'cups#notices'
+      # get '/notices/:id', to: 'notices#show'
+      # get '/notices/new', to: 'notices#new'
+      # post '/notices', to: 'notices#create'
+      # patch '/notices/:id/edit', to: 'notices#edit'
+      # delete '/notices/:id', to: 'notices#destroy'
+
       post '/groups', to: 'groups#create'
       get '/groups/new', to: 'groups#new'
       get '/groups/:id', to: 'groups#show'
@@ -49,6 +58,8 @@ Rails.application.routes.draw do
 
   resources :user_infos, only: [:destroy]
   resources :team_applicants, only: [:create, :destroy]
+
+  resources :notices, only: [:show, :new, :create, :update, :edit, :destroy]
 
   resources :matches, only: [:new, :create, :show, :destroy] do
     member do

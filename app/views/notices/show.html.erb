@@ -1,0 +1,33 @@
+<section id= "show-notices" class="first">
+  <div class="container">
+    <div class= "row">
+      <h5><%= @notice.title %></h5>
+    </div>
+    <div class= "row">
+      <p><%= @notice.text %></p>
+    </div>
+  </div>
+</section>
+<% if @cup.organizers.map{ |o| o.user }.include? current_user %>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="four columns align-h">
+          <%= link_to edit_notice_path do %>
+            <input type="button" class="button u-full-width" value="수정하기" id="delete-match">
+          <% end %>
+        </div>
+        <div class="four columns align-h">
+          <%= link_to notice_path, method: :delete, data: { confirm: '정말 삭제하시겠습니까?'} do %>
+            <input type="button" class="button button-danger u-full-width" value="삭제하기" id="delete-match">
+          <% end %>
+        </div>
+        <div class="four columns align-h">
+          <%= link_to notices_cup_path(cup_url: @cup.cup_url) do %>
+            <p>돌아가기</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
