@@ -40,7 +40,13 @@ Rails.application.routes.draw do
       patch '/notices/:id/edit', to: 'notices#edit'
       delete '/notices/:id', to: 'notices#destroy'
 
-      scope '/:team_applicant_id' do
+      post '/groups', to: 'groups#create'
+      get '/groups/new', to: 'groups#new'
+      get '/groups/:id', to: 'groups#show'
+      delete '/groups/:id', to: 'groups#destroy'
+      patch '/groups/:id/edit', to: 'groups#edit'
+
+      scope '/:team_applicant_id', constraints: { :team_applicant_id => /[0-9]+/} do
         post '', to: 'cups#approve'
         delete '', to: 'cups#reject'
       end
@@ -52,8 +58,10 @@ Rails.application.routes.draw do
   resources :user_infos, only: [:destroy]
   resources :team_applicants, only: [:create, :destroy]
 
-  resources :matches, only: [:new, :create, :show]
-
-  #resources :notices, only: [:new, :create, :show, :edit, :destroy]
+  resources :matches, only: [:new, :create, :show, :destroy] do
+    member do
+      post '/referee', to: 'matches#referee'
+    end
+  end
 
 end

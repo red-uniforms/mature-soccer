@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20150905202532) do
     t.integer  "extra"
     t.boolean  "penalty"
     t.integer  "tzinfo"
+<<<<<<< HEAD
   end
 
   create_table "notices", force: :cascade do |t|
@@ -71,6 +72,8 @@ ActiveRecord::Schema.define(version: 20150905202532) do
     t.integer  "cup_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+=======
+>>>>>>> e385acc91aa8c125f926ab48ee9a0ea0887944ab
   end
 
   create_table "organizers", force: :cascade do |t|
