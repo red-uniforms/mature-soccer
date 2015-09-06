@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -45,6 +46,7 @@ group :development, :test do
 end
 
 group :production do
+  gem 'rails_12factor', '~> 0.0.3'
   gem 'pg', '~> 0.18.1'
 end
 # using devise for authentication
