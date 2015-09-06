@@ -17,9 +17,10 @@
     </div>
     <% if @notices.any? %>
       <%= render(@notices) %>
+    <% else %>
+      <div class="row u-mt-10">
+        <p>더 이상 표시할 공지사항이 없습니다.</p>
+      </div>
     <% end %>
-    <div class="row u-mt-10">
-      <p>더 이상 표시할 공지사항이 없습니다.</p>
-    </div>
   </div>
 </section>

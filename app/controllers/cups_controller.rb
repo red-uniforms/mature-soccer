@@ -52,7 +52,7 @@ class CupsController < ApplicationController
   end
 
   def notices
-    @notices = @cup.notices
+    @notices = @cup.notices.order(created_at: :desc)
   end
 
   # only organizers can access

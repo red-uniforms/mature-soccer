@@ -26,4 +26,11 @@ class Team < ActiveRecord::Base
   def members
     user_infos.where(applying: false)
   end
+  def url
+    if Rails.env.production?
+      "http://madforfootball.com/teams/" + team_url
+    else
+      "http://amaccer.herokuapp.com/teams/" + team_url
+    end
+  end
 end

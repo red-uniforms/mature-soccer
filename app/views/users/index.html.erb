@@ -3,6 +3,9 @@
     <div class="row">
       <h5 class="u-pull-left">팀</h5>
     </div>
+    <div class="row u-mb-10">
+      <p class="u-pull-left">가입 링크를 받거나 새로운 팀을 생성하세요</p>
+    </div>
     <div class="row">
       <% current_user.all_teams.each do |team| %>
         <%= render (team) %>
@@ -12,12 +15,6 @@
       <% end %>
       <!-- Always at the last of teams -->
       <div class="four columns team-holder empty">
-        <p>Join new</p>
-        <div class="row">
-          <div class="eight columns offset-by-two">
-            <%= button_tag("join", {type: 'button', class: 'u-full-width button button-small'} ) %>
-          </div>
-        </div>
         <p>Create new</p>
         <div class="row">
           <div class="eight columns offset-by-two">
@@ -35,18 +32,15 @@
     <div class="row">
       <h5 class="u-pull-left">대회</h5>
     </div>
+    <div class="row u-mb-10">
+      <p class="u-pull-left">대회를 개최하거나 주장으로서 참가를 신청하세요.</p>
+    </div>
     <div class="row">
       <% @organizers.each do |o| %>
         <%= render(o.cup) %>
       <% end %>
       <!-- Always at the last of cups -->
       <div class="four columns team-holder empty">
-        <p>Join new</p>
-        <div class="row">
-          <div class="eight columns offset-by-two">
-            <%= button_tag("join", {type: 'button', class: 'u-full-width button button-small'} ) %>
-          </div>
-        </div>
         <p>Create new</p>
         <div class="row">
           <div class="eight columns offset-by-two">

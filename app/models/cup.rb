@@ -22,5 +22,12 @@ class Cup < ActiveRecord::Base
   def applying_teams
     team_applicants.where(applying: true).map{ |ta| ta.team }
   end
+  def url
+    if Rails.env.production?
+      "http://madforfootball.com/cups/" + cup_url
+    else
+      "http://amaccer.herokuapp.com/cups/" + cup_url
+    end
+  end
 
 end
