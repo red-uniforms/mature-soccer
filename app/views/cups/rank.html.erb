@@ -3,8 +3,19 @@
     <%= render partial: 'navbar' %>
 
     <!-- Actual Content -->
-    <div class="row">
-      <h5 class="u-pull-left">경기 일정</h5>
+    <div class="row bottom-hr">
+      <ul class="horizontal">
+        <li class="six">
+          <h5 class="u-pull-left">조별 예선</h5>
+        </li>
+        <% if @cup.organizers.map{ |o| o.user }.include? current_user %>
+          <li class="six">
+            <%= link_to groups_new_cup_path do %>
+              <h5 class="focus u-pull-right">조 추가</h5>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
     </div>
     <div class="row">
     </div>

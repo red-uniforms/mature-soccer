@@ -1,0 +1,45 @@
+<section class="first">
+  <div class="container">
+    <div class="row">
+      <h5 class="u-pull-left">새로운 조 생성</h5>
+    </div>
+    <%= form_for @group, url: { controller: 'groups', action: 'create' } do |f| %>
+      <div class="row">
+        <div class="six columns">
+          <div class="row">
+            <%= f.label :name, value: "조 이름", class: "u-pull-left" %>
+          </div>
+          <% if @group.errors[:name].any? %>
+            <ul class="error">
+              <% @group.errors[:name].each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          <% end %>
+          <p class="label">조 이름을 지정해주세요</p>
+          <%= f.text_field :name, class: "u-full-width", placeholder: "Group A" %>
+        </div>
+        <div class="six columns">
+          <div class="row">
+            <%= f.label :max_team, value: "참가 팀", class: "u-pull-left" %>
+          </div>
+          <% if @group.errors[:max_team].any? %>
+            <ul class="error">
+              <% @group.errors[:max_team].each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          <% end %>
+          <p class="label">참가 팀 수를 지정해주세요</p>
+          <%= f.number_field :max_team, class: "u-full-width", value: 4 %>
+        </div>
+      </div>
+      <!-- Submit Button -->
+      <div class="row u-mt-10">
+        <div class="two columns">
+          <%= f.submit "생성하기", class: "button button-primary button-small u-full-width" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

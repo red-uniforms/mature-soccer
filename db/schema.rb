@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150905162548) do
+ActiveRecord::Schema.define(version: 20150905202532) do
 
   create_table "captains", force: :cascade do |t|
     t.integer  "user_id"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 20150905162548) do
 
   add_index "cups_teams", ["cup_id"], name: "index_cups_teams_on_cup_id"
   add_index "cups_teams", ["team_id"], name: "index_cups_teams_on_team_id"
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "cup_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "max_team"
+  end
 
   create_table "matches", force: :cascade do |t|
     t.integer  "cup_id"
@@ -92,6 +100,7 @@ ActiveRecord::Schema.define(version: 20150905162548) do
     t.boolean  "student_code",        default: false
     t.boolean  "career",              default: false
     t.text     "uniform_description"
+    t.integer  "group_id"
   end
 
   add_index "teams", ["team_url"], name: "index_teams_on_team_url", unique: true
