@@ -1,31 +1,30 @@
 class NoticesController < ApplicationController
-  def index
-  	@notices = Notice.all
-  end
+  before_action :find_cup
 
   def show
-  	@notice = Notice.find(params[:id])
+  	@notice = @cup.notices.find(params[:id])
   end
 
   def new
-  	@notice = Notice.new
+  	@notice = @cup.notices.new
   end
 
   def edit
-  	@notice = Notice.find(params[:id])
+  	@notice = @cup.notices.find(params[:id])
   end
+
   def create
-  	@notice = Notice.new(notice_params)
+  	@notice = @cup.notices.new(notice_params)
 
   	if @notice.save
-  	redirect_to @notice
+    	redirect_to notices_cup_path, :cup_url => @cup.cup_url
     else
-  	render 'new'
+    	render 'new'
     end
   end
 
   def update
-  	@notice = Notice.find(params[:id])
+  	@notice = @cup.notices.find(params[:id])
 
   	if @notice.update(notice_params)
   		redirect_to @notice
@@ -35,15 +34,24 @@ class NoticesController < ApplicationController
   end
 
   def destroy
-  	@notice = Notice.find(params[:id])
+  	@notice = @cup.notices.find(params[:id])
   	@notice.destroy
 
   	redirect_to notices_path
   end
 
-  private
-  	def notice_params
-   	  params.require(:notice).permit(:title,:text)
-   	end
+private
+	def notice_params
+ 	  params.require(:notice).permit(:title, :text)
+ 	end
+
+  def find_cup
+    if session[:cup_id]
+      @cup = Cup.find(session[:cup_id])
+    else
+      # add flash?
+      redirect_to users_path
+    end
+  end
 
 end

@@ -52,6 +52,7 @@ class CupsController < ApplicationController
   end
 
   def notices
+    @notices = @cup.notices
   end
 
   # only organizers can access
