@@ -1,0 +1,13 @@
+<div class="four columns team-holder">
+  <%= link_to(controller: "teams", action: "show", team_url: team.team_url) do %>
+    <div class="team-background"></div>
+  <% end %>
+  <div class="row up-50">
+    <div class="ten columns offset-by-one">
+      <%= link_to(controller: "teams", action: "show", team_url: team.team_url) do %>
+        <%= image_tag("football_ground.png", class: "wrapper-circle small", alt: "team profile image") %>
+      <% end %>
+      <p class="team-name"><%= team.name %></p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<section id="new-notice" class="first">
+  <div class="container">
+    <div class="row">
+      <h5 class="u-pull-left">공지사항 작성</h5>
+    </div>
+     <%= form_for @notice, url: { controller: "notices", action: "create" } do |f| %>
+      <div class="row">
+        <%= f.label :title, value: "제목", class: "u-pull-left" %>
+          <% if @notice.errors.any? %>
+      			<div id="error_explanation">
+        		  <h2>
+                <%= pluralize(@notice.errors.count, "error") %> prohibited this article from being saved:
+              </h2>
+          	  <ul>
+                <% @notice.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        <%= f.text_field :title, class: "u-full-width", autofocus: true, placeholder: "제목을 입력해주세요" %>
+      </div>
+ 
+      <div class="row">
+        <%= f.label :text, value: "내용", class: "u-pull-left" %>
+        <%= f.text_area :text, class: "u-full-width notice-text" %>
+      </div>
+ 
+      <div class="row">
+        <%= f.submit "생성하기", class: "button u-full-width" %>
+      </div>
+    <% end %>
+    <%= link_to '돌아가기', notices_cup_path(cup_url: @cup.cup_url) %>
+  </div>
+</section>

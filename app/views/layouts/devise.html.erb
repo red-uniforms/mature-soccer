@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Log in to Amaccer</title>
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <section>
+    <div class="container">
+
+      <div class="four columns offset-by-four">
+        <div class="row">
+          <%= link_to "Login", new_user_session_path, class: "login-nav u-pull-left" %>
+          <%= link_to "Signup", new_user_registration_path, class: "login-nav u-pull-left" %>
+          <%= link_to "PASSWORD?", new_user_password_path, class: "login-nav u-pull-right" %>
+        </div>
+        <%= yield %>
+      </div>
+      
+    </div>
+  </section>
+</body>
+</html>

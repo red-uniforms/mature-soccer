@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -38,12 +39,19 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'spring', '~> 1.3.6'
 
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 end
 
 group :production do
+  gem 'rails_12factor', '~> 0.0.3'
   gem 'pg', '~> 0.18.1'
 end
+# using devise for authentication
+gem 'devise', '~> 3.5.1'
+gem 'tzinfo-data', '~> 1.2015.6'
+gem 'momentjs-rails', '~> 2.10.3'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.15.35'
+gem 'bootstrap-sass', '~> 3.3.5.1'

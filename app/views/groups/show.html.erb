@@ -1,0 +1,41 @@
+<section class="first">
+  <div class="container">
+    <div class="row">
+      <%= link_to rank_cup_path do %>
+        <h5><%= @cup.name %></h5>
+      <% end %>
+    </div>
+    <%= render(@group) %>
+    <% if @cup.organizers.map{ |o| o.user }.include? current_user %>
+      <%= form_for @group, url: { controller: 'groups', action: 'edit' }, method: :patch do |f| %>
+        <div class="row">
+          <div class="six columns align-h">
+            <select class="u-full-width" name="group[team_id]">
+              <% @cup.teams.each do |t| %>
+                <%= content_tag("option", value: t.id) do %>
+                  <%= t.name %>
+                <% end %>
+              <% end %>
+            </select>
+          </div>
+          <div class="six columns align-h">
+            <%= f.submit "추가하기", class: "button button-small u-full-width" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</section>
+<% if @cup.organizers.map{ |o| o.user }.include? current_user %>
+  <section id="controller">
+    <div class="container u-p-0">
+      <div class="row">
+        <div class="twelve columns">
+          <%= link_to({ controller: 'groups', action: 'destroy' }, method: :delete, data: { confirm: "정말로 삭제하시겠습니까?" }) do %>
+            <input type="button" class="button button-danger u-full-width" value="삭제하기" id="delete-match">
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>

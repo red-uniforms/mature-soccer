@@ -1,0 +1,55 @@
+<section id="teams" class="first">
+  <div class="container u-p-30">
+    <div class="row">
+      <h5 class="u-pull-left">팀</h5>
+    </div>
+    <div class="row u-mb-10">
+      <p class="u-pull-left">가입 링크를 받거나 새로운 팀을 생성하세요</p>
+    </div>
+    <div class="row">
+      <% current_user.all_teams.each do |team| %>
+        <%= render (team) %>
+      <% end %>
+      <% current_user.applicants.each do |a| %>
+        <%= render (a.team) %>
+      <% end %>
+      <!-- Always at the last of teams -->
+      <div class="four columns team-holder empty">
+        <p>Create new</p>
+        <div class="row">
+          <div class="eight columns offset-by-two">
+            <%= link_to(new_team_path) do %>
+              <%= button_tag("create", {type: 'button', class: 'u-full-width button button-small'} ) %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="cups">
+  <div class="container u-p-30">
+    <div class="row">
+      <h5 class="u-pull-left">대회</h5>
+    </div>
+    <div class="row u-mb-10">
+      <p class="u-pull-left">대회를 개최하거나 주장으로서 참가를 신청하세요.</p>
+    </div>
+    <div class="row">
+      <% @organizers.each do |o| %>
+        <%= render(o.cup) %>
+      <% end %>
+      <!-- Always at the last of cups -->
+      <div class="four columns team-holder empty">
+        <p>Create new</p>
+        <div class="row">
+          <div class="eight columns offset-by-two">
+            <%= link_to(new_cup_path) do %>
+              <%= button_tag("create", {type: 'button', class: 'u-full-width button button-small'} ) %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

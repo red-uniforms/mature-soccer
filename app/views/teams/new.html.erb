@@ -1,0 +1,106 @@
+<section id="new-team" class="first">
+  <div class="container">
+    <div class="row">
+      <h5 class="u-pull-left">팀 생성</h5>
+    </div>
+    <%= form_for @team, url: { action: "create" } do |f| %>
+      <div class="row">
+        <div class="six columns">
+          <div class="row">
+            <%= f.label :name, class: "u-pull-left" %>
+          </div>
+          <% if @team.errors[:name].any? %>
+            <ul class="error">
+              <% @team.errors[:name].each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          <% end %>
+          <p class="label">Will be shown to everyone</p>
+          <%= f.text_field :name, placeholder: "Team name" , autofocus: true , class: "u-full-width" %>
+        </div>
+        <div class="six columns">
+          <div class="row">
+            <%= f.label :team_url, class: "u-pull-left" %>
+          </div>
+          <% if @team.errors[:team_url].any? %>
+            <ul class="error">
+              <% @team.errors[:team_url].each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          <% end %>
+          <p class="label">http://madforfootball.com/teams/<strong>:team_url</strong></p>
+          <%= f.text_field :team_url, placeholder: "Type only :team_url" , class: "u-full-width" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="six columns">
+          <div class="row">
+            <%= f.label :average_age, class: "u-pull-left" %>
+          </div>
+          <% if @team.errors[:average_age].blank? %>
+            <p class="label">Average age of your team</p>
+          <% else %>
+            <ul class="error">
+              <% @team.errors[:average_age].each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          <% end %>
+          <%= f.number_field :average_age, value: "24" , class: "u-full-width" %>
+        </div>
+        <div class="six columns">
+          <div class="row">
+            <%= f.label :gender, class: "u-pull-left" %>
+          </div>
+          <p class="label">Gender of your team</p>
+          <%= f.select(:gender, ["Male", "Female"], {}, { class: "u-full-width"}) %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="six columns">
+          <div class="row">
+            <label class="u-pull-left">Uniform description</label>
+          </div>
+          <% if @team.errors[:uniform_description].blank? %>
+            <p class="label">유니폼 색깔에 대해 적어주세요</p>
+          <% else %>
+            <ul class="error">
+              <% @team.errors[:uniform_description].each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          <% end %>
+          <%= f.text_field :uniform_description, placeholder: "적색에 흰색 줄무늬", class: "u-full-width" %>
+        </div>
+        <div class="six columns">
+          <div class="row">
+            <label class="u-pull-left">Additional info</label>
+          </div>
+          <p class="label">팀 가입시 추가 정보 수입 여부</p>
+          <div class="row u-left-align">
+            <div class="u-full-width">
+              <%= f.check_box :phone, checked: true%>
+              <span class="label-body">팀 가입자들에게 전화번호를 입력하도록 합니다.</span>
+            </div>
+            <div class="u-full-width">
+              <%= f.check_box :student_code, checked: true %>
+              <span class="label-body">팀 가입자들에게 학번을 입력하도록 합니다.</span>
+            </div>
+            <div class="u-full-width">
+              <%= f.check_box :career %>
+              <span class="label-body">팀 가입자들에게 직업을 입력하도록 합니다.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Submit Button -->
+      <div class="row u-mt-10">
+        <div class="two columns">
+          <%= f.submit "생성하기", class: "button button-primary button-small u-full-width" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

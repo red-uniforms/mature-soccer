@@ -1,0 +1,188 @@
+<section class="first" id="team-profile">
+  <div class="container">
+    <div class="row u-mb-10">
+      <h4><%= @team.name %></h4>
+    </div>
+    <div class="row">
+      <h5 class="u-pull-left">팀 정보</h5>
+    </div>
+    <div class="row">
+      <div class="twelve columns">
+        <div class="row">
+          <ul class="horizontal">
+            <li class="four">
+              <div class="row">
+                <p><strong>이름</strong></p>
+              </div>
+              <div class="row">
+                <p><%= @team.name %></p>
+              </div>
+            </li>
+            <li class="four">
+              <div class="row">
+                <p><strong>팀 성별</strong></p>
+              </div>
+              <div class="row">
+                <p><%= @team.gender %></p>
+              </div>
+            </li>
+            <li class="four">
+              <div class="row">
+                <p><strong>평균 나이</strong></p>
+              </div>
+              <div class="row">
+                <p><%= @team.average_age %></p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- Copy invite link -->
+        <div class="row u-mt-10">
+          <h5 class="u-pull-left">초대 링크</h5>
+        </div>
+        <p class="u-pull-left">멤버들에게 전달해 가입 신청을 받으세요.</p>
+        <div class="row bottom-hr">
+          <div class="ten columns">
+            <%= content_tag(:input, value: @team.url, class: "input u-full-width", disabled: true, id: "data-copy-link" ) do %><% end %>
+          </div>
+          <div class="two columns copy">
+            <button class="button copy button-primary" id="copy-link">
+              <%= image_tag("link.png", class: "link") %>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% if @user_info %>
+      <div class="row u-mt-10">
+        <h5 class="u-pull-left">주장 정보</h5>
+      </div>
+      <div class="row">
+        <p class="u-pull-left">주장(본인)의 정보를 추가해주세요</p>
+      </div>
+      <%= form_for @user_info, url: { team_url: @team.team_url, action: :captain } do |f| %>
+        <div class="row u-mt-10">
+          <% if @team.phone %>
+            <div class="four columns">
+              <div class="row">
+                <%= f.label :phone, value: "전화번호", class: "u-pull-left" %>
+              </div>
+              <% if @user_info.errors[:phone].any? %>
+                <ul class="error">
+                  <% @user_info.errors[:phone].each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              <% end %>
+              <%= f.text_field :phone, class: "u-full-width", placeholder: "010-1234-1234" %>
+            </div>
+          <% end %>
+          <% if @team.student_code %>
+            <div class="four columns">
+              <div class="row">
+                <%= f.label :student_code, value: "학번", class: "u-pull-left" %>
+              </div>
+              <% if @user_info.errors[:student_code].any? %>
+                <ul class="error">
+                  <% @user_info.errors[:student_code].each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              <% end %>
+              <%= f.text_field :student_code, class: "u-full-width", placeholder: "학번을 입력하세요" %>
+            </div>
+          <% end %>
+          <% if @team.career %>
+            <div class="four columns">
+              <div class="row">
+                <%= f.label :career, value: "직업", class: "u-pull-left" %>
+              </div>
+              <% if @user_info.errors[:career].any? %>
+                <ul class="error">
+                  <% @user_info.errors[:career].each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              <% end %>
+              <%= f.text_field :career, class: "u-full-width", placeholder: "직장 정보가 필요합니다" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="row">
+          <div class="four columns">
+            <%= f.submit "정보 입력", class: "button button-primary u-full-width" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <div class="row u-mt-10">
+      <h5 class="u-pull-left">멤버</h5>
+    </div>
+    <% @team.members.each do |user_info| %>
+      <div class="row u-mb-10 bottom-hr">
+        <div class="six columns">
+          <ul class="horizontal">
+            <li class="four">
+              <span><%= user_info.user.name %></span>
+            </li>
+            <li class="four">
+              <span><%= user_info.user.age %></span>
+            </li>
+            <li class="four">
+              <span><%= user_info.phone %></span>
+            </li>
+          </ul>
+        </div>
+        <div class="six columns">
+          <ul class="horizontal">
+            <li class="six">
+              <span><%= user_info.student_code %></span>
+            </li>
+            <li class="six">
+              <span><%= user_info.user.email %></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+    <% if @team.captains.map{ |cap| cap.user }.include? current_user and @team.applicants.any? %>
+      <div class="row u-mt-20">
+        <h5 class="u-pull-left">가입 신청자</h5>
+      </div>
+      <% @team.applicants.each do |a| %>
+        <div class="row u-mb-10 bottom-hr">
+          <div class="six columns">
+            <ul class="horizontal">
+              <li class="six">
+                <span><%= a.phone %></span>
+              </li>
+              <li class="six">
+                <span><%= a.student_code %></span>
+              </li>
+            </ul>
+          </div>
+          <div class="four columns">
+            <ul class="horizontal">
+              <li class="six">
+                <span><%= a.user.age %></span>
+              </li>
+              <li class="six">
+                <span><%= a.user.name %></span>
+              </li>
+            </ul>
+          </div>
+          <div class="two columns">
+            <ul class="horizontal">
+              <li class="six">
+                <%= link_to({controller: "teams", action: "approve", team_url: @team.team_url, user_info_id: a.id},{ method: :post }) do %>승인<% end %>
+              </li>
+              <li class="six">
+                <%= link_to({controller: "teams", action: "approve", team_url: @team.team_url, user_info_id: a.id},{ method: :delete, class: "danger", data: { confirm: 'Are you sure?'} } ) do %>거절<% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</section>

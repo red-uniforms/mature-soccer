@@ -1,0 +1,93 @@
+<section id="new-cup" class="first">
+  <div class="container">
+    <div class="row">
+      <h5 class="u-pull-left">Creating new Cup</h5>
+    </div>
+    <%= form_for @cup, url: { action: "create"} do |f| %>
+      <div class="row">
+        <div class="six columns">
+          <div class="row">
+            <%= f.label :name, class: "u-pull-left" %>
+          </div>
+          <% if @cup.errors[:name].any? %>
+            <ul class="error">
+              <% @cup.errors[:name].each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          <% end %>
+          <p class="label">Will be shown to everyone</p>
+          <%= f.text_field :name, placeholder: "Cup name" , autofocus: true , class: "u-full-width" %>
+        </div>
+        <div class="six columns">
+          <div class="row">
+            <%= f.label :cup_url, class: "u-pull-left" %>
+          </div>
+          <% if @cup.errors[:cup_url].any? %>
+            <ul class="error">
+              <% @cup.errors[:cup_url].each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          <% end %>
+          <p class="label">http://madforfootball.com/cups/<strong>:cup_url</strong></p>
+          <%= f.text_field :cup_url, placeholder: "Type only :cup_url" , class: "u-full-width" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="six columns">
+          <div class="row">
+            <%= f.label :max_team_number, class: "u-pull-left" %>
+          </div>
+          <% if @cup.errors[:max_team].any? %>
+            <ul class="error">
+              <% @cup.errors[:max_team].each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          <% end %>
+          <p class="label">Possible number of teams</p>
+          <%= f.number_field :max_team, placeholder: "Cup description" , class: "u-full-width", value: 32 %>
+        </div>
+        <div class="six columns">
+          <div class="row">
+            <%= f.label :description, class: "u-pull-left" %>
+          </div>
+          <% if @cup.errors[:description].any? %>
+            <ul class="error">
+              <% @cup.errors[:description].each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          <% end %>
+          <p class="label">Cup description</p>
+          <%= f.text_field :description, placeholder: "문의사항은 010-1234-1234로 연락주세요" , class: "u-full-width" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="six columns">
+          <div class="row">
+            <label class="u-pull-left"><strong>Competition type</strong></label>
+          </div>
+          <p class="label"><strong>중요!</strong> 대회 진행 방식</p>
+          <div class="row u-left-align">
+            <div class="u-full-width">
+              <%= f.check_box :has_league, checked: true %>
+              <span class="label-body">참가 팀들이 조별 예선을 거치도록 합니다.</span>
+            </div>
+            <div class="u-full-width">
+              <%= f.check_box :has_tournament, checked: true %>
+              <span class="label-body">참가 팀들이 토너먼트를 거치도록 합니다.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Submit Button -->
+      <div class="row u-mt-10">
+        <div class="two columns">
+          <%= f.submit "Create", class: "button button-primary button-small u-full-width" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

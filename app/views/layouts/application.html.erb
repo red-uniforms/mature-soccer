@@ -13,8 +13,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <a class="navbar-link" href="/" id="logo">HOME</a>
+      <a class="navbar-link" target="_blank" href="http://enccer.com">Enccer</a>
+      <% if current_user %>
+        <%= link_to "log out", destroy_user_session_path, class: "navbar-link u-pull-right", method: :delete, data: { confirm: "Sure to Log Out?"} %>
+        <span class="navbar-text"><%= current_user.first_name %> 님</span>
+      <% else %>
+        <%= link_to "log in", new_user_session_path, class: "navbar-link u-pull-right" %>
+      <% end %>
+      
+    </div>
+  </nav>
 
-<%= yield %>
+  <%= yield %>
 
 </body>
 </html>

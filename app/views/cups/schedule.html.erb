@@ -1,0 +1,27 @@
+<section class="first" id="schedule">
+  <div class="container">
+    <%= render partial: 'navbar' %>
+
+    <!-- Actual Content -->
+    <div class="row bottom-hr">
+      <ul class="horizontal">
+        <li class="six">
+          <h5 class="u-pull-left">경기 일정</h5>
+        </li>
+        <% if @cup.organizers.map{ |o| o.user }.include? current_user %>
+          <li class="six">
+            <%= link_to new_match_path(@match) do %>
+              <h5 class="focus u-pull-right">경기 추가</h5>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <% if @cup.matches.any? %>
+      <%= render(@cup.matches) %>
+    <% end %>
+    <div class="row">
+      <p class="u-mt-10">더 이상 표시할 일정이 없습니다.</p>
+    </div>
+  </div>
+</section>
