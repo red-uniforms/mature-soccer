@@ -47,6 +47,7 @@ class CupsController < ApplicationController
   def schedule
   end
   def rank
+    @groups = @cup.groups
   end
   def records
   end

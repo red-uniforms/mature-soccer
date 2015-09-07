@@ -5,31 +5,7 @@
         <h5><%= @cup.name %></h5>
       <% end %>
     </div>
-    <div class="row bottom-hr">
-      <h5 class="u-pull-left"><%= @group.name %></h5>
-    </div>
-    <div class="row">
-      <ul class="horizontal">
-        <li class="four align-h">팀</li>
-        <li class="one align-h">승</li>
-        <li class="one align-h">무</li>
-        <li class="one align-h">패</li>
-        <li class="two align-h">득실</li>
-        <li class="three align-h">승점</li>
-      </ul>
-    </div>
-    <% @group.teams.each do |t| %>
-      <div class="row">
-        <ul class="horizontal">
-          <li class="four align-h"><%= t.name %></li>
-          <li class="one align-h">0</li>
-          <li class="one align-h">0</li>
-          <li class="one align-h">0</li>
-          <li class="two align-h">0</li>
-          <li class="three align-h">0</li>
-        </ul>
-      </div>
-    <% end %>
+    <%= render(@group) %>
     <% if @cup.organizers.map{ |o| o.user }.include? current_user %>
       <%= form_for @group, url: { controller: 'groups', action: 'edit' }, method: :patch do |f| %>
         <div class="row">
@@ -55,7 +31,7 @@
     <div class="container u-p-0">
       <div class="row">
         <div class="twelve columns">
-          <%= link_to url: { controller: 'groups', action: 'destroy' }, method: :delete, data: { confirm: "정말로 삭제하시겠습니까?" } do %>
+          <%= link_to({ controller: 'groups', action: 'destroy' }, method: :delete, data: { confirm: "정말로 삭제하시겠습니까?" }) do %>
             <input type="button" class="button button-danger u-full-width" value="삭제하기" id="delete-match">
           <% end %>
         </div>
