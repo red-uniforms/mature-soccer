@@ -14,6 +14,7 @@ Rails.application.routes.draw do
             only: [:index, :new, :show, :create, :destroy] do
     member do
       post '', to: 'teams#join'
+      post 'captain', to: 'teams#captain'
       scope '/:user_info_id' do
         post '', to: 'teams#approve'
         delete '', to: 'teams#reject'
@@ -35,11 +36,6 @@ Rails.application.routes.draw do
       end
 
       get '/notices', to: 'cups#notices'
-      # get '/notices/:id', to: 'notices#show'
-      # get '/notices/new', to: 'notices#new'
-      # post '/notices', to: 'notices#create'
-      # patch '/notices/:id/edit', to: 'notices#edit'
-      # delete '/notices/:id', to: 'notices#destroy'
 
       post '/groups', to: 'groups#create'
       get '/groups/new', to: 'groups#new'
