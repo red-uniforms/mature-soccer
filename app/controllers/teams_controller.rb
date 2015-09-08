@@ -52,14 +52,19 @@ class TeamsController < ApplicationController
   end
 
   def join
-    @user_info = current_user.user_infos.new(join_params)
-    @user_info.team = @team
 
-    if @user_info.valid?
-      @user_info.save!
+    if current_user.user_infos.where(team_id: @team.id).any?
       redirect_to action: 'show'
     else
-      render 'join'
+      @user_info = current_user.user_infos.new(join_params)
+      @user_info.team = @team
+
+      if @user_info.valid?
+        @user_info.save!
+        redirect_to action: 'show'
+      else
+        render 'join'
+      end
     end
   end
 
