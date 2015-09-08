@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index]
 
   resources :teams,
-            param: :team_url, constraints: { :team_url => /[a-z0-9_-]{4,20}/},
+            param: :team_url, constraints: { :team_url => /[a-z0-9_-]{3,20}/},
             only: [:index, :new, :show, :create, :destroy] do
     member do
       post '', to: 'teams#join'

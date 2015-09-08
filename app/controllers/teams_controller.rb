@@ -79,7 +79,7 @@ class TeamsController < ApplicationController
   end
 
   def reject
-    if @team.captains.include? current_user
+    if @team.captains.map{ |cap| cap.user }.include? current_user
       user_info = @team.user_infos.find(params[:user_info_id])
       user_info.destroy!
 
