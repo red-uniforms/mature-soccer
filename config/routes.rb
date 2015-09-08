@@ -60,7 +60,9 @@ Rails.application.routes.draw do
   resources :matches, only: [:new, :create, :show, :destroy] do
     member do
       post '/referee', to: 'matches#referee'
-      post '/player', to: 'matches#player'
+      post '/player/:user_id', to: 'matches#player'
+      post '/record', to: 'matches#record'
+      post '/status', to: 'matches#status'
     end
   end
 

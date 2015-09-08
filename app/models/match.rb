@@ -1,10 +1,18 @@
 class Match < ActiveRecord::Base
+
+  before_save do |match|
+    if match.extra == 0 and match.statuses.index(match.status) > 3
+      match.status = "end"
+    end
+  end
+
   belongs_to :home_team, class_name: "Team"
   belongs_to :away_team, class_name: "Team"
 
   belongs_to :cup
 
   has_many :referees
+  has_many :events
   has_and_belongs_to_many :users
 
   validate :home_away_belongs_to_cup, unless: "cup_id.nil?"
@@ -18,6 +26,21 @@ class Match < ActiveRecord::Base
   validates :half, presence: true, numericality: { only_integer: true }
   validates :tzinfo, presence: true, numericality: { only_integer: true }
   validates :extra, numericality: { only_integer: true }
+
+  validates :status, inclusion: { in: %w(0 1 half 2 interval 3 extrahalf 4 pk end) }
+
+  def started?
+    status != "0"
+  end
+  def ended?
+    status == "end"
+  end
+  def statuses
+    %w(0 1 half 2 interval 3 extrahalf 4 pk end)
+  end
+  def status_s
+    ["시작 전","전반","하프타임","후반","연장준비","연장전반","하프타임","연장후반","승부차기",":"]
+  end
 
 
   def home_away_belongs_to_cup

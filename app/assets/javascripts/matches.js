@@ -5,6 +5,29 @@ $(document).on('ready page:load', function(){
       format: "YYYY-MM-DDThh:mmTZ"
   });
 
+  matchClock = $('#match-clock span').first();
+  startedAt = new moment( matchClock.attr('value'), "YYYY-MM-DD HH:mm:ss Z" );
+
+  updateClock = function() {
+    if( $.inArray(matchClock.attr('status'),["1","2","3","4"]) != -1 ) {
+      now = new moment();
+      passedTime = now.subtract(startedAt).minute();
+
+      $("#passed-time").text(passedTime);
+      // console.log(passedTime);
+
+      window.setTimeout(updateClock, 1000);
+    } else {
+      $("#passed-time").text('');
+    }
+  }
+  updateClock();
+
+  $('form.new_event').on('submit', function(e) {
+    $(this).find('#event-time').val($("#passed-time").text());
+    $(this).find('#event-when').val(matchClock.text());
+  });
+
   match = $('div.match-row').first();
   while( match.hasClass('match-row') ) {
     matchDate = new moment( match.find('.match-date').text(), "YYYY-MM-DD HH:mm:ss Z" );
@@ -41,4 +64,5 @@ $(document).on('ready page:load', function(){
     var date = $('#datetimepicker').data().date;
     $('#match-date').val(date);
   });
+
 });
