@@ -510,3 +510,7 @@ div.match-row {
   border: 2px dashed #d8d8d8;
   padding: 20px 10px;
 }
+.button.small {
+  min-height: 10px;
+  line-height: 10px;
+}

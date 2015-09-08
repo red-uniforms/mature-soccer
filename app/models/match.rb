@@ -5,6 +5,7 @@ class Match < ActiveRecord::Base
   belongs_to :cup
 
   has_many :referees
+  has_and_belongs_to_many :users
 
   validate :home_away_belongs_to_cup, unless: "cup_id.nil?"
   validate :team_different

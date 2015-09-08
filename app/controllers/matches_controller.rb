@@ -8,6 +8,7 @@ class MatchesController < ApplicationController
   def show
     @match = @cup.matches.find(params[:id])
     @referees = @match.referees
+    @players = @match.users
   end
   def create
     date = DateTime.strptime(match_params[:date], "%Y-%m-%dT%H:%MT%Z")
@@ -32,6 +33,10 @@ class MatchesController < ApplicationController
     else
       redirect_to action: 'show'
     end
+  end
+  def player
+    # 검인
+    redirect_to action: 'show'
   end
   def destroy
     match = @cup.matches.find(params[:id])
