@@ -6,7 +6,7 @@
           <p><%= match.home_team.name %></p>
         </li>
         <li class="four" id="match-date-holder">
-          <p class="hidden match-date" id="match-date"><%= match.date.to_s %></p>
+          <p class="hidden match-date" id="match-date"><%= match.date_with_tz.to_s %></p>
           <div class="row">
             <p class="focus match-date-string"></p>
           </div>
