@@ -1,7 +1,7 @@
 class Team < ActiveRecord::Base
 
   after_save do |team|
-    team.users_count = team.users.count
+    team.users_count = team.members.count
   end
 
   has_and_belongs_to_many :cups
@@ -25,6 +25,9 @@ class Team < ActiveRecord::Base
   end
   def members
     user_infos.where(applying: false)
+  end
+  def all_users
+    user_infos.where(applying: false).map{ |i| i.user } + captains.map{ |c| c.user }
   end
   def url
     if Rails.env.production?

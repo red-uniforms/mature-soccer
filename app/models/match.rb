@@ -5,6 +5,7 @@ class Match < ActiveRecord::Base
   belongs_to :cup
 
   has_many :referees
+  has_and_belongs_to_many :users
 
   validate :home_away_belongs_to_cup, unless: "cup_id.nil?"
   validate :team_different
@@ -31,6 +32,9 @@ class Match < ActiveRecord::Base
       errors.add(:home_team, "home and away team should be different")
       errors.add(:away_team, "home and away team should be different")
     end
+  end
+  def date_with_tz
+    date + tzinfo.seconds
   end
   def date_s
     # string representation of date

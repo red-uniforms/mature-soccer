@@ -67,9 +67,79 @@
           </div>
         </div>
       <% end %>
+      <div class="row" id="lineup">
+        <div class="six columns" id="home-team">
+          <div class="row u-mb-10">
+            <p><%= @match.home_team.name %></p>
+          </div>
+          <div class="row">
+            <div class="eight columns">
+              <ul class="horizontal">
+                <li class="six">
+                  <p>이름</p>
+                </li>
+                <li class="six">
+                  <p>학번</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <% @match.home_team.members.each do |m| %>
+            <div class="row u-mb-10">
+              <div class="eight columns">
+                <ul class="horizontal">
+                  <li class="six">
+                    <p><%= m.user.name %></p>
+                  </li>
+                  <li class="six">
+                    <p><%= m.student_code %></p>
+                  </li>
+                </ul>
+              </div>
+              <div class="four columns">
+                <!-- chages over time -->
+                <% if @players.include? m.user %>
+                  <p>골 어시스트 카드 교체 in 교체 out</p>
+                <% end %>
+                <%= link_to({ controller: "matches", action: "player", anchor: m.user.id }, { method: :post, id: m.user.id }) do %>
+                  <input type="button" class="u-full-width button small" value="검인">
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="six columns" id="home-team">
+          <div class="row">
+            <p><%= @match.away_team.name %></p>
+          </div>
+          <div class="row">
+            <ul class="horizontal">
+              <li class="six">
+                <p>이름</p>
+              </li>
+              <li class="six">
+                <p>학번</p>
+              </li>
+            </ul>
+          </div>
+          <% @match.away_team.members.each do |m| %>
+            <div class="row">
+              <ul class="horizontal">
+                <li class="six">
+                  <p><%= m.user.name %></p>
+                </li>
+                <li class="six">
+                  <p><%= m.student_code %></p>
+                </li>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+      </div>
     <% end %>
   </div>
 </section>
+
 <% if @cup.organizers.map{ |o| o.user }.include? current_user %>
   <section id="controller">
     <div class="container u-p-0">

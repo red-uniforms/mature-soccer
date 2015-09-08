@@ -7,14 +7,15 @@ $(document).on('ready page:load', function(){
 
   match = $('div.match-row').first();
   while( match.hasClass('match-row') ) {
-    matchDate = new Date( match.find('.match-date').text() );
+    matchDate = new moment( match.find('.match-date').text(), "YYYY-MM-DD HH:mm:ss Z" );
     console.log(matchDate);
 
-    dateString = matchDate.getMonth()+1 + "월 " + matchDate.getDate() + "일 (";
-    dateString += ["월","화","수","목","금","토","일"][matchDate.getDay()] + ")";
+    dateString = matchDate.month()+1 + "월 " + matchDate.date() + "일 (";
+    dateString += ["월","화","수","목","금","토","일"][matchDate.day()] + ")";
     match.find('.match-date-string').html(dateString);
 
-    timeString = sprintf("%02d:%02d",matchDate.getHours(),matchDate.getMinutes());
+    // timeString = sprintf("%02d:%02d",matchDate.hour(),matchDate.minute());
+    timeString = matchDate.hour()+1 + "시";
     match.find('.match-time-string').html(timeString);
 
     match = match.next();

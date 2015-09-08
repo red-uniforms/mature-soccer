@@ -60,6 +60,7 @@ Rails.application.routes.draw do
   resources :matches, only: [:new, :create, :show, :destroy] do
     member do
       post '/referee', to: 'matches#referee'
+      post '/player', to: 'matches#player'
     end
   end
 
