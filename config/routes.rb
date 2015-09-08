@@ -62,6 +62,7 @@ Rails.application.routes.draw do
       post '/referee', to: 'matches#referee'
       post '/player/:user_id', to: 'matches#player'
       post '/record', to: 'matches#record'
+      get '/record', to: 'matches#record'
       post '/status', to: 'matches#status'
     end
   end
