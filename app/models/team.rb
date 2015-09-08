@@ -1,7 +1,7 @@
 class Team < ActiveRecord::Base
 
   after_save do |team|
-    team.users_count = team.users.count
+    team.users_count = team.members.count
   end
 
   has_and_belongs_to_many :cups
