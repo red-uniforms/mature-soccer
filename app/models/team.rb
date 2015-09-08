@@ -26,6 +26,9 @@ class Team < ActiveRecord::Base
   def members
     user_infos.where(applying: false)
   end
+  def all_users
+    user_infos.where(applying: false).map{ |i| i.user } + captains.map{ |c| c.user }
+  end
   def url
     if Rails.env.production?
       "http://madforfootball.com/teams/" + team_url
