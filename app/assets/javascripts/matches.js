@@ -15,7 +15,7 @@ $(document).on('ready page:load', function(){
     match.find('.match-date-string').html(dateString);
 
     // timeString = sprintf("%02d:%02d",matchDate.hour(),matchDate.minute());
-    timeString = matchDate.hour()+1 + "시";
+    timeString = matchDate.hour() + "시";
     match.find('.match-time-string').html(timeString);
 
     match = match.next();
