@@ -45,6 +45,7 @@ class CupsController < ApplicationController
   end
 
   def schedule
+    @matches = @cup.matches.order(date: :desc)
   end
   def rank
     @groups = @cup.groups

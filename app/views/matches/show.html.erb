@@ -202,7 +202,7 @@
                   <p><%= m.student_code %></p>
                 </li>
                 <li class="three">
-                  <%= link_to({ controller: "matches", action: "player", user_id: m.user.id, anchor: m.user.id }, { method: :post, id: m.user.id }) do %>
+                  <%= link_to({ controller: "matches", action: "player", user_id: m.user.id, anchor: "home-team-members" }, { method: :post }) do %>
                     <input type="button" class="u-full-width button small" value="검인">
                   <% end %>
                 </li>
@@ -239,7 +239,7 @@
             </div>
             <div class="four columns">
               <!-- chages over time -->
-              <%= link_to({ controller: "matches", action: "player", user_id: m.user.id, anchor: m.user.id }, { method: :post, id: m.user.id }) do %>
+              <%= link_to({ controller: "matches", action: "player", user_id: m.user.id, anchor: away-team-members }, { method: :post}) do %>
                 <input type="button" class="u-full-width button small" value="검인">
               <% end %>
             </div>
