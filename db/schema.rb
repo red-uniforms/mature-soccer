@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908110406) do
+ActiveRecord::Schema.define(version: 20150908171542) do
 
   create_table "captains", force: :cascade do |t|
     t.integer  "user_id"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20150908110406) do
   add_index "cups_teams", ["cup_id"], name: "index_cups_teams_on_cup_id"
   add_index "cups_teams", ["team_id"], name: "index_cups_teams_on_team_id"
 
+  create_table "events", force: :cascade do |t|
+    t.string   "when"
+    t.integer  "time"
+    t.string   "event_type"
+    t.integer  "user_id"
+    t.integer  "match_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "groups", force: :cascade do |t|
     t.string   "name"
     t.integer  "cup_id"
@@ -54,8 +64,8 @@ ActiveRecord::Schema.define(version: 20150908110406) do
   create_table "matches", force: :cascade do |t|
     t.integer  "cup_id"
     t.datetime "date"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "home_team_id"
     t.integer  "away_team_id"
     t.string   "description"
@@ -63,6 +73,8 @@ ActiveRecord::Schema.define(version: 20150908110406) do
     t.integer  "extra"
     t.boolean  "penalty"
     t.integer  "tzinfo"
+    t.datetime "started_at"
+    t.string   "status",       default: "0"
   end
 
   create_table "matches_users", force: :cascade do |t|

@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
   before_action :find_cup
-  before_action :authenticate_organizer!, only: [:new,:create,:referee,:destroy]
+  before_action :authenticate_organizer!, only: [:new,:create,:referee,:destroy,:record,:status]
 
   def new
     @match = @cup.matches.new
@@ -9,6 +9,8 @@ class MatchesController < ApplicationController
     @match = @cup.matches.find(params[:id])
     @referees = @match.referees
     @players = @match.users
+    @events = Event.where(match_id: @match.id)
+    @event = @match.events.new
   end
   def create
     date = DateTime.strptime(match_params[:date], "%Y-%m-%dT%H:%MT%Z")
@@ -34,8 +36,34 @@ class MatchesController < ApplicationController
       redirect_to action: 'show'
     end
   end
+
+  # changes match status 0 1 half 2 interval 3 extrahalf 4 pk
+  def status
+    @match = @cup.matches.find(params[:id]) 
+    if %w(0 half interval extrahalf).include? @match.status
+      @match.started_at = Time.now
+    end
+
+    @match.status = @match.statuses[ @match.statuses.index(@match.status) + 1 ]
+    @match.save!
+
+    redirect_to action: 'show'
+  end
+
+  def record
+    @match = @cup.matches.find(params[:id])
+    event = @match.events.new(event_params)
+    event.save
+
+    redirect_to action: 'show'
+  end
   def player
     # 검인
+    @match = @cup.matches.find(params[:id])
+    @user = User.find(params[:user_id])
+
+    @match.users << @user
+
     redirect_to action: 'show'
   end
   def destroy
@@ -62,6 +90,10 @@ private
 
   def referee_params
     params.require(:referee).permit(:organizer_id)
+  end
+
+  def event_params
+    params.require(:event).permit(:event_type,:user_id,:when,:time)
   end
 
   def authenticate_organizer!

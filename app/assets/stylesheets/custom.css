@@ -36,6 +36,7 @@ body p {
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
   margin-bottom: 40px;
+  overflow: auto;
 }
 /*.mid-nav .row {
   display: inline-block;
@@ -336,6 +337,9 @@ ul.horizontal li {
 ul.horizontal li.twelve {
   width: 100%;
 }
+ul.horizontal li.nine {
+  width: 73%;
+}
 ul.horizontal li.four {
   width: 30.6666666667%;
   margin-left: 4%;
@@ -513,4 +517,15 @@ div.match-row {
 .button.small {
   min-height: 10px;
   line-height: 10px;
+}
+form.new_event {
+  margin-bottom: 0;
+}
+
+#match-clock {
+  font-size: 2rem;
+}
+
+.match-record {
+  font-size: 1.5rem; 
 }
