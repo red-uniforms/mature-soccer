@@ -239,7 +239,7 @@
             </div>
             <div class="four columns">
               <!-- chages over time -->
-              <%= link_to({ controller: "matches", action: "player", user_id: m.user.id, anchor: away-team-members }, { method: :post}) do %>
+              <%= link_to({ controller: "matches", action: "player", user_id: m.user.id, anchor: "away-team-members" }, { method: :post}) do %>
                 <input type="button" class="u-full-width button small" value="검인">
               <% end %>
             </div>
