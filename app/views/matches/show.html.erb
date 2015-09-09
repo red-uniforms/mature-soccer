@@ -36,7 +36,7 @@
       </ul>
     </div>
 
-    <!-- match records -->
+    <!-- match events -->
     <% @events.each do |e| %>
     <div class="row u-mt-10 u-mb-10 match-record">
       <ul class="horizontal">
@@ -124,20 +124,28 @@
           <% end %>
         </div>
         <div class="six columns" id="away-team">
-          <div class="row">
+          <div class="row u-mb-10">
             <p><%= @match.away_team.name %></p>
           </div>
-          <% @match.away_team.members.each do |m| %>
+          <% @players.each do |p| %>
+            <% if p.all_teams.include? @match.away_team %>
             <div class="row">
               <ul class="horizontal">
-                <li class="six">
-                  <p><%= m.user.name %></p>
-                </li>
-                <li class="six">
-                  <p><%= m.student_code %></p>
-                </li>
+                <li class="three"><p><%= p.name %></p></li>
+                <%= form_for @event, url: { action: "record" } do |f| %>
+                  <%= f.number_field(:user_id, value: p.id, hidden: true) %>
+                  <%= f.text_field(:when, id: "event-when" ,hidden: true) %>
+                  <%= f.number_field(:time, id: "event-time" ,hidden: true) %>
+                  <li class="six">
+                    <%= f.select(:event_type, @event.types, {}, {class: "u-full-width"}) %>
+                  </li>
+                  <li class="three focus">
+                    <%= f.submit "기록", class: "button small u-full-width" %>
+                  </li>
+                <% end %>
               </ul>
             </div>
+            <% end %>
           <% end %>
         </div>
       </div>
