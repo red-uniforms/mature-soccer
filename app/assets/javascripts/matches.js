@@ -34,7 +34,7 @@ $(document).on('ready page:load', function(){
     console.log(matchDate);
 
     dateString = matchDate.month()+1 + "월 " + matchDate.date() + "일 (";
-    dateString += ["월","화","수","목","금","토","일"][matchDate.day()] + ")";
+    dateString += ["일","월","화","수","목","금","토"][matchDate.day()] + ")";
     match.find('.match-date-string').html(dateString);
 
     // timeString = sprintf("%02d:%02d",matchDate.hour(),matchDate.minute());

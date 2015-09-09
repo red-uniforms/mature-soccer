@@ -194,22 +194,19 @@
         <% @match.home_team.members.each do |m| %>
           <div class="row u-mb-10">
             <% if @players.exclude? m.user %>
-            <div class="eight columns">
               <ul class="horizontal">
-                <li class="six">
+                <li class="three">
                   <p><%= m.user.name %></p>
                 </li>
                 <li class="six">
                   <p><%= m.student_code %></p>
                 </li>
+                <li class="three">
+                  <%= link_to({ controller: "matches", action: "player", user_id: m.user.id, anchor: m.user.id }, { method: :post, id: m.user.id }) do %>
+                    <input type="button" class="u-full-width button small" value="검인">
+                  <% end %>
+                </li>
               </ul>
-            </div>
-            <div class="four columns">
-              <!-- chages over time -->
-              <%= link_to({ controller: "matches", action: "player", user_id: m.user.id, anchor: m.user.id }, { method: :post, id: m.user.id }) do %>
-                <input type="button" class="u-full-width button small" value="검인">
-              <% end %>
-            </div>
             <% end %>
           </div>
         <% end %>
