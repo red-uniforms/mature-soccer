@@ -518,6 +518,10 @@ div.match-row {
   min-height: 10px;
   line-height: 10px;
 }
+input.small {
+  min-height: 10px;
+  line-height: 10px;
+}
 form.new_event {
   margin-bottom: 0;
 }

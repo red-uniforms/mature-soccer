@@ -24,17 +24,44 @@
     <div class="row bottom-hr">
       <ul class="horizontal">
         <li class="four">
-          <h5>0</h5>
+          <h5><%= @home_goal %></h5>
         </li>
         <li class="four" id="match-clock">
           <%= content_tag(:span, @match.status_s[@match.statuses.index(@match.status)], class: "focus", value: @match.started_at, status: @match.status ) %>
           <span class="focus" id="passed-time"></span>
         </li>
         <li class="four">
-          <h5>0</h5>
+          <h5><%= @away_goal %></h5>
         </li>
       </ul>
     </div>
+
+    <!-- match status panel -->
+    <% if @referees.map{ |r| r.organizer }.include? current_user.organizers.where(cup_id: @cup.id).take %>
+      <div class="row u-mt-10">
+        <div class="eight columns offset-by-two">
+          <%= link_to({ action: "status" },{ method: :post, data: { confirm: "경기를 진행하시겠습니까?"} }) do %>
+            <% if not @match.started? %>
+              <input type="button" class="button button-primary u-full-width" value="경기 시작">
+            <% elsif @match.status == "1" %>
+              <input type="button" class="button button-danger u-full-width" value="전반 종료">
+            <% elsif @match.status == "half" %>
+              <input type="button" class="button button-primary u-full-width" value="후반 시작">
+            <% elsif @match.status == "2" %>
+              <input type="button" class="button button-danger u-full-width" value="후반 종료">
+            <% elsif @match.status == "interval" %>
+              <input type="button" class="button button-primary u-full-width" value="연장 시작">
+            <% elsif @match.status == "3" %>
+              <input type="button" class="button button-danger u-full-width" value="전반 종료">
+            <% elsif @match.status == "extrahalf" %>
+              <input type="button" class="button button-primary u-full-width" value="후반 시작">
+            <% elsif @match.status == "4" %>
+              <input type="button" class="button button-danger u-full-width" value="후반 종료">
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
 
     <!-- match events -->
     <% @events.each do |e| %>
@@ -58,43 +85,6 @@
     </div>
     <% end %>
 
-    <!-- adding referees -->
-    <% if @cup.organizers.map{ |o| o.user }.include? current_user %>
-      <% if @referees.any? %>
-        <% @referees.each do |ref| %>
-          <div class="row">
-            <ul class="horizontal">
-              <li class="six align-h">
-                <p><%= ref.organizer.user.name %></p>
-              </li>
-              <li class="six align-h">
-                <p><%= ref.organizer.user.email %></p>
-              </li>
-            </ul>
-          </div>
-        <% end %>
-      <% end %>
-      <%= form_for @referees.new, url: { controller: 'matches', action: 'referee'} do |f| %>
-        <div class="row bottom-hr">
-          <div class="four columns align-h">
-            <label class="align-h focus">심판 추가</label>
-          </div>
-          <div class="four columns align-h">
-            <select class="u-full-width" name="referee[organizer_id]">
-              <% @cup.organizers.each do |o| %>
-                <%= content_tag("option", value: o.id) do %>
-                  <%= o.user.name %>
-                <% end %>
-              <% end %>
-            </select>
-          </div>
-          <div class="four columns align-h">
-            <%= f.submit "추가하기", class: "button button-small u-full-width" %>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-
     <!-- match recording -->
     <% if @referees.map{ |r| r.organizer }.include? current_user.organizers.where(cup_id: @cup.id).take %>
       <div class="row" id="lineup">
@@ -107,7 +97,7 @@
             <div class="row">
               <ul class="horizontal">
                 <li class="three"><p><%= p.name %></p></li>
-                <%= form_for @event, url: { action: "record" } do |f| %>
+                <%= form_for @event, url: { action: "record", anchor: "home-team" } do |f| %>
                   <%= f.number_field(:user_id, value: p.id, hidden: true) %>
                   <%= f.text_field(:when, id: "event-when" ,hidden: true) %>
                   <%= f.number_field(:time, id: "event-time" ,hidden: true) %>
@@ -132,7 +122,7 @@
             <div class="row">
               <ul class="horizontal">
                 <li class="three"><p><%= p.name %></p></li>
-                <%= form_for @event, url: { action: "record" } do |f| %>
+                <%= form_for @event, url: { action: "record", anchor: "away-team" } do |f| %>
                   <%= f.number_field(:user_id, value: p.id, hidden: true) %>
                   <%= f.text_field(:when, id: "event-when" ,hidden: true) %>
                   <%= f.number_field(:time, id: "event-time" ,hidden: true) %>
@@ -151,45 +141,11 @@
       </div>
     <% end %>
 
-    <!-- match status panel -->
-    <div class="row">
-      <div class="eight columns offset-by-two">
-        <%= link_to({ action: "status" },{ method: :post }) do %>
-          <% if not @match.started? %>
-            <input type="button" class="button button-primary u-full-width" value="경기 시작">
-          <% elsif @match.status == "1" %>
-            <input type="button" class="button button-danger u-full-width" value="전반 종료">
-          <% elsif @match.status == "half" %>
-            <input type="button" class="button button-primary u-full-width" value="후반 시작">
-          <% elsif @match.status == "2" %>
-            <input type="button" class="button button-danger u-full-width" value="후반 종료">
-          <% elsif @match.status == "interval" %>
-            <input type="button" class="button button-primary u-full-width" value="연장 시작">
-          <% elsif @match.status == "3" %>
-            <input type="button" class="button button-danger u-full-width" value="전반 종료">
-          <% elsif @match.status == "extrahalf" %>
-            <input type="button" class="button button-primary u-full-width" value="후반 시작">
-          <% elsif @match.status == "4" %>
-            <input type="button" class="button button-danger u-full-width" value="후반 종료">
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-
     <!-- full team members -->
     <div class="row u-mt-10">
       <div class="six columns" id="home-team-members">
-        <div class="row">
-          <div class="eight columns">
-            <ul class="horizontal">
-              <li class="six">
-                <p>이름</p>
-              </li>
-              <li class="six">
-                <p>학번</p>
-              </li>
-            </ul>
-          </div>
+        <div class="row u-mb-10">
+          <p><%= @match.home_team.name %></p>
         </div>
         <% @match.home_team.members.each do |m| %>
           <div class="row u-mb-10">
@@ -212,42 +168,68 @@
         <% end %>
       </div>
       <div class="six columns" id="away-team-members">
-        <div class="row">
-          <div class="eight columns">
-            <ul class="horizontal">
-              <li class="six">
-                <p>이름</p>
-              </li>
-              <li class="six">
-                <p>학번</p>
-              </li>
-            </ul>
-          </div>
+        <div class="row u-mb-10">
+          <p><%= @match.away_team.name %></p>
         </div>
         <% @match.away_team.members.each do |m| %>
           <div class="row u-mb-10">
             <% if @players.exclude? m.user %>
-            <div class="eight columns">
               <ul class="horizontal">
-                <li class="six">
+                <li class="three">
                   <p><%= m.user.name %></p>
                 </li>
                 <li class="six">
                   <p><%= m.student_code %></p>
                 </li>
+                <li class="three">
+                  <%= link_to({ controller: "matches", action: "player", user_id: m.user.id, anchor: "away-team-members" }, { method: :post}) do %>
+                    <input type="button" class="u-full-width button small" value="검인">
+                  <% end %>
+                </li>
               </ul>
-            </div>
-            <div class="four columns">
-              <!-- chages over time -->
-              <%= link_to({ controller: "matches", action: "player", user_id: m.user.id, anchor: away-team-members }, { method: :post}) do %>
-                <input type="button" class="u-full-width button small" value="검인">
-              <% end %>
-            </div>
             <% end %>
           </div>
         <% end %>
       </div>
     </div>
+
+    <!-- adding referees -->
+    <% if @cup.organizers.map{ |o| o.user }.include? current_user %>
+      <% if @referees.any? %>
+        <% @referees.each do |ref| %>
+          <div class="row">
+            <ul class="horizontal">
+              <li class="six">
+                <p><%= ref.organizer.user.name %></p>
+              </li>
+              <li class="six">
+                <p><%= ref.organizer.user.email %></p>
+              </li>
+            </ul>
+          </div>
+        <% end %>
+      <% end %>
+      <%= form_for @referees.new, url: { controller: 'matches', action: 'referee'} do |f| %>
+        <div class="row bottom-hr">
+          <div class="four columns">
+            <label class="focus">심판 추가</label>
+          </div>
+          <div class="four columns">
+            <select class="u-full-width" name="referee[organizer_id]">
+              <% @cup.organizers.each do |o| %>
+                <%= content_tag("option", value: o.id) do %>
+                  <%= o.user.name %>
+                <% end %>
+              <% end %>
+            </select>
+          </div>
+          <div class="four columns">
+            <%= f.submit "추가하기", class: "button button-small small u-full-width" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
   </div>
 </section>
 

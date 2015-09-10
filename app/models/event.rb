@@ -2,7 +2,8 @@ class Event < ActiveRecord::Base
   belongs_to :user
   belongs_to :match
 
-  validates :event_type, presence: true, inclusion: { in: %w(goal ycard rcard in out) }
+  validates :event_type, presence: true, inclusion: { in: %w(in out) }, unless: :is_when_num?
+  validates :event_type, inclusion: { in: %w(goal ycard rcard) }, if: :is_when_num?
   validates :time, numericality: true, if: :is_when_num?
   validates :when, presence: true
 
@@ -15,7 +16,7 @@ class Event < ActiveRecord::Base
   end
 
   def is_when_num?
-    ["0","1","2","3","4"].include? self.when
+    ["전반","후반","연장전반","연장후반"].include? self.when
   end
 
   def types
