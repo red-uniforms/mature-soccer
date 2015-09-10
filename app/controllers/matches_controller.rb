@@ -11,6 +11,16 @@ class MatchesController < ApplicationController
     @players = @match.users
     @events = Event.where(match_id: @match.id)
     @event = @match.events.new
+
+    @home_goal = 0
+    @away_goal = 0
+    @events.each do |e|
+      if e.user.all_teams.include? @match.home_team
+        @home_goal += 1
+      elsif e.user.all_teams.include? @match.away_team
+        @away_goal += 1
+      end
+    end
   end
   def create
     date = DateTime.strptime(match_params[:date], "%Y-%m-%dT%H:%MT%Z")
