@@ -14,10 +14,11 @@ class MatchesController < ApplicationController
 
     @home_goal = 0
     @away_goal = 0
+
     @events.each do |e|
-      if e.user.all_teams.include? @match.home_team
+      if e.user.all_teams.include? @match.home_team and e.event_type == "goal"
         @home_goal += 1
-      elsif e.user.all_teams.include? @match.away_team
+      elsif e.user.all_teams.include? @match.away_team and e.event_type == "goal"
         @away_goal += 1
       end
     end
