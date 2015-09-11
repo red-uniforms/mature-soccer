@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   belongs_to :match
 
   validates :event_type, presence: true, inclusion: { in: %w(in out) }, unless: :is_when_num?
-  validates :event_type, inclusion: { in: %w(goal ycard rcard) }, if: :is_when_num?
+  validates :event_type, inclusion: { in: %w(goal ycard rcard in out) }, if: :is_when_num?
   validates :time, numericality: true, if: :is_when_num?
   validates :when, presence: true
 
