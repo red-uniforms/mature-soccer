@@ -57,7 +57,7 @@ class Match < ActiveRecord::Base
           away_goal += 1
         elsif e.user.all_teams.include? away_team
           home_goal += 1
-        end 
+        end
       end
     end
     self.save!

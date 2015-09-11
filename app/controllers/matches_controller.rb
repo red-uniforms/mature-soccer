@@ -55,6 +55,8 @@ class MatchesController < ApplicationController
     event = @match.events.new(event_params)
     event.save
 
+    @match.update_goals
+
     redirect_to action: 'show'
   end
   def player
@@ -64,7 +66,8 @@ class MatchesController < ApplicationController
 
     @match.users << @user
 
-    redirect_to action: 'show'
+    # redirect_to action: 'show'
+    render plain: "success", :status => 200
   end
   def destroy
     match = @cup.matches.find(params[:id])

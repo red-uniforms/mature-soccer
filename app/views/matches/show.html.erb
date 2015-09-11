@@ -158,7 +158,7 @@
                   <p><%= m.student_code %></p>
                 </li>
                 <li class="three">
-                  <%= link_to({ controller: "matches", action: "player", user_id: m.user.id, anchor: "home-team-members" }, { method: :post }) do %>
+                  <%= link_to({ controller: "matches", action: "player", user_id: m.user.id, anchor: "home-team-members" }, { method: :post, class: "add-player" }) do %>
                     <input type="button" class="u-full-width button small" value="검인">
                   <% end %>
                 </li>
@@ -182,7 +182,7 @@
                   <p><%= m.student_code %></p>
                 </li>
                 <li class="three">
-                  <%= link_to({ controller: "matches", action: "player", user_id: m.user.id, anchor: "away-team-members" }, { method: :post}) do %>
+                  <%= link_to({ controller: "matches", action: "player", user_id: m.user.id }, { class: "add-player" }) do %>
                     <input type="button" class="u-full-width button small" value="검인">
                   <% end %>
                 </li>
