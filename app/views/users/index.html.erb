@@ -70,12 +70,7 @@
       <p class="u-pull-left">대회를 개최하거나 주장으로서 참가를 신청하세요.</p>
     </div>
     <div class="row">
-      <% @cups.each do |c| %>
-        <%= render(c.cup) %>
-      <% end %>
-      <% @organizers.each do |o| %>
-        <%= render(o.cup) %>
-      <% end %>
+      <%= render(current_user.all_cups) %>
       <!-- Always at the last of cups -->
       <div class="four columns team-holder empty">
         <p>Create new</p>

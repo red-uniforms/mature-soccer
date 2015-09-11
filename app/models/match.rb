@@ -4,13 +4,6 @@ class Match < ActiveRecord::Base
     if match.extra == 0 and match.statuses.index(match.status) > 3
       match.status = "end"
     end
-    match.events.each do |e|
-      if e.user.all_teams.include? match.home_team and e.event_type == "goal"
-        match.home_goal += 1
-      elsif e.user.all_teams.include? match.away_team and e.event_type == "goal"
-        match.away_goal += 1
-      end
-    end
   end
 
   belongs_to :home_team, class_name: "Team"
@@ -49,6 +42,26 @@ class Match < ActiveRecord::Base
     ["시작 전","전반","하프타임","후반","연장준비","연장전반","하프타임","연장후반","승부차기",":"]
   end
 
+  def update_goals
+    home_goal = 0
+    away_goal = 0
+    events.each do |e|
+      if e.event_type == "goal"
+        if e.user.all_teams.include? home_team
+          home_goal += 1
+        elsif e.user.all_teams.include? away_team
+          away_goal += 1
+        end
+      elsif e.event_type == "owngoal"
+        if e.user.all_teams.include? home_team
+          away_goal += 1
+        elsif e.user.all_teams.include? away_team
+          home_goal += 1
+        end 
+      end
+    end
+    self.save!
+  end
 
   def home_away_belongs_to_cup
     if cup.teams.include? away_team and cup.teams.include? home_team

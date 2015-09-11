@@ -24,14 +24,14 @@
     <div class="row bottom-hr">
       <ul class="horizontal">
         <li class="four">
-          <h5><%= @home_goal %></h5>
+          <h5><%= @match.home_goal %></h5>
         </li>
         <li class="four" id="match-clock">
           <%= content_tag(:span, @match.status_s[@match.statuses.index(@match.status)], class: "focus", value: @match.started_at, status: @match.status ) %>
           <span class="focus" id="passed-time"></span>
         </li>
         <li class="four">
-          <h5><%= @away_goal %></h5>
+          <h5><%= @match.away_goal %></h5>
         </li>
       </ul>
     </div>

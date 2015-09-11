@@ -28,4 +28,15 @@ class User < ActiveRecord::Base
     teams | captain_teams
   end
 
+  def all_cups
+    cups = []
+    all_teams.each do |t|
+      cups += t.team_applicants.map{ |t| t.cup }
+    end
+    organizers do |o|
+      cups += o.cup
+    end
+    cups.uniq
+  end
+
 end
