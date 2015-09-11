@@ -43,12 +43,16 @@
           <%= link_to({ action: "status" },{ method: :post, data: { confirm: "경기를 진행하시겠습니까?"} }) do %>
             <% if not @match.started? %>
               <input type="button" class="button button-primary u-full-width" value="경기 시작">
+              <p>선발 선수들을 검인한 후 경기를 시작해주세요</p>
             <% elsif @match.status == "1" %>
               <input type="button" class="button button-danger u-full-width" value="전반 종료">
+              <p>전반전이 끝나면 눌러주세요</p>
             <% elsif @match.status == "half" %>
               <input type="button" class="button button-primary u-full-width" value="후반 시작">
+              <p>하프타임 교체를 받은 후 후반전을 시작해주세요. 다음 경기 검인도 잊지마세요</p>
             <% elsif @match.status == "2" %>
               <input type="button" class="button button-danger u-full-width" value="후반 종료">
+              <p>후반전이 끝나면 눌러주세요</p>
             <% elsif @match.status == "interval" %>
               <input type="button" class="button button-primary u-full-width" value="연장 시작">
             <% elsif @match.status == "3" %>
