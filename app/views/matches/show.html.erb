@@ -148,8 +148,8 @@
           <p><%= @match.home_team.name %></p>
         </div>
         <% @match.home_team.members.each do |m| %>
-          <div class="row u-mb-10">
-            <% if @players.exclude? m.user %>
+          <% if @players.exclude? m.user %>
+          <div class="row">
               <ul class="horizontal">
                 <li class="three">
                   <p><%= m.user.name %></p>
@@ -163,8 +163,8 @@
                   <% end %>
                 </li>
               </ul>
-            <% end %>
           </div>
+          <% end %>
         <% end %>
       </div>
       <div class="six columns" id="away-team-members">
@@ -172,8 +172,8 @@
           <p><%= @match.away_team.name %></p>
         </div>
         <% @match.away_team.members.each do |m| %>
-          <div class="row u-mb-10">
-            <% if @players.exclude? m.user %>
+          <% if @players.exclude? m.user %>
+            <div class="row">
               <ul class="horizontal">
                 <li class="three">
                   <p><%= m.user.name %></p>
@@ -187,8 +187,8 @@
                   <% end %>
                 </li>
               </ul>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
