@@ -43,23 +43,25 @@ class Match < ActiveRecord::Base
   end
 
   def update_goals
-    home_goal = 0
-    away_goal = 0
+    hg = 0
+    ag = 0
     events.each do |e|
       if e.event_type == "goal"
         if e.user.all_teams.include? home_team
-          home_goal += 1
+          hg += 1
         elsif e.user.all_teams.include? away_team
-          away_goal += 1
+          ag += 1
         end
       elsif e.event_type == "owngoal"
         if e.user.all_teams.include? home_team
-          away_goal += 1
+          ag += 1
         elsif e.user.all_teams.include? away_team
-          home_goal += 1
+          hg += 1
         end
       end
     end
+    self.home_goal = hg
+    self.away_goal = ag
     self.save!
   end
 

@@ -162,7 +162,7 @@
                   <p><%= m.student_code %></p>
                 </li>
                 <li class="three">
-                  <%= link_to({ controller: "matches", action: "player", user_id: m.user.id, anchor: "home-team-members" }, { method: :post, class: "add-player" }) do %>
+                  <%= link_to({ controller: "matches", action: "player", user_id: m.user.id }, { class: "add-player" }) do %>
                     <input type="button" class="u-full-width button small" value="검인">
                   <% end %>
                 </li>
@@ -203,10 +203,10 @@
         <% @referees.each do |ref| %>
           <div class="row">
             <ul class="horizontal">
-              <li class="six">
+              <li class="three">
                 <p><%= ref.organizer.user.name %></p>
               </li>
-              <li class="six">
+              <li class="nine">
                 <p><%= ref.organizer.user.email %></p>
               </li>
             </ul>
