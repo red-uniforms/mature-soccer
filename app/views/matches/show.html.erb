@@ -146,6 +146,7 @@
     <% end %>
 
     <!-- full team members -->
+    <% if @referees.map{ |r| r.organizer }.include? current_user.organizers.where(cup_id: @cup.id).take %>
     <div class="row u-mt-10">
       <div class="six columns" id="home-team-members">
         <div class="row u-mb-10">
@@ -196,6 +197,7 @@
         <% end %>
       </div>
     </div>
+    <% end %>
 
     <!-- adding referees -->
     <% if @cup.organizers.map{ |o| o.user }.include? current_user %>

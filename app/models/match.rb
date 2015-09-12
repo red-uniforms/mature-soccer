@@ -4,6 +4,25 @@ class Match < ActiveRecord::Base
     if match.extra == 0 and match.statuses.index(match.status) > 3
       match.status = "end"
     end
+    hg = 0
+    ag = 0
+    events.each do |e|
+      if e.event_type == "goal"
+        if e.user.all_teams.include? home_team
+          hg += 1
+        elsif e.user.all_teams.include? away_team
+          ag += 1
+        end
+      elsif e.event_type == "owngoal"
+        if e.user.all_teams.include? home_team
+          ag += 1
+        elsif e.user.all_teams.include? away_team
+          hg += 1
+        end
+      end
+    end
+    self.home_goal = hg
+    self.away_goal = ag
   end
 
   belongs_to :home_team, class_name: "Team"
