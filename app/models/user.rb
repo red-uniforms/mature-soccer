@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
       cups += t.team_applicants.map{ |t| t.cup }
     end
     self.organizers.each do |o|
-      cups += o.cup
+      cups << o.cup
     end
     cups.uniq
   end
