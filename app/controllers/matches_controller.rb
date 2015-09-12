@@ -11,6 +11,12 @@ class MatchesController < ApplicationController
     @players = @match.users
     @events = Event.where(match_id: @match.id)
     @event = @match.events.new
+
+    if @referees.map{ |r| r.organizer }.include? current_user.organizers.where(cup_id: @cup.id).take
+      @is_ref = true
+    else
+      @is_ref = false
+    end
   end
   def create
     date = DateTime.strptime(match_params[:date], "%Y-%m-%dT%H:%MT%Z")

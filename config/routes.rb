@@ -63,6 +63,7 @@ Rails.application.routes.draw do
       post '/player/:user_id', to: 'matches#player'
       post '/record', to: 'matches#record'
       get '/record', to: 'matches#record'
+      delete '/event/:event_id', to: 'events#destroy'
       post '/status', to: 'matches#status'
     end
   end

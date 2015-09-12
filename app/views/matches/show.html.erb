@@ -37,7 +37,7 @@
     </div>
 
     <!-- match status panel -->
-    <% if @referees.map{ |r| r.organizer }.include? current_user.organizers.where(cup_id: @cup.id).take %>
+    <% if @is_ref %>
       <div class="row u-mt-10">
         <div class="eight columns offset-by-two">
           <%= link_to({ action: "status" },{ method: :post, data: { confirm: "경기를 진행하시겠습니까?"} }) do %>
@@ -74,6 +74,12 @@
         <li class="four align-h">
           <% if e.user.all_teams.include? @match.home_team %>
             <p><%= e.user.name %></p>
+          <% else %>
+            <% if @is_ref %>
+              <%= link_to({ controller: "events", action: :destroy, event_id: e.id }, { method: :delete, data: { confirm: "삭제하시겠습니까?" } }) do %>
+                <input type="button" class="button small four columns offset-by-four" value="삭제">
+              <% end %>
+            <% end %>
           <% end %>
         </li>
         <li class="four">
@@ -83,6 +89,12 @@
         <li class="four align-h">
           <% if e.user.all_teams.include? @match.away_team %>
             <p><%= e.user.name %></p>
+          <% else %>
+            <% if @is_ref %>
+              <%= link_to({ controller: "events", action: :destroy, event_id: e.id }, { method: :delete, data: { confirm: "삭제하시겠습니까?" } }) do %>
+                <input type="button" class="button small four columns offset-by-four" value="삭제">
+              <% end %>
+            <% end %>
           <% end %>
         </li>
       </ul>
@@ -90,7 +102,7 @@
     <% end %>
 
     <!-- match recording -->
-    <% if @referees.map{ |r| r.organizer }.include? current_user.organizers.where(cup_id: @cup.id).take %>
+    <% if @is_ref %>
       <div class="row" id="lineup">
         <div class="six columns" id="home-team">
           <div class="row u-mb-10">
@@ -146,7 +158,7 @@
     <% end %>
 
     <!-- full team members -->
-    <% if @referees.map{ |r| r.organizer }.include? current_user.organizers.where(cup_id: @cup.id).take %>
+    <% if @if_ref %>
     <div class="row u-mt-10">
       <div class="six columns" id="home-team-members">
         <div class="row u-mb-10">
