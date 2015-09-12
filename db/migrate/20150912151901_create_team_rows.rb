@@ -14,7 +14,7 @@ class CreateTeamRows < ActiveRecord::Migration
     end
 
     change_table :matches do |t|
-      t.boolean :group_stage, :default => 1
+      t.boolean :group_stage, :default => true
     end
   end
 end
