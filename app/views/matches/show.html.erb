@@ -20,35 +20,39 @@
       </ul>
     </div>
 
-    <!-- where team scores come in -->
+    <!-- Team scores -->
     <div class="row bottom-hr">
       <ul class="horizontal">
         <li class="four">
-          <h5><%= @home_goal %></h5>
+          <h5><%= @match.home_goal %></h5>
         </li>
         <li class="four" id="match-clock">
           <%= content_tag(:span, @match.status_s[@match.statuses.index(@match.status)], class: "focus", value: @match.started_at, status: @match.status ) %>
           <span class="focus" id="passed-time"></span>
         </li>
         <li class="four">
-          <h5><%= @away_goal %></h5>
+          <h5><%= @match.away_goal %></h5>
         </li>
       </ul>
     </div>
 
-    <!-- match status panel -->
-    <% if @referees.map{ |r| r.organizer }.include? current_user.organizers.where(cup_id: @cup.id).take %>
+    <!-- match status -->
+    <% if @is_ref %>
       <div class="row u-mt-10">
         <div class="eight columns offset-by-two">
           <%= link_to({ action: "status" },{ method: :post, data: { confirm: "경기를 진행하시겠습니까?"} }) do %>
             <% if not @match.started? %>
               <input type="button" class="button button-primary u-full-width" value="경기 시작">
+              <p>선발 선수들을 검인한 후 경기를 시작해주세요</p>
             <% elsif @match.status == "1" %>
               <input type="button" class="button button-danger u-full-width" value="전반 종료">
+              <p>전반전이 끝나면 눌러주세요</p>
             <% elsif @match.status == "half" %>
               <input type="button" class="button button-primary u-full-width" value="후반 시작">
+              <p>하프타임 교체를 받은 후 후반전을 시작해주세요. 다음 경기 검인도 잊지마세요</p>
             <% elsif @match.status == "2" %>
               <input type="button" class="button button-danger u-full-width" value="후반 종료">
+              <p>후반전이 끝나면 눌러주세요</p>
             <% elsif @match.status == "interval" %>
               <input type="button" class="button button-primary u-full-width" value="연장 시작">
             <% elsif @match.status == "3" %>
@@ -70,6 +74,12 @@
         <li class="four align-h">
           <% if e.user.all_teams.include? @match.home_team %>
             <p><%= e.user.name %></p>
+          <% else %>
+            <% if @is_ref %>
+              <%= link_to({ controller: "events", action: :destroy, event_id: e.id }, { method: :delete, data: { confirm: "삭제하시겠습니까?" } }) do %>
+                <input type="button" class="button small four columns offset-by-four" value="삭제">
+              <% end %>
+            <% end %>
           <% end %>
         </li>
         <li class="four">
@@ -79,6 +89,12 @@
         <li class="four align-h">
           <% if e.user.all_teams.include? @match.away_team %>
             <p><%= e.user.name %></p>
+          <% else %>
+            <% if @is_ref %>
+              <%= link_to({ controller: "events", action: :destroy, event_id: e.id }, { method: :delete, data: { confirm: "삭제하시겠습니까?" } }) do %>
+                <input type="button" class="button small four columns offset-by-four" value="삭제">
+              <% end %>
+            <% end %>
           <% end %>
         </li>
       </ul>
@@ -86,7 +102,7 @@
     <% end %>
 
     <!-- match recording -->
-    <% if @referees.map{ |r| r.organizer }.include? current_user.organizers.where(cup_id: @cup.id).take %>
+    <% if @is_ref %>
       <div class="row" id="lineup">
         <div class="six columns" id="home-team">
           <div class="row u-mb-10">
@@ -142,14 +158,15 @@
     <% end %>
 
     <!-- full team members -->
+    <% if @is_ref %>
     <div class="row u-mt-10">
       <div class="six columns" id="home-team-members">
         <div class="row u-mb-10">
           <p><%= @match.home_team.name %></p>
         </div>
         <% @match.home_team.members.each do |m| %>
-          <div class="row u-mb-10">
-            <% if @players.exclude? m.user %>
+          <% if @players.exclude? m.user %>
+          <div class="row">
               <ul class="horizontal">
                 <li class="three">
                   <p><%= m.user.name %></p>
@@ -158,13 +175,13 @@
                   <p><%= m.student_code %></p>
                 </li>
                 <li class="three">
-                  <%= link_to({ controller: "matches", action: "player", user_id: m.user.id, anchor: "home-team-members" }, { method: :post }) do %>
+                  <%= link_to({ controller: "matches", action: "player", user_id: m.user.id }, { class: "add-player" }) do %>
                     <input type="button" class="u-full-width button small" value="검인">
                   <% end %>
                 </li>
               </ul>
-            <% end %>
           </div>
+          <% end %>
         <% end %>
       </div>
       <div class="six columns" id="away-team-members">
@@ -172,8 +189,8 @@
           <p><%= @match.away_team.name %></p>
         </div>
         <% @match.away_team.members.each do |m| %>
-          <div class="row u-mb-10">
-            <% if @players.exclude? m.user %>
+          <% if @players.exclude? m.user %>
+            <div class="row">
               <ul class="horizontal">
                 <li class="three">
                   <p><%= m.user.name %></p>
@@ -182,16 +199,17 @@
                   <p><%= m.student_code %></p>
                 </li>
                 <li class="three">
-                  <%= link_to({ controller: "matches", action: "player", user_id: m.user.id, anchor: "away-team-members" }, { method: :post}) do %>
+                  <%= link_to({ controller: "matches", action: "player", user_id: m.user.id }, { class: "add-player" }) do %>
                     <input type="button" class="u-full-width button small" value="검인">
                   <% end %>
                 </li>
               </ul>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
+    <% end %>
 
     <!-- adding referees -->
     <% if @cup.organizers.map{ |o| o.user }.include? current_user %>
@@ -199,10 +217,10 @@
         <% @referees.each do |ref| %>
           <div class="row">
             <ul class="horizontal">
-              <li class="six">
+              <li class="three">
                 <p><%= ref.organizer.user.name %></p>
               </li>
-              <li class="six">
+              <li class="nine">
                 <p><%= ref.organizer.user.email %></p>
               </li>
             </ul>

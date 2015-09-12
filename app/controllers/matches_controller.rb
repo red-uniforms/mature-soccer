@@ -12,15 +12,10 @@ class MatchesController < ApplicationController
     @events = Event.where(match_id: @match.id)
     @event = @match.events.new
 
-    @home_goal = 0
-    @away_goal = 0
-
-    @events.each do |e|
-      if e.user.all_teams.include? @match.home_team and e.event_type == "goal"
-        @home_goal += 1
-      elsif e.user.all_teams.include? @match.away_team and e.event_type == "goal"
-        @away_goal += 1
-      end
+    if @referees.map{ |r| r.organizer }.include? current_user.organizers.where(cup_id: @cup.id).take
+      @is_ref = true
+    else
+      @is_ref = false
     end
   end
   def create
@@ -64,7 +59,10 @@ class MatchesController < ApplicationController
   def record
     @match = @cup.matches.find(params[:id])
     event = @match.events.new(event_params)
-    event.save
+
+    if event.save
+      @match.save
+    end
 
     redirect_to action: 'show'
   end
@@ -75,7 +73,8 @@ class MatchesController < ApplicationController
 
     @match.users << @user
 
-    redirect_to action: 'show'
+    # redirect_to action: 'show'
+    render plain: "success", :status => 200
   end
   def destroy
     match = @cup.matches.find(params[:id])

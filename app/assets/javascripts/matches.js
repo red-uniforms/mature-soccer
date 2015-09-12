@@ -65,4 +65,23 @@ $(document).on('ready page:load', function(){
     $('#match-date').val(date);
   });
 
+  $('.add-player').on('click',function(e) {
+    e.preventDefault();
+    var btn = $(this).find('input');
+    btn.val("검인 중");
+
+    $.ajax({
+      type: 'POST',
+      url : $(this).attr('href'),
+      processData: false,
+      contentType: false
+    }).done(function() {
+      btn.addClass('button-primary');
+      btn.val("완료");
+    }).fail(function() {
+      btn.addClass('danger');
+      btn.val("실패");
+    });
+  });
+
 });

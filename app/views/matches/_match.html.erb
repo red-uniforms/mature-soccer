@@ -5,15 +5,21 @@
         <li class="four align-h">
           <p><%= match.home_team.name %></p>
         </li>
-        <li class="four" id="match-date-holder">
-          <p class="hidden match-date" id="match-date"><%= match.date_with_tz.to_s %></p>
-          <div class="row">
-            <p class="focus match-date-string"></p>
-          </div>
-          <div class="row">
-            <p class="focus match-time-string"></p>
-          </div>
-        </li>
+        <% if match.status == "0" %>
+          <li class="four" id="match-date-holder">
+            <p class="hidden match-date" id="match-date"><%= match.date_with_tz.to_s %></p>
+            <div class="row">
+              <p class="focus match-date-string"></p>
+            </div>
+            <div class="row">
+              <p class="focus match-time-string"></p>
+            </div>
+          </li>
+        <% else %>
+          <li class="four align-h">
+            <p class="focus match-score"><%= match.home_goal %> : <%= match.away_goal %></p>
+          </li>
+        <% end %>
         <li class="four align-h">
           <p><%= match.away_team.name %></p>
         </li>

@@ -14,8 +14,9 @@ class TeamsController < ApplicationController
     if @team.save
       # relate team with user
       # @team.users << current_user
+      captain.save
       @team.captains << captain
-      redirect_to users_path
+      redirect_to action: 'show', team_url: @team.team_url
     else
       render 'new'
     end

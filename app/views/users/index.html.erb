@@ -24,6 +24,20 @@
         </ul>
       </div>
     <% end %>
+    <% (@teams - current_user.teams).each do |t| %>
+      <div class="row">
+        <ul class="horizontal">
+          <li class="three">
+            <%= link_to(controller: "teams", action: "show", team_url: t.team_url) do %>
+              <p><%= t.name %></p>
+            <% end %>
+          </li>
+          <li class="nine">
+            <p>주장 정보를 입력해주세요</p>
+          </li>
+        </ul>
+      </div>
+    <% end %>
     <% current_user.user_infos.each do |i| %>
       <div class="row">
         <ul class="horizontal">
@@ -70,9 +84,7 @@
       <p class="u-pull-left">대회를 개최하거나 주장으로서 참가를 신청하세요.</p>
     </div>
     <div class="row">
-      <% @organizers.each do |o| %>
-        <%= render(o.cup) %>
-      <% end %>
+      <%= render(current_user.all_cups) %>
       <!-- Always at the last of cups -->
       <div class="four columns team-holder empty">
         <p>Create new</p>
