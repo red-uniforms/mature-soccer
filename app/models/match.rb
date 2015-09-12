@@ -6,7 +6,7 @@ class Match < ActiveRecord::Base
     end
     hg = 0
     ag = 0
-    events.each do |e|
+    self.events.each do |e|
       if e.event_type == "goal"
         if e.user.all_teams.include? home_team
           hg += 1
@@ -59,29 +59,6 @@ class Match < ActiveRecord::Base
   end
   def status_s
     ["시작 전","전반","하프타임","후반","연장준비","연장전반","하프타임","연장후반","승부차기",":"]
-  end
-
-  def update_goals
-    hg = 0
-    ag = 0
-    events.each do |e|
-      if e.event_type == "goal"
-        if e.user.all_teams.include? home_team
-          hg += 1
-        elsif e.user.all_teams.include? away_team
-          ag += 1
-        end
-      elsif e.event_type == "owngoal"
-        if e.user.all_teams.include? home_team
-          ag += 1
-        elsif e.user.all_teams.include? away_team
-          hg += 1
-        end
-      end
-    end
-    self.home_goal = hg
-    self.away_goal = ag
-    self.save!
   end
 
   def home_away_belongs_to_cup

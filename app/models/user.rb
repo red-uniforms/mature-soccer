@@ -30,10 +30,10 @@ class User < ActiveRecord::Base
 
   def all_cups
     cups = []
-    all_teams.each do |t|
+    self.all_teams.each do |t|
       cups += t.team_applicants.map{ |t| t.cup }
     end
-    organizers do |o|
+    self.organizers do |o|
       cups += o.cup
     end
     cups.uniq

@@ -53,9 +53,9 @@ class MatchesController < ApplicationController
   def record
     @match = @cup.matches.find(params[:id])
     event = @match.events.new(event_params)
-    
+
     if event.save
-      @match.update_goals
+      @match.save
     end
 
     redirect_to action: 'show'
