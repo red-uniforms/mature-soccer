@@ -13,15 +13,15 @@
     <li class="three align-h">승점</li>
   </ul>
 </div>
-<% group.teams.each do |t| %>
+<% group.team_rows.each do |t| %>
   <div class="row">
     <ul class="horizontal">
-      <li class="four align-h"><%= t.name %></li>
-      <li class="one align-h">0</li>
-      <li class="one align-h">0</li>
-      <li class="one align-h">0</li>
-      <li class="two align-h">0</li>
-      <li class="three align-h">0</li>
+      <li class="four align-h"><%= t.team.name %></li>
+      <li class="one align-h"><%= t.win %></li>
+      <li class="one align-h"><%= t.draw %></li>
+      <li class="one align-h"><%= t.lose %></li>
+      <li class="two align-h"><%= t.goal_difference %></li>
+      <li class="three align-h"><%= t.points %></li>
     </ul>
   </div>
 <% end %>

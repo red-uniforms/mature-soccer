@@ -1,5 +1,5 @@
 class Group < ActiveRecord::Base
-  belongs_to :cups
+  belongs_to :cup
 
   has_many :teams
   has_many :team_rows, dependent: :destroy
