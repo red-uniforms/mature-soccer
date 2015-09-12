@@ -5,6 +5,7 @@ class GroupsController < ApplicationController
     @group = @cup.groups.find(params[:id]) or not_found
   end
 
+  # adding group teams
   def edit
     @team = Team.find(group_params[:team_id])
 
@@ -12,6 +13,8 @@ class GroupsController < ApplicationController
 
       @group = @cup.groups.find(params[:id])
       @group.teams << @team
+
+      team_row = @group.team_rows.new(team_id: @team.id).save
 
     end
 

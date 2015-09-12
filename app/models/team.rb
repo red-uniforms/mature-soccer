@@ -11,6 +11,7 @@ class Team < ActiveRecord::Base
   has_many :team_applicants, dependent: :destroy
   has_many :home_matches, class_name: "Match" ,foreign_key: "home_team_id"
   has_many :away_matches, class_name: "Match" ,foreign_key: "away_team_id"
+  has_many :team_rows, dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }
   validates :team_url, format: { with: /\A[-a-z0-9_]{3,20}\Z/, message: "only type lowercase alphabet, numbers, _ and -" },

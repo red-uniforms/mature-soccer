@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911083756) do
+ActiveRecord::Schema.define(version: 20150912151901) do
 
   create_table "captains", force: :cascade do |t|
     t.integer  "user_id"
@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(version: 20150911083756) do
   create_table "matches", force: :cascade do |t|
     t.integer  "cup_id"
     t.datetime "date"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "home_team_id"
     t.integer  "away_team_id"
     t.string   "description"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20150911083756) do
     t.string   "status",       default: "0"
     t.integer  "home_goal",    default: 0
     t.integer  "away_goal",    default: 0
+    t.boolean  "group_stage",  default: true
   end
 
   create_table "matches_users", force: :cascade do |t|
@@ -112,6 +113,17 @@ ActiveRecord::Schema.define(version: 20150911083756) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.boolean  "applying",   default: true
+  end
+
+  create_table "team_rows", force: :cascade do |t|
+    t.integer  "team_id"
+    t.integer  "group_id"
+    t.integer  "win",             default: 0
+    t.integer  "lose",            default: 0
+    t.integer  "draw",            default: 0
+    t.integer  "goal_difference", default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "teams", force: :cascade do |t|
