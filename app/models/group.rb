@@ -18,7 +18,8 @@ class Group < ActiveRecord::Base
   def matches
     matches = []
     self.teams.each do |t|
-      matches += t.matches.where(cup_id: self.cup.id)
+      matches += t.home_matches.where(cup_id: self.cup.id)
+      matches += t.away_matches.where(cup_id: self.cup.id)
     end
     matches.uniq
   end
