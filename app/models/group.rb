@@ -26,7 +26,7 @@ class Group < ActiveRecord::Base
 
   def reset_rows
     team_rows.each do |t|
-      team_rows.update(win: 0, lose: 0, draw: 0, goal_difference: 0)
+      team_row.update(win: 0, lose: 0, draw: 0, goal_difference: 0)
     end
   end
 
