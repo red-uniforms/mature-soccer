@@ -25,7 +25,7 @@ class Group < ActiveRecord::Base
   end
 
   def update_rows
-    self.matches.each do |m|
+    self.matches.where(status: "end").each do |m|
 
       home_row = self.team_rows.where(team_id: m.home_team.id).take
       away_row = self.team_rows.where(team_id: m.away_team.id).take

@@ -45,13 +45,19 @@ class MatchesController < ApplicationController
 
   # changes match status 0 1 half 2 interval 3 extrahalf 4 pk
   def status
-    @match = @cup.matches.find(params[:id]) 
+    @match = @cup.matches.find(params[:id])
     if %w(0 half interval extrahalf).include? @match.status
       @match.started_at = Time.now
     end
 
     @match.status = @match.statuses[ @match.statuses.index(@match.status) + 1 ]
     @match.save!
+
+    if @match.status == "end"
+      @match.cup.groups.each do |g|
+        g.update_rows
+      end
+    end
 
     redirect_to action: 'show'
   end
