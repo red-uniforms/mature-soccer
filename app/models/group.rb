@@ -24,6 +24,12 @@ class Group < ActiveRecord::Base
     matches.uniq
   end
 
+  def reset_rows
+    team_rows.each do |t|
+      team_rows.update(win: 0, lose: 0, draw: 0, goal_difference: 0)
+    end
+  end
+
   def update_rows
     self.matches.each do |m|
 
