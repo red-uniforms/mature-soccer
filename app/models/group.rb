@@ -18,14 +18,14 @@ class Group < ActiveRecord::Base
   def matches
     matches = []
     self.teams.each do |t|
-      matches += t.home_matches.where(cup_id: self.cup.id)
-      matches += t.away_matches.where(cup_id: self.cup.id)
+      matches += t.home_matches.where(cup_id: self.cup.id, status: "end")
+      matches += t.away_matches.where(cup_id: self.cup.id, status: "end")
     end
     matches.uniq
   end
 
   def update_rows
-    self.matches.where(status: "end").each do |m|
+    self.matches.each do |m|
 
       home_row = self.team_rows.where(team_id: m.home_team.id).take
       away_row = self.team_rows.where(team_id: m.away_team.id).take
