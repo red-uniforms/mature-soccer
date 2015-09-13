@@ -55,6 +55,7 @@ class MatchesController < ApplicationController
 
     if @match.status == "end"
       @match.cup.groups.each do |g|
+        g.reset_rows
         g.update_rows
       end
     end
