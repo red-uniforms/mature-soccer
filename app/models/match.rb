@@ -1,8 +1,15 @@
 class Match < ActiveRecord::Base
 
   before_save do |match|
-    if match.extra == 0 and match.statuses.index(match.status) > 3
+    if match.status == "pk" and not match.penalty
       match.status = "end"
+    end
+    if match.extra == 0 and match.status == "interval"
+      if match.penalty
+        match.status = "pk"
+      else
+        match.status = "end"
+      end
     end
     hg = 0
     ag = 0
@@ -19,6 +26,7 @@ class Match < ActiveRecord::Base
         elsif e.user.all_teams.include? away_team
           hg += 1
         end
+      elsif e.event_type == "pkgoal"
       end
     end
     self.home_goal = hg
@@ -47,6 +55,15 @@ class Match < ActiveRecord::Base
   validates :extra, numericality: { only_integer: true }
 
   validates :status, inclusion: { in: %w(0 1 half 2 interval 3 extrahalf 4 pk end) }
+
+  def who_won?
+    if home_goal > away_goal
+      return "home"
+    elsif home_goal < away_goal
+      return "away"
+    else
+    end
+  end
 
   def started?
     status != "0"
