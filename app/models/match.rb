@@ -13,6 +13,8 @@ class Match < ActiveRecord::Base
     end
     hg = 0
     ag = 0
+    pkhg = 0
+    pkag = 0
     self.events.each do |e|
       if e.event_type == "goal"
         if e.user.all_teams.include? home_team
@@ -27,10 +29,17 @@ class Match < ActiveRecord::Base
           hg += 1
         end
       elsif e.event_type == "pkgoal"
+        if e.user.all_teams.include? home_team
+          pkhg += 1
+        elsif e.user.all_teams.include? away_team
+          pkag += 1
+        end
       end
     end
     self.home_goal = hg
     self.away_goal = ag
+    self.pk_home_goal = pkhg
+    self.pk_away_goal = pkag
   end
 
   belongs_to :home_team, class_name: "Team"

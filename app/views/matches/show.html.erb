@@ -34,6 +34,19 @@
           <h5><%= @match.away_goal %></h5>
         </li>
       </ul>
+      <% if @match.penalty and (@match.pk_home_goal+@match.pk_away_goal)>0 %>
+      <ul class="horizontal" id="pk-score">
+        <li class="four">
+          <h5><%= @match.pk_home_goal %></h5>
+        </li>
+        <li class="four">
+          <h5>PK</h5>
+        </li>
+        <li class="four">
+          <h5><%= @match.pk_away_goal %></h5>
+        </li>
+      </ul>
+      <% end %>
     </div>
 
     <!-- match status -->
@@ -61,6 +74,8 @@
               <input type="button" class="button button-primary u-full-width" value="후반 시작">
             <% elsif @match.status == "4" %>
               <input type="button" class="button button-danger u-full-width" value="후반 종료">
+            <% elsif @match.status == "pk" %>
+              <input type="button" class="button button-danger u-full-width" value="승부차기 종료">
             <% end %>
           <% end %>
         </div>
