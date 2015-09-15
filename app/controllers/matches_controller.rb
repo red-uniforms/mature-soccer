@@ -9,7 +9,7 @@ class MatchesController < ApplicationController
     @match = @cup.matches.find(params[:id])
     @referees = @match.referees
     @players = @match.users
-    @events = Event.where(match_id: @match.id)
+    @events = Event.where(match_id: @match.id).order(created_at: :desc)
     @event = @match.events.new
 
     if @referees.map{ |r| r.organizer }.include? current_user.organizers.where(cup_id: @cup.id).take
@@ -55,8 +55,11 @@ class MatchesController < ApplicationController
 
     if @match.status == "end"
       @match.cup.groups.each do |g|
-        g.reset_rows
-        g.update_rows
+        if g.teams.include? @match.home_team or g.teams.include? @match.away_team
+          g.reset_rows
+          g.update_rows
+          break
+        end
       end
     end
 
