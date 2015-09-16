@@ -15,7 +15,7 @@
               <p class="focus match-time-string"></p>
             </div>
           </li>
-        <% elsif match.status == "end" and match.home_goal == match.away_goal %>
+        <% elsif match.status == "end" and match.home_goal == match.away_goal and (match.pk_home_goal+match.pk_away_goal)>0 %>
           <li class="four align-h">
             <p class="focus match-score">PK <%= match.pk_home_goal %> : <%= match.pk_away_goal %></p>
           </li>
