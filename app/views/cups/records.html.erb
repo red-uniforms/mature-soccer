@@ -4,9 +4,35 @@
 
     <!-- Actual Content -->
     <div class="row">
-      <h5 class="u-pull-left">경기 일정</h5>
+      <h5 class="u-pull-left">득점 순위</h5>
     </div>
     <div class="row">
+      <ul class="horizontal">
+        <li class="four">
+          이름
+        </li>
+        <li class="four">
+          출장 경기 수
+        </li>
+        <li class="four">
+          득점
+        </li>
+      </ul>
     </div>
+    <% @record.reverse.each do |r| %>
+    <div class="row">
+      <ul class="horizontal">
+        <li class="four">
+          <%= r[0].name %>
+        </li>
+        <li class="four">
+          <%= r[0].matches.where(cup_id: @cup.id).count %>
+        </li>
+        <li class="four">
+          <%= r[1] %>
+        </li>
+      </ul>
+    </div>
+    <% end %>
   </div>
 </section>s
