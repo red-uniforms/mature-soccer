@@ -39,6 +39,13 @@ $(document).on('ready page:load', function(){
 
     // timeString = sprintf("%02d:%02d",matchDate.hour(),matchDate.minute());
     timeString = matchDate.hour() + "시";
+
+    if( matchDate.minute() < 10 ) {
+      timeString += "0" + matchDate.minute() + "분";
+    } else {
+      timeString += matchDate.minute() + "분";
+    }
+
     match.find('.match-time-string').html(timeString);
 
     match = match.next();
