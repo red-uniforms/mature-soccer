@@ -4,7 +4,7 @@ class Match < ActiveRecord::Base
     if match.status == "pk" and not match.penalty
       match.status = "end"
     end
-    if match.extra == 0 and match.status == "interval"
+    if match.extra == 0 and match.status == "interval" and match.home_goal == match.away_goal
       if match.penalty
         match.status = "pk"
       else
