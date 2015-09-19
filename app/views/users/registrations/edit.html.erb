@@ -1,39 +1,67 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
+<section class="first">
+  <div class="container">
+    <div class="row">
+      <h5 class="u-pull-left">계정 정보</h5>
+    </div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+    <div class="row">
+      <div class="six columns">
+        <div class="row">
+          <%= f.label :email, class: "u-pull-left" %>
+        </div>
+        <p class="label">로그인 시 이용되는 이메일</p>
+        <%= f.email_field :email, class: "u-full-width", disabled: true %>
+      </div>
+      <div class="six columns">
+        <div class="row">
+          <%= f.label :name, value: "이름", class: "u-pull-left" %>
+        </div>
+        <p class="label">순서대로 성과 이름을 적어주세요</p>
+        <div class="row">
+          <%= f.text_field :last_name, autofocus: true, class: "six columns" %>
+          <%= f.text_field :first_name, autofocus: true, class: "six columns" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="six columns">
+        <div class="row">
+          <%= f.label :password, value: "비밀번호", class: "u-pull-left" %>
+        </div>
+        <p class="label">변경을 원하시는 경우에만 입력해주세요</p>
+        <%= f.password_field :password, autocomplete: "off", class: "u-full-width" %>
+      </div>
+      <div class="six columns">
+        <div class="row">
+          <%= f.label :password_confirmation, value: "비밀번호 재입력", class: "u-pull-left" %>
+        </div>
+        <p class="label">변경할 비밀번호를 다시 입력해주세요</p>
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: "u-full-width" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="six columns">
+        <div class="row">
+          <%= f.label :current_password, value: "현재 비밀번호", class: "u-pull-left" %>
+        </div>
+        <p class="label">현재 비밀번호를 정확히 입력하면 정보가 수정됩니다</p>
+        <%= f.password_field :current_password, autocomplete: "off", class: "u-full-width" %>
+      </div>
+    </div>
+    <!-- Submit Button -->
+    <div class="row u-mt-10">
+      <div class="two columns">
+        <%= f.submit "수정하기", class: "button button-primary button-small u-full-width" %>
+      </div>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <% end %>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+  <%= link_to "돌아가기", :back %>
+</section>

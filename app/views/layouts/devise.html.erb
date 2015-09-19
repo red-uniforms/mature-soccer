@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>Log in to Amaccer</title>
+  <title>매드포풋볼 로그인</title>
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -13,19 +13,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <section>
+  <nav class="navbar navbar-default">
     <div class="container">
-
-      <div class="four columns offset-by-four">
-        <div class="row">
-          <%= link_to "Login", new_user_session_path, class: "login-nav u-pull-left" %>
-          <%= link_to "Signup", new_user_registration_path, class: "login-nav u-pull-left" %>
-          <%= link_to "PASSWORD?", new_user_password_path, class: "login-nav u-pull-right" %>
-        </div>
-        <%= yield %>
-      </div>
+      <a class="navbar-link" href="/" id="logo">HOME</a>
+      <a class="navbar-link" target="_blank" href="http://enccer.com">Enccer</a>
+      <% if current_user %>
+        <%= link_to "log out", destroy_user_session_path, class: "navbar-link u-pull-right", method: :delete, data: { confirm: "Sure to Log Out?"} %>
+        <span class="navbar-text"><%= current_user.first_name %> 님</span>
+      <% else %>
+        <%= link_to "log in", new_user_session_path, class: "navbar-link u-pull-right" %>
+      <% end %>
       
     </div>
-  </section>
+  </nav>
+  <%= yield %>
 </body>
 </html>

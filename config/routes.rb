@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
   root 'home#index'
-  devise_for :users, controllers: { sessions: "user/sessions" },
+  devise_for :users, controllers: { sessions: "user/sessions",registrations: "user/registrations" },
              :path_names => {
               :sign_in => 'login',
               :sign_out => 'logout',
-              :sign_up  => 'signup'
+              :sign_up  => 'signup',
+              :edit => 'profile'
              }
+  # devise_for :users, controllers: { registrations: "user/registrations" },
+  #            :path_names => {
+  #            }
 
   resources :users, only: [:index]
 
