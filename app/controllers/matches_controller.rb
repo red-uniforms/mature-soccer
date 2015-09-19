@@ -19,7 +19,7 @@ class MatchesController < ApplicationController
     end
   end
   def create
-    date = DateTime.strptime(match_params[:date], "%Y-%m-%dT%H:%MT%Z")
+    date = DateTime.strptime(match_params[:date], "%Y-%m-%dT%H:%MT%Z %p")
     
     @match = @cup.matches.new(match_params)
     # mysql doesn't save tz data
