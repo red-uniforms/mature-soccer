@@ -4,13 +4,6 @@ class Match < ActiveRecord::Base
     if match.status == "pk" and not match.penalty
       match.status = "end"
     end
-    if match.extra == 0 and match.status == "interval" and match.home_goal == match.away_goal
-      if match.penalty
-        match.status = "pk"
-      else
-        match.status = "end"
-      end
-    end
     hg = 0
     ag = 0
     pkhg = 0
@@ -40,6 +33,14 @@ class Match < ActiveRecord::Base
     self.away_goal = ag
     self.pk_home_goal = pkhg
     self.pk_away_goal = pkag
+
+    if match.extra == 0 and match.status == "interval" and match.home_goal == match.away_goal
+      if match.penalty
+        match.status = "pk"
+      else
+        match.status = "end"
+      end
+    end
   end
 
   belongs_to :home_team, class_name: "Team"
