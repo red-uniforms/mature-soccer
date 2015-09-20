@@ -536,3 +536,7 @@ form.new_event {
 .match-score {
   font-size: 2rem;
 }
+
+#pk-score h5 {
+  font-size: 2rem !important;
+}

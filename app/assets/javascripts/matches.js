@@ -2,7 +2,7 @@ $(document).on('ready page:load', function(){
   var datetimepicker = $('#datetimepicker').datetimepicker({
       inline: true,
       sideBySide: true,
-      format: "YYYY-MM-DDThh:mmTZ"
+      format: "YYYY-MM-DDTHH:mmTZ A"
   });
 
   matchClock = $('#match-clock span').first();
@@ -31,7 +31,6 @@ $(document).on('ready page:load', function(){
   match = $('div.match-row').first();
   while( match.hasClass('match-row') ) {
     matchDate = new moment( match.find('.match-date').text(), "YYYY-MM-DD HH:mm:ss Z" );
-    console.log(matchDate);
 
     dateString = matchDate.month()+1 + "월 " + matchDate.date() + "일 (";
     dateString += ["일","월","화","수","목","금","토"][matchDate.day()] + ")";
@@ -39,6 +38,13 @@ $(document).on('ready page:load', function(){
 
     // timeString = sprintf("%02d:%02d",matchDate.hour(),matchDate.minute());
     timeString = matchDate.hour() + "시";
+
+    if( matchDate.minute() < 10 ) {
+      timeString += "0" + matchDate.minute() + "분";
+    } else {
+      timeString += matchDate.minute() + "분";
+    }
+
     match.find('.match-time-string').html(timeString);
 
     match = match.next();

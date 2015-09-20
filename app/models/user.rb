@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :user_infos, dependent: :destroy
   has_many :organizers, dependent: :destroy
   has_many :captains, dependent: :destroy
+  has_many :events
 
   validates :name, length: { minimum: 2, maximum: 20 }
 

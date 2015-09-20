@@ -51,6 +51,19 @@ class CupsController < ApplicationController
     @groups = @cup.groups
   end
   def records
+    @scorers = []
+    @record = Hash.new(0)
+
+    @cup.matches.each do |m|
+      m.events.where(event_type: "goal").each do |g|
+        @scorers << g.user
+      end
+    end
+    @scorers.each do |v|
+      @record[v] += 1
+    end
+    @scorers = @scorers.uniq
+    @record = @record.sort_by { |user, goal| goal }
   end
 
   def notices

@@ -9,7 +9,7 @@ class MatchesController < ApplicationController
     @match = @cup.matches.find(params[:id])
     @referees = @match.referees
     @players = @match.users
-    @events = Event.where(match_id: @match.id)
+    @events = Event.where(match_id: @match.id).order(created_at: :desc)
     @event = @match.events.new
 
     if @referees.map{ |r| r.organizer }.include? current_user.organizers.where(cup_id: @cup.id).take
@@ -19,7 +19,7 @@ class MatchesController < ApplicationController
     end
   end
   def create
-    date = DateTime.strptime(match_params[:date], "%Y-%m-%dT%H:%MT%Z")
+    date = DateTime.strptime(match_params[:date], "%Y-%m-%dT%H:%MT%Z %p")
     
     @match = @cup.matches.new(match_params)
     # mysql doesn't save tz data
@@ -45,13 +45,23 @@ class MatchesController < ApplicationController
 
   # changes match status 0 1 half 2 interval 3 extrahalf 4 pk
   def status
-    @match = @cup.matches.find(params[:id]) 
+    @match = @cup.matches.find(params[:id])
     if %w(0 half interval extrahalf).include? @match.status
       @match.started_at = Time.now
     end
 
     @match.status = @match.statuses[ @match.statuses.index(@match.status) + 1 ]
     @match.save!
+
+    if @match.status == "end"
+      @match.cup.groups.each do |g|
+        if g.teams.include? @match.home_team or g.teams.include? @match.away_team
+          g.reset_rows
+          g.update_rows
+          break
+        end
+      end
+    end
 
     redirect_to action: 'show'
   end
