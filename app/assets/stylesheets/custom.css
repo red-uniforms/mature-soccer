@@ -1,5 +1,5 @@
 /*@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);*/
-@import url('http://api.mobilis.co.kr/webfonts/v2/css/NanumGothicLightWeb');
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 @font-face {
   font-family: 'Open Sans';
@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: 'Open Sans', 'NanumGothicLightWeb', sans-serif;
+  font-family: 'Open Sans', 'Nanum Gothic', sans-serif;
 }
 
 body a {
@@ -184,6 +184,7 @@ p.small {
 }
 
 .team-holder {
+  margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 7px;
   border: 2px solid #d8d8d8;
@@ -193,7 +194,7 @@ p.small {
   padding-right: 10px;
   padding-top: 155px;
   padding-bottom: 155px;
-  border: 2px dashed #d8d8d8; 
+  border: 2px dashed #d8d8d8;
 }
 
 .team-background {
@@ -208,12 +209,29 @@ p.small {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  min-height: 250px; 
+  min-height: 250px;
+}
+img.team-profile {
+  border-radius: 5px;
 }
 
 div.up-50 {
   position: relative;
   top: -50px;
+}
+
+div.up-20 {
+  position: relative;
+  top: -20px;
+}
+
+.up-20 p.team-name {
+  display: inline-block;
+  padding: 0 10px;
+  background: #fff;
+  margin-bottom: 10px;
+  font-size: 1.8rem; line-height: 1.5;  letter-spacing: -.05rem;
+  color: inherit;
 }
 
 img.max-30 {
@@ -251,11 +269,11 @@ p.team-name {
 }
 ul.error {
   font-size: 12px;
-  text-align: left; 
+  text-align: left;
   margin-bottom: 5px;
 }
 .error li {
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
 }
 
 strong {
@@ -539,4 +557,9 @@ form.new_event {
 
 #pk-score h5 {
   font-size: 2rem !important;
+}
+
+a.url {
+  font-size: 1rem;
+  overflow: hidden;
 }

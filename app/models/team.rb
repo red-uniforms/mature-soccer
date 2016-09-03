@@ -35,7 +35,10 @@ class Team < ActiveRecord::Base
     if Rails.env.production?
       "http://madforfootball.com/teams/" + team_url
     else
-      "http://amaccer.herokuapp.com/teams/" + team_url
+      "http://localhost:3000/teams/" + team_url
     end
+  end
+  def captain_user
+    users.where(id: captain_user_id).first()
   end
 end

@@ -6,24 +6,6 @@
     <div class="row u-mb-10">
       <p class="u-pull-left">가입 링크를 받거나 새로운 팀을 생성하세요</p>
     </div>
-    <% if current_user.user_infos.any? %>
-      <div class="row">
-        <ul class="horizontal">
-          <li class="three">
-            <p>팀</p>
-          </li>
-          <li class="three">
-            <p>전화번호</p>
-          </li>
-          <li class="three">
-            <p>학번</p>
-          </li>
-          <li class="three">
-            <p>직업</p>
-          </li>
-        </ul>
-      </div>
-    <% end %>
     <% (@teams - current_user.teams).each do |t| %>
       <div class="row">
         <ul class="horizontal">
@@ -40,37 +22,23 @@
     <% end %>
     <% current_user.user_infos.each do |i| %>
       <div class="row">
-        <ul class="horizontal">
-          <li class="three">
-            <%= link_to(controller: "teams", action: "show", team_url: i.team.team_url) do %>
-              <p><%= i.team.name %></p>
-            <% end %>
-          </li>
-          <li class="three">
-            <p><%= i.phone %></p>
-          </li>
-          <li class="three">
-            <p><%= i.student_code %></p>
-          </li>
-          <li class="three">
-            <p><%= i.career %></p>
-          </li>
-        </ul>
-      </div>
-      <div class="row">
-        <div class="twelve column">
-          <%= link_to i, method: :delete, data: { confirm: '팀에서 탈퇴하시겠습니까?'} do %>
-            <input type="button" class="button button-danger u-full-width" value="탈퇴">
-          <% end %>
-        </div>
+        <%= render(i.team) %>
       </div>
     <% end %>
-    <div class="row u-mt-10 new-team">
-      <p>새로운 팀을 생성하세요</p>
-      <div class="twelve columns">
-        <%= link_to(new_team_path) do %>
-          <%= button_tag("팀 생성", {type: 'button', class: 'u-full-width button button-small'} ) %>
-        <% end %>
+    <div class="row u-mt-10">
+      <div class="four columns new-team">
+        <p>팀을 검색하세요</p>
+        <a href="#">
+          <button name="button" type="button" class="u-full-width button button-small">팀 검색</button>
+        </a>
+      </div>
+      <div class="four columns new-team">
+        <p>새로운 팀을 생성하세요</p>
+        <div class="ten columns offset-by-one">
+          <%= link_to(new_team_path) do %>
+            <%= button_tag("팀 생성", {type: 'button', class: 'u-full-width button button-small button-primary'} ) %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

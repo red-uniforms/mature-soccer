@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates :name, length: { minimum: 2, maximum: 20 }
 
   def name
-    last_name + " " + first_name
+    last_name + first_name
   end
 
   def applicants
