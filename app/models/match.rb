@@ -80,7 +80,7 @@ class Match < ActiveRecord::Base
           return "away"
         end
       else
-        # ?
+        return "none"
       end
     end
   end
