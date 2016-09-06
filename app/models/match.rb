@@ -72,6 +72,16 @@ class Match < ActiveRecord::Base
     elsif home_goal < away_goal
       return "away"
     else
+      if self.penalty
+        # 승부차기 승
+        if pk_home_goal > pk_away_goal
+          return "home"
+        else
+          return "away"
+        end
+      else
+        # ?
+      end
     end
   end
 
