@@ -37,26 +37,26 @@ class Group < ActiveRecord::Base
       home_row = self.team_rows.where(team_id: m.home_team.id).take
       away_row = self.team_rows.where(team_id: m.away_team.id).take
 
-      if m.home_goal > m.away_goal
-        
+      if m.who_won? == "home"
+
         home_row.update(win: home_row.win+1)
         away_row.update(lose: away_row.lose+1)
 
-      elsif m.home_goal == m.away_goal
-
-        home_row.update(draw: home_row.draw+1)
-        away_row.update(draw: away_row.draw+1)
-
-      else
+      elsif m.who_won? == "away"
 
         home_row.update(lose: home_row.lose+1)
         away_row.update(win: away_row.win+1)
+
+      else
+
+        home_row.update(draw: home_row.draw+1)
+        away_row.update(draw: away_row.draw+1)
 
       end
 
       home_row.update(goal_difference: home_row.goal_difference + (m.home_goal-m.away_goal))
       away_row.update(goal_difference: away_row.goal_difference + (m.away_goal-m.home_goal))
-          
+
     end
   end
 end
