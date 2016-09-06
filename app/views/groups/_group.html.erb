@@ -13,7 +13,7 @@
     <li class="three align-h">승점</li>
   </ul>
 </div>
-<% group.team_rows.each do |t| %>
+<% group.team_rows.order(:created_at).each do |t| %>
   <div class="row">
     <ul class="horizontal">
       <li class="four align-h"><%= t.team.name %></li>
