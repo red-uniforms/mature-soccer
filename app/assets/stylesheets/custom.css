@@ -15,7 +15,12 @@
 }
 
 body {
+  min-height: 100vh;
   font-family: 'Raleway', 'Nanum Gothic', sans-serif;
+}
+
+body.login {
+  background-color: #EF6461;
 }
 
 body a {
@@ -93,6 +98,14 @@ section.first {
   background-size: 150px;
   width: 150px;
   height: 60px;
+  display: inline-block;
+}
+
+#logo-big {
+  background: url('/logo_MFF.jpg') center no-repeat;
+  background-size: contain;
+  width: -webkit-fill-available;
+  height: 64px;
   display: inline-block;
 }
 
@@ -184,7 +197,11 @@ p.small {
   line-height: 6rem;
   margin-right: 10px;
   font-size: 15px;
-  color: #3A87BC;
+  color: #E4B363;
+}
+
+.login-nav:hover {
+  color: #DA972B;
 }
 
 #error-explanation {
@@ -192,6 +209,12 @@ p.small {
   font-size: 12px;
   color: #DB4437;
   float: left;
+}
+
+.login-panel {
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 40px 30px 20px 30px;
 }
 
 .username {

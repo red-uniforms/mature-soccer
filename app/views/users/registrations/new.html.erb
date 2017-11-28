@@ -2,12 +2,7 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.text_field :last_name, autofocus: true, placeholder: "성", value: "", class: "input six columns" %>
-    <%= f.text_field :first_name, autofocus: true, placeholder: "이름", value: "", class: "input six columns" %>
-  </div>
-
-  <div class="field">
-    <%= f.number_field :age, autofocus: true, placeholder: "age", class: "input u-full-width" %>
+    <%= f.text_field :name, autofocus: true, placeholder: "Name", value: "", class: "input u-full-width" %>
   </div>
 
   <div class="field">
@@ -15,14 +10,14 @@
   </div>
 
   <div class="field">
-    <%= f.password_field :password, autocomplete: "off", placeholder: "password", class: "input u-full-width" %>
+    <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "input u-full-width" %>
   </div>
 
   <div class="field">
-    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "confirm password", class: "input u-full-width" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm Password", class: "input u-full-width" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up", class: "button u-full-width" %>
+    <%= f.submit "Sign up", class: "button button-primary u-full-width" %>
   </div>
 <% end %>

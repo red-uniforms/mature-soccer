@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Log in to Amaccer</title>
+  <title>Mad for Football</title>
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -12,11 +12,15 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="login">
   <section>
     <div class="container">
 
-      <div class="four columns offset-by-four">
+      <div class="six columns offset-by-three login-panel">
+        <div class="row">
+          <div class="u-full-width" id="logo-big">
+          </div>
+        </div>
         <div class="row">
           <%= link_to "Login", new_user_session_path, class: "login-nav u-pull-left" %>
           <%= link_to "Signup", new_user_registration_path, class: "login-nav u-pull-left" %>
@@ -24,7 +28,7 @@
         </div>
         <%= yield %>
       </div>
-      
+
     </div>
   </section>
 </body>
