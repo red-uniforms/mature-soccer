@@ -177,8 +177,8 @@ html {
 body {
   font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.6;
-  font-weight: 300;
-  color: #222; }
+  font-weight: 500;
+  color: #01010B; }
 
 
 /* Typography
@@ -226,17 +226,18 @@ input[type="button"] {
   display: inline-block;
   height: 38px;
   padding: 0 0;
-  color: #555;
+  color: #800000;
   text-align: center;
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 500;
   line-height: 38px;
   letter-spacing: .1rem;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   text-decoration: none;
   white-space: nowrap;
-  background-color: transparent;
+  background-color: #fff;
   border-radius: 4px;
-  border: 1px solid #bbb;
+  border: 1px solid #fff;
   cursor: pointer;
   box-sizing: border-box; }
 .button:hover,
@@ -249,8 +250,8 @@ button:focus,
 input[type="submit"]:focus,
 input[type="reset"]:focus,
 input[type="button"]:focus {
-  color: #333;
-  border-color: #888;
+  background-color: #efefef;
+  border-color: #efefef;
   outline: 0; }
 .button.button-primary,
 button.button-primary,

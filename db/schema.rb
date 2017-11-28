@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20150915145343) do
     t.boolean  "has_league"
     t.boolean  "has_tournament"
     t.integer  "max_team"
-    t.boolean  "group_stage",    default: true
   end
 
   add_index "cups", ["cup_url"], name: "index_cups_on_cup_url", unique: true
@@ -60,16 +59,6 @@ ActiveRecord::Schema.define(version: 20150915145343) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "max_team"
-  end
-
-  create_table "ladders", force: :cascade do |t|
-    t.integer  "tournament_id"
-    t.integer  "order"
-    t.integer  "step"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "home_team_id"
-    t.integer  "away_team_id"
   end
 
   create_table "matches", force: :cascade do |t|
@@ -164,14 +153,6 @@ ActiveRecord::Schema.define(version: 20150915145343) do
 
   add_index "teams_users", ["team_id"], name: "index_teams_users_on_team_id"
   add_index "teams_users", ["user_id"], name: "index_teams_users_on_user_id"
-
-  create_table "tournaments", force: :cascade do |t|
-    t.integer  "cup_id"
-    t.integer  "team_num"
-    t.string   "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "user_infos", force: :cascade do |t|
     t.integer  "user_id"

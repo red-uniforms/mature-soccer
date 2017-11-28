@@ -1,5 +1,12 @@
 /*@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);*/
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
+
+@font-face {
+  font-family: 'Raleway';
+  src: url(https://fonts.googleapis.com/css?family=Raleway:400,500);
+  unicode-range: U+0020-U+0020,U+0041-U+005A,U+0061-U+007A,U+0030-U+0039,U+002E-U+002E;
+}
 
 @font-face {
   font-family: 'Open Sans';
@@ -8,11 +15,11 @@
 }
 
 body {
-  font-family: 'Open Sans', 'Nanum Gothic', sans-serif;
+  font-family: 'Raleway', 'Nanum Gothic', sans-serif;
 }
 
 body a {
-  color: #3A87BC;
+  color: #800000;
   text-decoration: none;
 }
 
@@ -81,12 +88,26 @@ section.first {
   margin-top: 60px;
 }
 
+#logo {
+  background: url('/logo_MFF.jpg') center no-repeat;
+  background-size: 150px;
+  width: 150px;
+  height: 60px;
+  display: inline-block;
+}
+
 #intro {
-  color: #222;
+  color: #FFFFFF;
+  background-color: #EF6461;
 }
 #module {
-  background: #eee;
-  color: #000;
+  color: #01010B;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+#footer {
+  color: #FFFFFF;
+  background-color: #E4B363;
 }
 
 #profile {
@@ -98,7 +119,12 @@ section.first {
   line-height: 6rem;
   margin-right: 10px;
   font-size: 15px;
-  color: #3A87BC;
+  color: #7A7A7A;
+  vertical-align: middle;
+}
+
+.navbar-link:hover {
+  color: #01010B;
 }
 
 section .container:first-child {
