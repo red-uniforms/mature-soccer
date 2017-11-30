@@ -22,7 +22,7 @@ private
   protected
 
     def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:last_name, :first_name, :age, :email, :password) }
+      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation) }
       devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:last_name, :first_name, :age, :email, :password, :current_password) }
     end
 
