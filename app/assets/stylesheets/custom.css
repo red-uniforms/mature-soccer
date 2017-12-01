@@ -1,5 +1,6 @@
 /*@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);*/
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+/*@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);*/
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
 
 @font-face {
@@ -29,7 +30,6 @@ body a {
 }
 
 body p {
-  letter-spacing: .05em;
   margin-bottom: 10px;
 }
 
@@ -86,7 +86,7 @@ nav .small {
   font-size: 15px;
   margin-right: 10px;
   line-height: 6rem;
-  color: #3A87BC;
+  /*color: #800000;*/
 }
 
 section.first {
@@ -172,6 +172,20 @@ section {
 
 .first-child {
   margin-left: 0;
+}
+
+img.icon {
+  height: 5rem;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.icon-title {
+  text-align: left;
+  margin-bottom: 15px;
+}
+.icon-title > span.title {
+  vertical-align: middle;
+  font-size: 2.4rem;
 }
 
 img.wrapper-circle {
@@ -366,6 +380,43 @@ input.copy {
   font-size: 13px;
   line-height: 2.5em;
   margin-bottom: 10px;
+}
+
+button.button.button-orange {
+  border: 2px solid #E4B363;
+}
+button.button.button-red {
+  border: 2px solid #EF6461;
+}
+
+button.button.button-frame {
+  height: 72px;
+  text-align: left;
+  line-height: 2rem;
+  padding: 0 20px;
+  color: #01010B;
+}
+
+button.button.button-frame.button-orange:hover {
+  background-color: #fafafa;
+  border: 2px solid #DA972B;
+}
+
+button.button.button-frame.button-red:hover {
+  background-color: #fafafa;
+  border: 2px solid #E82823;
+}
+
+button.button.button-frame li {
+  margin-bottom: 0;
+}
+
+button.button.button-frame p {
+  margin-bottom: 5px;
+  text-align: left;
+}
+button.button.button-frame p:last-child {
+  font-size: 18px;
 }
 
 input[type="button"].button-danger {

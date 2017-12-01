@@ -1,10 +1,38 @@
 <section id="teams" class="first">
   <div class="container u-p-30">
-    <div class="row">
-      <h5 class="u-pull-left">팀</h5>
+    <div class="row icon-title">
+      <%= image_tag('team_icon.png', class: "icon", alt: "team icon") %>
+      <span class="title">Teams</span>
     </div>
-    <div class="row u-mb-10">
-      <p class="u-pull-left">가입 링크를 받거나 새로운 팀을 생성하세요</p>
+    <div class="row">
+      <div class="six columns">
+        <%= link_to(new_team_path) do %>
+          <button class="button button-frame button-orange u-full-width">
+            <ul class="horizontal">
+              <li class="three">
+                <%= image_tag('team_create_icon.png', class: "icon", alt: "create team icon") %>
+              </li>
+              <li class="nine">
+                <p>지금 새로운 팀을 만들어보세요</p>
+                <p>팀 만들기</p>
+              </li>
+            </ul>
+          </button>
+        <% end %>
+      </div>
+      <div class="six columns">
+        <button class="button button-frame button-red u-full-width">
+          <ul class="horizontal">
+            <li class="three">
+              <%= image_tag('search_icon.png', class: "icon", alt: "search icon") %>
+            </li>
+            <li class="nine">
+              <p>가입할 팀을 검색해보세요</p>
+              <p>팀 검색</p>
+            </li>
+          </ul>
+        </button>
+      </div>
     </div>
     <% (@teams - current_user.teams).each do |t| %>
       <div class="row">
@@ -25,45 +53,46 @@
         <%= render(i.team) %>
       </div>
     <% end %>
-    <div class="row u-mt-10">
-      <div class="four columns new-team">
-        <p>팀을 검색하세요</p>
-        <a href="#">
-          <button name="button" type="button" class="u-full-width button button-small">팀 검색</button>
-        </a>
-      </div>
-      <div class="four columns new-team">
-        <p>새로운 팀을 생성하세요</p>
-        <div class="ten columns offset-by-one">
-          <%= link_to(new_team_path) do %>
-            <%= button_tag("팀 생성", {type: 'button', class: 'u-full-width button button-small button-primary'} ) %>
-          <% end %>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 <section id="cups">
   <div class="container u-p-30">
-    <div class="row">
-      <h5 class="u-pull-left">대회</h5>
+    <div class="row icon-title">
+      <%= image_tag('cup_icon.png', class: "icon", alt: "cup icon") %>
+      <span class="title">Cups</span>
     </div>
-    <div class="row u-mb-10">
-      <p class="u-pull-left">대회를 개최하거나 주장으로서 참가를 신청하세요.</p>
+    <div class="row">
+      <div class="six columns">
+        <%= link_to(new_cup_path) do %>
+          <button class="button button-frame button-orange u-full-width">
+            <ul class="horizontal">
+              <li class="three">
+                <%= image_tag('cup_create_icon.png', class: "icon", alt: "create cup icon") %>
+              </li>
+              <li class="nine">
+                <p>직접 대회를 개최하세요</p>
+                <p>대회 만들기</p>
+              </li>
+            </ul>
+          </button>
+        <% end %>
+      </div>
+      <div class="six columns">
+        <button class="button button-frame button-red u-full-width">
+          <ul class="horizontal">
+            <li class="three">
+              <%= image_tag('search_icon.png', class: "icon", alt: "search icon") %>
+            </li>
+            <li class="nine">
+              <p>참가할 대회를 검색하세요</p>
+              <p>대회 검색</p>
+            </li>
+          </ul>
+        </button>
+      </div>
     </div>
     <div class="row">
       <%= render(current_user.all_cups) %>
-      <!-- Always at the last of cups -->
-      <div class="four columns team-holder empty">
-        <p>Create new</p>
-        <div class="row">
-          <div class="eight columns offset-by-two">
-            <%= link_to(new_cup_path) do %>
-              <%= button_tag("create", {type: 'button', class: 'u-full-width button button-small'} ) %>
-            <% end %>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
