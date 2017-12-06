@@ -1,7 +1,7 @@
 <section id="new-cup" class="first">
   <div class="container">
     <div class="row">
-      <h5 class="u-pull-left">Creating new Cup</h5>
+      <h5 class="u-pull-left">대회</h5>
     </div>
     <%= form_for @cup, url: { action: "create"} do |f| %>
       <div class="row">
@@ -16,8 +16,8 @@
               <% end %>
             </ul>
           <% end %>
-          <p class="label">Will be shown to everyone</p>
-          <%= f.text_field :name, placeholder: "Cup name" , autofocus: true , class: "u-full-width" %>
+          <p class="label">다른 사용자들이 볼 수 있습니다</p>
+          <%= f.text_field :name, placeholder: "대회명" , autofocus: true , class: "u-full-width" %>
         </div>
         <div class="six columns">
           <div class="row">
@@ -30,8 +30,8 @@
               <% end %>
             </ul>
           <% end %>
-          <p class="label">http://madforfootball.com/cups/<strong>:cup_url</strong></p>
-          <%= f.text_field :cup_url, placeholder: "Type only :cup_url" , class: "u-full-width" %>
+          <p class="label">예) http://madforfootball.com/cups/<strong>:cup_url</strong></p>
+          <%= f.text_field :cup_url, placeholder: ":cup_url 부분만 입력" , class: "u-full-width" %>
         </div>
       </div>
       <div class="row">
@@ -46,7 +46,7 @@
               <% end %>
             </ul>
           <% end %>
-          <p class="label">Possible number of teams</p>
+          <p class="label">최대 참가 가능한 팀 수</p>
           <%= f.number_field :max_team, placeholder: "Cup description" , class: "u-full-width", value: 32 %>
         </div>
         <div class="six columns">
@@ -60,7 +60,7 @@
               <% end %>
             </ul>
           <% end %>
-          <p class="label">Cup description</p>
+          <p class="label">대회 설명</p>
           <%= f.text_field :description, placeholder: "문의사항은 010-1234-1234로 연락주세요" , class: "u-full-width" %>
         </div>
       </div>
@@ -85,7 +85,7 @@
       <!-- Submit Button -->
       <div class="row u-mt-10">
         <div class="two columns">
-          <%= f.submit "Create", class: "button button-primary button-small u-full-width" %>
+          <%= f.submit "개최하기", class: "button button-primary button-small u-full-width" %>
         </div>
       </div>
     <% end %>

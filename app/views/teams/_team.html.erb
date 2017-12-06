@@ -1,14 +1,26 @@
-<div class="four columns team-holder">
-  <div class="row">
-    <div class="ten columns offset-by-one up-20">
-      <p class="team-name"><%= team.name %></p>
-      <p>주장 <%= team.captain_user.name %></p>
-
-      <a class="url" href="<%= team.url %>">
-        <img src="http://placehold.it/150x150" class="team-profile"/>
-      </a>
-
-      <p>가입인원 <%= team.users_count %>명</p>
+<div class="row">
+  <%= link_to({controller: "teams", action: "show", team_url: team.team_url}, class: "no-deco") do %>
+    <div class="twelve columns card u-left-align">
+      <ul class="horizontal">
+        <li class="three u-center-align">
+          <% if current_user && current_user.id == team.captain_user_id %>
+            <%= image_tag('team_captain_icon.png', class: "icon", alt: "team icon") %>
+          <% else %>
+            <%= image_tag('team_icon_2.png', class: "icon", alt: "team icon") %>
+          <% end %>
+        </li>
+        <li class="nine">
+          <div class="five columns">
+            <p><%= team.name %></p>
+          </div>
+          <div class="four columns">
+            <p><%= team.uniform_description %></p>
+          </div>
+          <div class="three columns">
+            <p><%= team.users_count %>명</p>
+          </div>
+        </li>
+      </ul>
     </div>
-  </div>
+  <% end %>
 </div>

@@ -5,7 +5,7 @@ class Cup < ActiveRecord::Base
   has_many :matches
   has_many :notices
   has_many :groups
-  
+
   has_and_belongs_to_many :teams
 
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }
@@ -16,11 +16,24 @@ class Cup < ActiveRecord::Base
             inclusion: { in: 4..64, message: "team number should be within 4 and 64" }
   validates :description, length: { minimum: 2, maximum: 40 }
 
+  def team_count
+    team_applicants.where(applying: false).count
+  end
   def teams
     team_applicants.where(applying: false).map{ |ta| ta.team }
   end
   def applying_teams
     team_applicants.where(applying: true).map{ |ta| ta.team }
+  end
+  def competiton_str
+    arr = []
+    if has_league
+      arr << '조별예선'
+    end
+    if has_tournament
+      arr << '토너먼트'
+    end
+    arr.join(" + ")
   end
   def url
     if Rails.env.production?

@@ -1,15 +1,20 @@
 <section id="teams" class="first">
   <div class="container u-p-30">
     <div class="row icon-title">
+      <%= image_tag('profile_icon.png', class: "icon", alt: "profile icon") %>
+      <span class="title">Profile</span>
+    </div>
+    <div class="row icon-title">
       <%= image_tag('team_icon.png', class: "icon", alt: "team icon") %>
       <span class="title">Teams</span>
     </div>
+    <%= render(current_user.all_teams) %>
     <div class="row">
       <div class="six columns">
         <%= link_to(new_team_path) do %>
-          <button class="button button-frame button-orange u-full-width">
+          <button class="button button-frame u-full-width">
             <ul class="horizontal">
-              <li class="three">
+              <li class="three u-center-align">
                 <%= image_tag('team_create_icon.png', class: "icon", alt: "create team icon") %>
               </li>
               <li class="nine">
@@ -21,9 +26,9 @@
         <% end %>
       </div>
       <div class="six columns">
-        <button class="button button-frame button-red u-full-width">
+        <button class="button button-frame u-full-width">
           <ul class="horizontal">
-            <li class="three">
+            <li class="three u-center-align">
               <%= image_tag('search_icon.png', class: "icon", alt: "search icon") %>
             </li>
             <li class="nine">
@@ -34,25 +39,6 @@
         </button>
       </div>
     </div>
-    <% (@teams - current_user.teams).each do |t| %>
-      <div class="row">
-        <ul class="horizontal">
-          <li class="three">
-            <%= link_to(controller: "teams", action: "show", team_url: t.team_url) do %>
-              <p><%= t.name %></p>
-            <% end %>
-          </li>
-          <li class="nine">
-            <p>주장 정보를 입력해주세요</p>
-          </li>
-        </ul>
-      </div>
-    <% end %>
-    <% current_user.user_infos.each do |i| %>
-      <div class="row">
-        <%= render(i.team) %>
-      </div>
-    <% end %>
   </div>
 </section>
 <section id="cups">
@@ -61,12 +47,13 @@
       <%= image_tag('cup_icon.png', class: "icon", alt: "cup icon") %>
       <span class="title">Cups</span>
     </div>
+    <%= render(current_user.all_cups) %>
     <div class="row">
       <div class="six columns">
         <%= link_to(new_cup_path) do %>
-          <button class="button button-frame button-orange u-full-width">
+          <button class="button button-frame u-full-width">
             <ul class="horizontal">
-              <li class="three">
+              <li class="three u-center-align">
                 <%= image_tag('cup_create_icon.png', class: "icon", alt: "create cup icon") %>
               </li>
               <li class="nine">
@@ -78,9 +65,9 @@
         <% end %>
       </div>
       <div class="six columns">
-        <button class="button button-frame button-red u-full-width">
+        <button class="button button-frame u-full-width">
           <ul class="horizontal">
-            <li class="three">
+            <li class="three u-center-align">
               <%= image_tag('search_icon.png', class: "icon", alt: "search icon") %>
             </li>
             <li class="nine">
@@ -90,9 +77,6 @@
           </ul>
         </button>
       </div>
-    </div>
-    <div class="row">
-      <%= render(current_user.all_cups) %>
     </div>
   </div>
 </section>

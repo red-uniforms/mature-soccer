@@ -10,6 +10,7 @@ class TeamsController < ApplicationController
     captain = current_user.captains.new
 
     @team = current_user.teams.new(team_params)
+    @team.captain_user_id = current_user.id
     
     if @team.save
       # relate team with user

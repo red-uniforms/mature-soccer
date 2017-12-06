@@ -1,13 +1,22 @@
-<div class="four columns team-holder">
-  <%= link_to(controller: "cups", action: "show", cup_url: cup.cup_url) do %>
-    <div class="team-background"></div>
-  <% end %>
-  <div class="row up-50">
-    <div class="ten columns offset-by-one">
-      <%= link_to(controller: "cups", action: "show", cup_url: cup.cup_url) do %>
-        <img src="http://placehold.it/150x150" class="wrapper-circle small" alt="team profile image">
-      <% end %>
-      <p class="team-name"><%= cup.name %></p>
+<div class="row">
+  <%= link_to({controller: "cups", action: "show", cup_url: cup.cup_url}, class: "no-deco") do %>
+    <div class="twelve columns card u-left-align">
+      <ul class="horizontal">
+        <li class="three u-center-align">
+          <%= image_tag('cup_icon.png', class: "icon", alt: "cup icon") %>
+        </li>
+        <li class="nine">
+          <div class="five columns">
+            <p><%= cup.name %></p>
+          </div>
+          <div class="four columns">
+            <p><%= cup.competiton_str %></p>
+          </div>
+          <div class="three columns">
+            <p><%= cup.team_count %>팀 참가</p>
+          </div>
+        </li>
+      </ul>
     </div>
-  </div>
+  <% end %>
 </div>

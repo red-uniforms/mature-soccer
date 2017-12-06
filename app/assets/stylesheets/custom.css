@@ -1,12 +1,11 @@
-/*@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);*/
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-/*@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);*/
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
+/*@import url('https://fonts.googleapis.com/css?family=Raleway:400,500');*/
 
 @font-face {
-  font-family: 'Raleway';
   src: url(https://fonts.googleapis.com/css?family=Raleway:400,500);
-  unicode-range: U+0020-U+0020,U+0041-U+005A,U+0061-U+007A,U+0030-U+0039,U+002E-U+002E;
+  font-family: 'Raleway';
+  unicode-range: U+0041-U+005A,U+0061-U+007A; /*알파벳만*/
+  /*unicode-range: U+0020-U+0020,U+0041-U+005A,U+0061-U+007A,U+0030-U+0039,U+002E-U+002E; 숫자만 제외*/
 }
 
 @font-face {
@@ -199,8 +198,7 @@ img.small {
   max-width: 100px;
 }
 img.xs {
-  width: 50px;
-  height: 50px;
+  height: 4rem;
 }
 p.small {
   font-size: 9px;
@@ -245,6 +243,38 @@ p.small {
   border: 2px dashed #d8d8d8;
   padding-top: 55px;
   padding-bottom: 55px;
+}
+
+div.card {
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: none;
+  background-color: #F0F1F4;
+  padding: 10px 20px;
+}
+
+div.card:hover {
+  background-color: #E4B363;
+  color: #fff;
+}
+
+div.card li {
+  margin-bottom: 0;
+}
+
+div.card p {
+  margin: 0;
+  font-size: 15px;
+  line-height: normal;
+}
+
+@media (min-width: 550px) {
+  div.card p {
+    line-height: 5rem;
+  }
+  div.card {
+    padding: 10px;
+  }
 }
 
 .team-holder {
@@ -323,9 +353,8 @@ p.label {
   font-size: 12px;
   text-align: left;
 }
-p.team-name {
+p.name {
   font-size: 17px;
-  color: #3A87BC;
 }
 
 .error {
@@ -382,19 +411,24 @@ input.copy {
   margin-bottom: 10px;
 }
 
-button.button.button-orange {
-  border: 2px solid #E4B363;
-}
-button.button.button-red {
-  border: 2px solid #EF6461;
-}
-
 button.button.button-frame {
   height: 72px;
   text-align: left;
   line-height: 2rem;
   padding: 0 20px;
   color: #01010B;
+  border: 1px solid #DDD;
+}
+
+button.button.button-frame:hover {
+  background-color: #fafafa;
+}
+
+button.button.button-orange {
+  border: 2px solid #E4B363;
+}
+button.button.button-red {
+  border: 2px solid #EF6461;
 }
 
 button.button.button-frame.button-orange:hover {
@@ -445,7 +479,6 @@ ul.horizontal {
   margin-bottom: 0;
 }
 ul.horizontal li {
-  text-align: center;
   float: left;
 }
 
@@ -456,8 +489,13 @@ ul.horizontal li {
 ul.horizontal li.twelve {
   width: 100%;
 }
+ul.horizontal li.ten {
+  width: 82%;
+  margin-left: 4%;
+}
 ul.horizontal li.nine {
   width: 73%;
+  margin-left: 4%;
 }
 ul.horizontal li.four {
   width: 30.6666666667%;
@@ -663,4 +701,18 @@ form.new_event {
 a.url {
   font-size: 1rem;
   overflow: hidden;
+}
+a.no-deco {
+  color: inherit;
+}
+a.no-deco:hover {
+  color: #01010B;
+  color: inherit;
+}
+
+.u-center-align {
+  text-align: center;
+}
+.u-left-align {
+  text-align: left;
 }

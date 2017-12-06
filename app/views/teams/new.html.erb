@@ -1,7 +1,7 @@
 <section id="new-team" class="first">
   <div class="container">
     <div class="row">
-      <h5 class="u-pull-left">팀 생성</h5>
+      <h5 class="u-pull-left">팀</h5>
     </div>
     <%= form_for @team, url: { action: "create" } do |f| %>
       <div class="row">
@@ -16,8 +16,8 @@
               <% end %>
             </ul>
           <% end %>
-          <p class="label">Will be shown to everyone</p>
-          <%= f.text_field :name, placeholder: "Team name" , autofocus: true , class: "u-full-width" %>
+          <p class="label">다른 사용자들이 볼 수 있습니다</p>
+          <%= f.text_field :name, placeholder: "팀명" , autofocus: true , class: "u-full-width" %>
         </div>
         <div class="six columns">
           <div class="row">
@@ -30,41 +30,17 @@
               <% end %>
             </ul>
           <% end %>
-          <p class="label">http://madforfootball.com/teams/<strong>:team_url</strong></p>
-          <%= f.text_field :team_url, placeholder: "Type only :team_url" , class: "u-full-width" %>
+          <p class="label">예) http://madforfootball.com/teams/<strong>:team_url</strong></p>
+          <%= f.text_field :team_url, placeholder: ":team_url 부분만 입력" , class: "u-full-width" %>
         </div>
       </div>
       <div class="row">
         <div class="six columns">
           <div class="row">
-            <%= f.label :average_age, class: "u-pull-left" %>
-          </div>
-          <% if @team.errors[:average_age].blank? %>
-            <p class="label">Average age of your team</p>
-          <% else %>
-            <ul class="error">
-              <% @team.errors[:average_age].each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-            </ul>
-          <% end %>
-          <%= f.number_field :average_age, value: "24" , class: "u-full-width" %>
-        </div>
-        <div class="six columns">
-          <div class="row">
-            <%= f.label :gender, class: "u-pull-left" %>
-          </div>
-          <p class="label">Gender of your team</p>
-          <%= f.select(:gender, ["Male", "Female"], {}, { class: "u-full-width"}) %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="six columns">
-          <div class="row">
-            <label class="u-pull-left">Uniform description</label>
+            <label class="u-pull-left">Uniform</label>
           </div>
           <% if @team.errors[:uniform_description].blank? %>
-            <p class="label">유니폼 색깔에 대해 적어주세요</p>
+            <p class="label">유니폼에 대해 적어주세요</p>
           <% else %>
             <ul class="error">
               <% @team.errors[:uniform_description].each do |msg| %>
@@ -74,6 +50,9 @@
           <% end %>
           <%= f.text_field :uniform_description, placeholder: "적색에 흰색 줄무늬", class: "u-full-width" %>
         </div>
+      </div>
+      <div class="row">
+
         <div class="six columns">
           <div class="row">
             <label class="u-pull-left">Additional info</label>
@@ -98,7 +77,7 @@
       <!-- Submit Button -->
       <div class="row u-mt-10">
         <div class="two columns">
-          <%= f.submit "생성하기", class: "button button-primary button-small u-full-width" %>
+          <%= f.submit "만들기", class: "button button-primary button-small u-full-width" %>
         </div>
       </div>
     <% end %>

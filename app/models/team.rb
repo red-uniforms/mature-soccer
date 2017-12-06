@@ -18,8 +18,8 @@ class Team < ActiveRecord::Base
              uniqueness: { message: "another team has the url"},
              exclusion: { in: %w(new edit search join) }
 
-  validates :gender, inclusion: { in: %w(Male Female), message: "gender should be male or female" }
-  validates :average_age, inclusion: { in: 1..100, message: "age should be within 1 and 100" }
+  # validates :gender, inclusion: { in: %w(Male Female), message: "gender should be male or female" }
+  # validates :average_age, inclusion: { in: 1..100, message: "age should be within 1 and 100" }
   validates :uniform_description, length: { minimum: 2, maximum: 40 }
 
   def applicants
