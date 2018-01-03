@@ -15,7 +15,11 @@
 }
 
 body {
+  position:relative;
   min-height: 100vh;
+  box-sizing: border-box;
+  padding-bottom:100px;
+  padding-top:60px;
   font-family: 'Raleway', 'Nanum Gothic', sans-serif;
 }
 
@@ -69,7 +73,7 @@ nav .small {
 
 .navbar {
   height: 60px;
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
   border-bottom: 1px solid #eee;
@@ -88,8 +92,23 @@ nav .small {
   /*color: #800000;*/
 }
 
-section.first {
-  margin-top: 60px;
+section.last {
+  margin-bottom: 60px;
+}
+
+footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 100px;
+  color: #ddd;
+  font-weight: 200;
+  padding: 30px 0;
+  background-color: #2d3142;
+}
+
+footer p {
+  font-size: 12px;
 }
 
 #logo {
@@ -178,6 +197,16 @@ img.icon {
   vertical-align: middle;
   margin-right: 10px;
 }
+img.icon-sm {
+  padding: 0.5rem 0;
+  height: 4rem;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+img.icon-big {
+  height: 7rem;
+  vertical-align: middle;
+}
 .icon-title {
   text-align: left;
   margin-bottom: 15px;
@@ -247,16 +276,16 @@ p.small {
 
 div.card {
   margin-bottom: 20px;
-  border-radius: 4px;
+  /* border-radius: 4px; */
   border: none;
-  background-color: #F0F1F4;
+  border-bottom: 1px solid #ddd;
+  /* background-color: #F0F1F4; */
   padding: 10px 20px;
 }
 
-div.card:hover {
-  background-color: #E4B363;
-  color: #fff;
-}
+/* div.card:hover {
+  border: 1px solid #EF6461;
+} */
 
 div.card li {
   margin-bottom: 0;
@@ -264,14 +293,11 @@ div.card li {
 
 div.card p {
   margin: 0;
+  line-height: 5rem;
   font-size: 15px;
-  line-height: normal;
 }
 
 @media (min-width: 550px) {
-  div.card p {
-    line-height: 5rem;
-  }
   div.card {
     padding: 10px;
   }
@@ -371,7 +397,7 @@ ul.error {
 
 strong {
   font-weight: 500 !important;
-  color: #3A87BC;
+  color: #EF6461;
 }
 
 .danger {
@@ -715,4 +741,10 @@ a.no-deco:hover {
 }
 .u-left-align {
   text-align: left;
+}
+
+@media (max-width: 850px) {
+  .u-hide-sm {
+    display: none !important;
+  }
 }

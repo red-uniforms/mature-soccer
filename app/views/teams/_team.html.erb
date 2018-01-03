@@ -4,19 +4,19 @@
       <ul class="horizontal">
         <li class="three u-center-align">
           <% if current_user && current_user.id == team.captain_user_id %>
-            <%= image_tag('team_captain_icon.png', class: "icon", alt: "team icon") %>
+            <%= image_tag('team_captain_icon.png', class: "icon-sm", alt: "team icon") %>
           <% else %>
-            <%= image_tag('team_icon_2.png', class: "icon", alt: "team icon") %>
+            <%= image_tag('team_icon_2.png', class: "icon-sm", alt: "team icon") %>
           <% end %>
         </li>
         <li class="nine">
           <div class="five columns">
             <p><%= team.name %></p>
           </div>
-          <div class="four columns">
+          <div class="four columns u-hide-sm">
             <p><%= team.uniform_description %></p>
           </div>
-          <div class="three columns">
+          <div class="three columns u-hide-sm">
             <p><%= team.users_count %>명</p>
           </div>
         </li>

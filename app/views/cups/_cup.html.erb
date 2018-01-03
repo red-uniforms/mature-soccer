@@ -3,16 +3,16 @@
     <div class="twelve columns card u-left-align">
       <ul class="horizontal">
         <li class="three u-center-align">
-          <%= image_tag('cup_icon.png', class: "icon", alt: "cup icon") %>
+          <%= image_tag('cup_icon.png', class: "icon-sm", alt: "cup icon") %>
         </li>
         <li class="nine">
           <div class="five columns">
             <p><%= cup.name %></p>
           </div>
-          <div class="four columns">
+          <div class="four columns u-hide-sm">
             <p><%= cup.competiton_str %></p>
           </div>
-          <div class="three columns">
+          <div class="three columns u-hide-sm">
             <p><%= cup.team_count %>팀 참가</p>
           </div>
         </li>
