@@ -68,7 +68,7 @@ nav .small {
 }
 
 .focus {
-  color: #3A87BC !important;
+  color: #800000 !important;
 }
 
 .navbar {
@@ -253,6 +253,10 @@ p.small {
   float: left;
 }
 
+#error-explanation > ul {
+  text-align: left;
+}
+
 .login-panel {
   border-radius: 4px;
   background-color: #fff;
@@ -386,6 +390,7 @@ p.name {
 .error {
   color: #DB4437;
 }
+
 ul.error {
   font-size: 12px;
   text-align: left;
@@ -404,9 +409,6 @@ strong {
   color : #DB4437;
 }
 
-div.copy {
-  margin-left: 0;
-}
 button.copy {
   width: 100%;
 }
@@ -512,6 +514,11 @@ ul.horizontal li {
   height: 6rem;
   line-height: 6rem;
 }
+
+.no-margin > .columns           { margin-left: 0; }
+.no-margin > .two.columns       { width: 16.6666666666%; }
+.no-margin > .ten.columns       { width: 83.3333333333%; }
+
 ul.horizontal li.twelve {
   width: 100%;
 }

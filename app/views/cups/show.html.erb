@@ -6,11 +6,11 @@
     <div class="row">
       <h5 class="u-pull-left">가입 링크</h5>
     </div>
-    <div class="row">
+    <div class="row no-margin">
       <div class="ten columns">
         <%= content_tag(:input, value: @cup.url, class: "input u-full-width", disabled: true, id: "data-copy-link" ) do %><% end %>
       </div>
-      <div class="two columns copy">
+      <div class="two columns">
         <button class="button copy button-primary" id="copy-link">
           <%= image_tag("link.png", class: "link") %>
         </button>
