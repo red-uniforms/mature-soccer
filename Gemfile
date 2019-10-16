@@ -4,8 +4,6 @@ ruby '2.6.5'
 
 gem "bootstrap-sass", ">= 3.4.1"
 gem "nokogiri", ">= 1.10.4"
-gem "actionview", ">= 4.2.11.1"
-gem "actionpack", ">= 4.2.5.2"
 
 gem 'json', '>= 1.8.5'
 
