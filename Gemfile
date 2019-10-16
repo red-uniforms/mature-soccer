@@ -1,6 +1,13 @@
 source 'https://rubygems.org'
 
-ruby '2.4.9'
+ruby '2.6.5'
+
+gem "bootstrap-sass", ">= 3.4.1"
+gem "nokogiri", ">= 1.10.4"
+gem "actionview", ">= 4.2.11.1"
+gem "actionpack", ">= 4.2.5.2"
+
+gem 'json', '>= 1.8.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -54,5 +61,3 @@ gem 'devise', '>= 4.7.1'
 gem 'tzinfo-data', '~> 1.2015.6'
 gem 'momentjs-rails', '~> 2.10.3'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.15.35'
-gem "bootstrap-sass", ">= 3.4.1"
-gem 'json', '>= 1.8'
