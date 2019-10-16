@@ -50,8 +50,9 @@ group :production do
   gem 'pg', '~> 0.18.1'
 end
 # using devise for authentication
-gem 'devise', '~> 3.5.1'
+gem 'devise', '>= 4.7.1'
 gem 'tzinfo-data', '~> 1.2015.6'
 gem 'momentjs-rails', '~> 2.10.3'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.15.35'
-gem 'bootstrap-sass', '~> 3.3.5.1'
+gem "bootstrap-sass", ">= 3.4.1"
+gem 'json', '>= 1.8'
