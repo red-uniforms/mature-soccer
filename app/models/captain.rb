@@ -1,4 +1,4 @@
-class Captain < ActiveRecord::Base
+class Captain < ApplicationRecord
   belongs_to :user
   belongs_to :team
 end

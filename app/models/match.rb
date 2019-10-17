@@ -1,4 +1,4 @@
-class Match < ActiveRecord::Base
+class Match < ApplicationRecord
 
   before_save do |match|
     if match.status == "pk" and not match.penalty

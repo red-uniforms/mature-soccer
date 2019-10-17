@@ -1,4 +1,4 @@
-class Team < ActiveRecord::Base
+class Team < ApplicationRecord
 
   after_save do |team|
     team.users_count = team.members.count

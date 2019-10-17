@@ -1,4 +1,4 @@
-class TeamRow < ActiveRecord::Base
+class TeamRow < ApplicationRecord
   belongs_to :group
   belongs_to :team
 

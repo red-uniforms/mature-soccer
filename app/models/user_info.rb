@@ -1,4 +1,4 @@
-class UserInfo < ActiveRecord::Base
+class UserInfo < ApplicationRecord
   belongs_to :user
   belongs_to :team
 
